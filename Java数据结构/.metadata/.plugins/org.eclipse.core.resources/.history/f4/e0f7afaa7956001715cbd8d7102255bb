@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<student xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+xsi:noNamespaceSchemaLocation="1.xsd" studId="11">
+<firstname>ee</firstname>
+<lastname>rr</lastname>
+<stuid>111</stuid>
+<stuid>111</stuid>
+<names>www</names>
+<birth>1999--1</birth>
+<age>22</age>
+<car>bmw</car>
+<letter>223</letter>
+
+
+</schema>
+</student>

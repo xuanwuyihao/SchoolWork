@@ -1,0 +1,26 @@
+package Link;
+
+public class Link {
+	//Êý¾ÝÓò
+	private String name;
+	//Á´Óò
+	private Link next;
+	public Link(){}
+	public Link(String name){
+		this.name=name;
+	}
+	public String getName() {
+		return name;
+	}
+	public void setName(String name) {
+		this.name = name;
+	}
+	public Link getNext() {
+		return next;
+	}
+	public void setNext(Link next) {
+		this.next = next;
+	}
+	
+
+}

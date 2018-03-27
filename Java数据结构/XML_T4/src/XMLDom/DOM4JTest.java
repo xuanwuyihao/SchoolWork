@@ -1,0 +1,60 @@
+package XMLDom;
+
+import java.io.File;
+
+import java.util.Iterator;
+import java.util.List;
+
+
+
+import org.dom4j.Attribute;
+import org.dom4j.Document;
+import org.dom4j.DocumentException;
+import org.dom4j.Element;
+import org.dom4j.io.SAXReader;
+
+
+
+public class DOM4JTest {
+	
+	//方法二
+	public static void main(String[] args) {
+		//解析book.xml文件
+		//创建SAXReader对象reader
+		
+		SAXReader reader =new SAXReader();
+		
+		
+		try {
+			//通过reader对象的read方法加载book.xml文件，获取document对象。
+			Document document=reader.read(new File("src/book.xml"));
+			//通过document获取根节点bookstore
+			Element book=document.getRootElement();
+			//通过element对象的elementIterator方法获取迭代器
+			Iterator it =book.elementIterator();
+			//遍历迭代器，获取根节点的信息（书籍）
+			while(it.hasNext()){
+				Element books=(Element)it.next();
+				//获取books属性名以及属性值
+				List<Attribute> bookAttrs=books.attributes();
+				for(Attribute attr : bookAttrs){
+					System.out.println("属性名"+attr.getName()+"属性值"+attr.getValue());
+				}
+				
+				Iterator itt=books.elementIterator();	
+				while(itt.hasNext()){
+					Element bookChild=(Element)itt.next();
+					System.out.println("节点名"+bookChild.getName()+"节点值"+bookChild.getStringValue());
+					
+				}
+			}
+			
+		} catch (DocumentException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		
+	}
+
+}

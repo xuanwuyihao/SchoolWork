@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<schema xmlns="http://www.w3.org/2001/XMLSchema" targetNamespace="http://www.example.org/1" xmlns:tns="http://www.example.org/1" elementFormDefault="qualified">
+<xs:element name="student">
+<!-- 定义一个复杂的数据类型 mixed表示混合类型 默认是false-->
+<xs:complexType mixed="true">
+<!-- sequenece代表的是顺序  ALL：表示不定义顺序，有且只出现一次  choice表示不是这个元素出现就是另一个元素出现 -->
+<xs:sequencce>
+<!-- 引用分组  关键字group ref引用的名称就是下面引用的名称 -->
+<xs:gruop ref="persongroup"></xs:gruop>
+
+
+<!-- maxOccurs知道最大次数  minOccurs知道最小次数  unbounded无限制出现 -->
+<xs:element name="stuid" type="xs:integer" maxOccurs="2" minOccurs="0"></xs:element>
+<xs:element name="names" type="xs:string"></xs:element>
+<xs:element name="birth" type="xs:date"></xs:element>
+
+
+<!-- 1、定义一个简单的类型  restriction关键字：可以限定值  maxInclusive表示最大限定值  minInclusive表示最小限定值 -->
+<xs:element mame="age">
+<xs:simpleType>
+<xs:restriction base="xs:integer">
+<xs:maxInclusive value="100"></xs:maxInclusive>
+<xs:minInclusive value="1"></xs:minInclusive>
+</xs:restriction>
+</xs:simpleType>
+</xs:element>
+
+<!-- 限定值（指数据里面） -->
+
+<!-- 校检类型  关键字pattern设置校检类型的属性 -->
+<xs:element name="letter">
+<xs:simpleType>
+<xs:restriction base="xs:integger">
+<xs:pattern value="[0-9][1|3][0-9]"
+
+</xs:pattern>
+</xs:restriction>
+</xs:simpleType>
+</xs:element>
+</xs:sequencce>
+</xs:complexType>
+</xs:element>
+
+</schema>

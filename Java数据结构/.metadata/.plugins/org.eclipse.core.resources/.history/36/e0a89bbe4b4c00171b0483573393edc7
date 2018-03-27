@@ -1,0 +1,21 @@
+package Link;
+
+public class Test {
+	public static void main(String[] args) {
+		Mean m=new Mean();
+		m.addNodeOne("a");
+		m.addNodeOne("b");
+		m.addNodeOne("c");
+		m.addNodeOne("d");
+		m.addNodeOne("e");
+		
+		//插入一个节点
+		m.insertNode(3, "v");
+		//m.deleteNodeTow(1);
+		
+		
+		
+		m.dispaly();
+		
+	}
+}

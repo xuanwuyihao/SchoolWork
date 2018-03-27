@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<schema xmlns="http://www.w3.org/2001/XMLSchema" targetNamespace="http://www.example.org/1" xmlns:tns="http://www.example.org/1" elementFormDefault="qualified">
+<xs:element name="student">
+<!-- 定义一个复杂的数据类型 mixed表示混合类型 默认是false-->
+<xs:complexType mixed="true">
+<!-- sequenece代表的是顺序  ALL：表示不定义顺序，有且只出现一次  choice表示不是这个元素出现就是另一个元素出现 -->
+<xs:sequencce>
+
+<!-- maxOccurs知道最大次数  minOccurs知道最小次数  unbounded无限制出现 -->
+<xs:element name="student" type="xs:integer" maxOccurs="2" minOccurs="0"></xs:element>
+
+
+<!-- 1、定义一个简单的类型  restriction关键字：可以限定值  maxInclusive表示最大限定值  minInclusive表示最小限定值 -->
+<xs:element mame="age">
+<xs:simpleType>
+<xs:restriction base="xs:integer">
+<xs:maxInclusive value="100"></xs:maxInclusive>
+<xs:minInclusive value="1"></xs:minInclusive>
+</xs:restriction>
+</xs:simpleType>
+</xs:element>
+</schema>

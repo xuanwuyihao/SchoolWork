@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Copy 1 elements(s) to &apos;测试/src/数据结构&apos;&#x0D;&#x0A;- Original project: &apos;T2_堆栈1&apos;&#x0D;&#x0A;- Destination element: &apos;测试/src/数据结构&apos;&#x0D;&#x0A;- Original element: &apos;stackdome.stackLink.java&apos;" description="Copy compilation unit" destination="/src&lt;数据结构" element1="/src&lt;stackdome{stackLink.java" files="0" flags="589830" folders="0" id="org.eclipse.jdt.ui.copy" log="/src&lt;stackdome{stackLink.java&#x09;true&#x09;false" policy="org.eclipse.jdt.ui.copyResources" stamp="1497659385606" units="1" version="1.0"/>
+</session>

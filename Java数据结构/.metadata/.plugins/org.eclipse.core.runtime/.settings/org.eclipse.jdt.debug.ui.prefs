@@ -1,0 +1,6 @@
+#Mon Jun 26 20:49:35 CST 2017
+org.eclipse.debug.ui.VariableView.org.eclipse.jdt.debug.ui.show_null_entries=true
+eclipse.preferences.version=1
+org.eclipse.debug.ui.ExpressionView.org.eclipse.jdt.debug.ui.show_null_entries=true
+org.eclipse.jdt.debug.ui.show_monitor_thread_info=true
+org.eclipse.debug.ui.DebugView.org.eclipse.jdt.debug.ui.show_system_threads=true

@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<bookstore>
+	<book id="1">
+	<name>鲁宾逊漂流记</name>
+	<suthor>鲁迅</suthor>
+	<year>2009</year>
+	<price>18.8</price>
+	</book>
+	
+	<book id="2">
+	<name>一千零一夜</name>
+	<suthor>安徒生</suthor>
+	<year>2002</year>
+	<price>19.9</price>
+	</book>
+
+</bookstore>

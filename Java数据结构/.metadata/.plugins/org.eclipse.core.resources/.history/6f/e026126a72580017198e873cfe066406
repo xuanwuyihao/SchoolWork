@@ -1,0 +1,10 @@
+package XML;
+
+import javax.swing.text.Element;
+
+public class XMLDome {
+
+	public static void main(String[] args) {
+		Element element=new Element("myXML");
+	}
+}

@@ -1,0 +1,13 @@
+#Sat Jun 24 08:29:11 CST 2017
+myeclipseTomcatServer.XML_T4.isUptoDate=true
+myeclipseTomcatServer.XML_T4.type=WebDeployment
+myeclipseTomcatServer.XML_T4.contextRoot=/XML_T4
+myeclipseTomcatServer.XML_T4.deploymentPath=E\:\\Java\u6570\u636E\u7ED3\u6784\\.metadata\\.plugins\\com.genuitec.eclipse.easie.tomcat.myeclipse\\tomcat\\webapps\\XML_T4
+myeclipseTomcatServer.XML_T4.shouldBackup=false
+myeclipseTomcatServer.XML_T4.isDeployed=true
+myeclipseTomcatServer.XML_T4.altContextRoot=/XML_T4
+myeclipseTomcatServer.XML_T4.earProjectName=
+myeclipseTomcatServer.XML_T4.shouldOverwrite=true
+eclipse.preferences.version=1
+myeclipseTomcatServer.XML_T4.deployIsOverProject=false
+myeclipseTomcatServer.XML_T4.isExploded=true

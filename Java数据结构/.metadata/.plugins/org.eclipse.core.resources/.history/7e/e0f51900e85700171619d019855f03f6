@@ -1,0 +1,11 @@
+package Dome;
+
+import org.jdom.Element;
+
+public class chuangjianXML {
+	public static void main(String[] args) {
+		Element  emt=new Element("MyInfo");
+		emt.setAttribute("comment","introduce myself");
+		emt.addContent(new Element("name").setText("kingwong"));
+	}
+}

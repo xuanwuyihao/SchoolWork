@@ -1,0 +1,19 @@
+#Mon Jun 26 21:05:10 CST 2017
+spelling_locale=en_GB
+spelling_locale_initialized=true
+org.eclipse.jdt.ui.text.templates_migrated=true
+useAnnotationsPrefPage=true
+eclipse.preferences.version=1
+org.eclipse.jface.textfont=1|Courier New|14.25|0|WINDOWS|1|-19|0|0|0|400|0|0|0|0|3|2|1|49|Courier New;
+tabWidthPropagated=true
+org.eclipse.jdt.ui.editor.tab.width=
+fontPropagated=true
+org.eclipse.jdt.ui.text.custom_code_templates=<?xml version\="1.0" encoding\="UTF-8"?><templates/>
+org.eclipse.jdt.ui.javadoclocations.migrated=true
+proposalOrderMigrated=true
+spelling_user_dictionary_encoding=GBK
+org.eclipse.jdt.ui.formatterprofiles.version=11
+useQuickDiffPrefPage=true
+org.eclipse.jdt.ui.text.custom_templates=<?xml version\="1.0" encoding\="UTF-8"?><templates/>
+content_assist_lru_history=<?xml version\="1.0" encoding\="UTF-8"?><history maxLHS\="100" maxRHS\="10"><lhs name\="java.util.List"><rhs name\="java.util.LinkedList"/></lhs><lhs name\="java.util.Queue"><rhs name\="java.util.LinkedList"/></lhs><lhs name\="java.lang.Cloneable"><rhs name\="java.util.LinkedList"/><rhs name\="org.jdom.Element"/><rhs name\="org.jdom.output.XMLOutputter"/><rhs name\="org.jdom.output.Format"/></lhs><lhs name\="java.util.Collection"><rhs name\="java.util.LinkedList"/></lhs><lhs name\="java.lang.Iterable"><rhs name\="java.util.LinkedList"/></lhs><lhs name\="java.util.AbstractSequentialList"><rhs name\="java.util.LinkedList"/></lhs><lhs name\="java.util.AbstractList"><rhs name\="java.util.LinkedList"/></lhs><lhs name\="java.util.AbstractCollection"><rhs name\="java.util.LinkedList"/></lhs><lhs name\="java.util.LinkedList"><rhs name\="java.util.LinkedList"/></lhs><lhs name\="Link.Link"><rhs name\="Link.Link"/></lhs><lhs name\="stackdome.stackLink"><rhs name\="stackdome.stackLink"/></lhs><lhs name\="stackdome.StackD"><rhs name\="stackdome.StackD"/></lhs><lhs name\="Queue.circulateDome"><rhs name\="Queue.circulateDome"/></lhs><lhs name\="Queue.lineardome"><rhs name\="Queue.lineardome"/></lhs><lhs name\="Treed.TreeDome"><rhs name\="Treed.TreeDome"/></lhs><lhs name\="Dome.BubblySort"><rhs name\="Dome.BubblySort"/></lhs><lhs name\="Dome.SelectSort"><rhs name\="Dome.SelectSort"/></lhs><lhs name\="Dome.InsertSort"><rhs name\="Dome.InsertSort"/></lhs><lhs name\="Dome.QuickSort"><rhs name\="Dome.QuickSort"/></lhs><lhs name\="Dome.SearchLink"><rhs name\="Dome.SearchLink"/></lhs><lhs name\="\u6570\u636E\u7ED3\u6784.StakLink"><rhs name\="\u6570\u636E\u7ED3\u6784.StakLink"/></lhs><lhs name\="\u6570\u636E\u7ED3\u6784.stackLink"><rhs name\="\u6570\u636E\u7ED3\u6784.stackLink"/></lhs><lhs name\="\u6570\u636E\u7ED3\u6784.Stak"><rhs name\="\u6570\u636E\u7ED3\u6784.Stak"/></lhs><lhs name\="\u6570\u636E\u7ED3\u6784.duilie"><rhs name\="\u6570\u636E\u7ED3\u6784.duilie"/></lhs><lhs name\="\u6570\u636E\u7ED3\u6784.maopao"><rhs name\="\u6570\u636E\u7ED3\u6784.maopao"/></lhs><lhs name\="org.dom4j.io.SAXReader"><rhs name\="org.dom4j.io.SAXReader"/></lhs><lhs name\="java.io.File"><rhs name\="java.io.File"/></lhs><lhs name\="org.jdom.Parent"><rhs name\="org.jdom.Element"/></lhs><lhs name\="org.jdom.Content"><rhs name\="org.jdom.Element"/></lhs><lhs name\="org.jdom.Element"><rhs name\="org.jdom.Element"/></lhs><lhs name\="org.jdom.output.XMLOutputter"><rhs name\="org.jdom.output.XMLOutputter"/></lhs><lhs name\="org.jdom.output.Format"><rhs name\="org.jdom.output.Format"/></lhs><lhs name\="fuxi.BubbiyBort"><rhs name\="fuxi.BubbiyBort"/></lhs></history>
+org.eclipse.jdt.ui.text.code_templates_migrated=true

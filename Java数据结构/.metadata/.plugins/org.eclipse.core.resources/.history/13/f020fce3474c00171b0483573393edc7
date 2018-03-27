@@ -1,0 +1,14 @@
+package Link;
+
+public class Test {
+	public static void main(String[] args) {
+		Mean m=new Mean();
+		m.addNodeOne("a");
+		m.addNodeOne("b");
+		m.addNodeOne("c");
+		m.addNodeOne("d");
+		m.addNodeOne("e");
+		
+		
+	}
+}

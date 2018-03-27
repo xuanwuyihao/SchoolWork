@@ -1,0 +1,37 @@
+package XMLDom;
+
+
+
+import org.jdom.output.Format;
+import org.jdom.output.XMLOutputter;
+import org.jdom.Document;
+import org.jdom.Element;
+import org.jdom.input.SAXBuilder;
+
+public class TestJDOM2 {
+	public static void main(String[] args) {
+		 SAXBuilder sb = new SAXBuilder();
+	        try {
+	            Document doc = sb.build("src/myFile.xml");
+	            Element root = doc.getRootElement();
+
+	            String str1 = root.getAttributeValue("comment");
+//	            System.out.println("Root Element's comment attribute is : " + str1);
+	            String str2 = root.getChild("sex").getAttributeValue("value");
+//	            System.out.println("sex Element's value attribute is : " + str2);
+	            String str3 = root.getChildText("name");
+//	            System.out.println("name Element's content is :" + str3);
+	            String str4 = root.getChild("contact").getChildText("telephone");
+//	            System.out.println("contact Element's telephone subelement content is : " + str4 + "\n");
+	            Element inputElement = root.getChild("contact");
+	            inputElement.addContent(new Element("email").setAttribute("value",
+	                    "wanghua@cyberobject.com"));
+
+	            XMLOutputter xmlOut = new XMLOutputter(Format.getPrettyFormat());
+	            String outStr = xmlOut.outputString(root);
+	            System.out.println(outStr);
+	        } catch (Exception e) {
+	            e.printStackTrace();
+	        }
+	}
+}

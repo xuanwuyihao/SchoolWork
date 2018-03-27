@@ -1,0 +1,13 @@
+package XMLDom;
+
+import javax.swing.text.Document;
+
+import org.jdom.input.SAXBuilder;
+
+public class TestJDOM2 {
+	public static void main(String[] args) {
+		SAXBuilder sb=new SAXBuilder();
+		
+		Document doc=
+	}
+}

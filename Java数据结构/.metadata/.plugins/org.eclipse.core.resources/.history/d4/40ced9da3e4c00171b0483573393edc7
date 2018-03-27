@@ -1,0 +1,45 @@
+package Link;
+
+public class Mean {
+	Link node;
+	//初始化
+	public Mean(){
+		node=new Link();
+	}
+	//新增一个节点
+	public void addNode(String name){
+		//初始化头
+		Link head=node;
+		if(head.getNext()!=null){
+			new Link(name);
+		}
+	}
+	
+	public void addManyNode(String name){
+		//初始化节点
+		Link head=node;
+		Link newCode=new Link(name);
+		while(true){
+			if(head.getNext()==null){
+				head.setNext(newCode);
+				System.out.println("新增多个节点"+head.getNext().getName());
+				break;
+			}
+			head=head.getNext();
+		}
+	}
+	//插入一个节点
+	public void insertNode(int i,String name){
+		Link head=node;
+		Link temp=null;
+		Link newNode=new Link(name);
+		for(int j=0;j<i;j++){
+			temp=head;
+			head=head.getNext();
+		}
+		//第一步
+		newNode.setNext(temp.getNext());
+		//第二步
+		temp.setNext(newNode);
+	}
+}

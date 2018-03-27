@@ -1,0 +1,28 @@
+package 数据结构;
+
+public class StakLink {
+
+	private String name;
+	private StakLink next;
+	
+	public stakLink(){
+		
+	}
+	public stakLink(String name){
+		this.name=name;
+	}
+	public String getName() {
+		return name;
+	}
+	public void setName(String name) {
+		this.name = name;
+	}
+	public StakLink getStack() {
+		return stack;
+	}
+	public void setStack(StakLink stack) {
+		this.stack = stack;
+	}
+	
+	
+}
