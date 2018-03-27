@@ -1,0 +1,376 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>&nbsp;清风教育网 - 招生简章</title>
+<script type="text/javascript"
+	src="../script/jquery-easyui-1.5.2/jquery.min.js"></script>
+<link id="easyuiTheme" rel="stylesheet" type="text/css"
+	href="../script/jquery-easyui-1.5.2/themes/gray/easyui.css" />
+<link id="easyuiTheme" rel="stylesheet" type="text/css"
+	href="../script/jquery-easyui-1.5.2/themes/icon.css" />
+<script type="text/javascript"
+	src="../script/jquery-easyui-1.5.2/jquery.easyui.min.js" charset="utf-8"></script>
+<script type="text/javascript"
+	src="../script/jquery-easyui-1.5.2/locale/easyui-lang-zh_CN.js"
+	charset="utf-8"></script>
+
+<style type="text/css">
+
+body {
+	margin:30px auto;
+	text-align:center;
+	
+	color:#666;
+}
+h1 {
+	margin:10px;
+	font-size:25px;
+	color:#F30;
+	font-family:'楷体';
+	letter-spacing:5px;
+	font-weight:600;
+}
+table {
+	margin:0px auto;
+	border-collapse:collapse;
+	font-size:13px;
+}
+tr {
+	height:50px;
+}
+tr:nth-of-type(odd) {
+	background-color:#FFF;
+}
+tr:nth-of-type(even) {
+	background-color:#F2F2F2;
+}
+tr:hover {
+	color:#F30;
+	background-color:#EFFEED;
+}
+tr:hover td:nth-child(1){
+	background:url(images/tr-hover-bg.png) no-repeat 3px 8px;
+}
+th {
+	border-bottom:1px solid #CCC;
+	border-top:1px solid #CCC;
+	color:#333;
+	background-color:#F8F4DA;
+}
+td {
+	border-bottom:1px solid #CCC;
+}
+/*定义列的宽度*/
+[id^="Im"] {
+	width:500px;
+}
+[id="ImTx"] {
+	width:510px;
+}
+[id="Gxw"] {
+	width:120px;
+}
+[id="Xtt"] {
+	width:120px;
+}
+
+[id="SetUp"] {
+	width:120px;
+}
+.dc{
+	width:250px;
+	
+}
+[id="ld"] {
+	text-indent:3px;
+	font:"楷体";
+	font-size:18px;
+	background: rgba(255,255,255,0.1) no-repeat;
+	border-radius: 5px;
+	border: 0.5px solid gray;
+	letter-spacing:3px;
+	
+}
+#ld:hover{
+	letter-spacing:2px;
+	border: 0.5px solid red;
+	color:red;
+	background-color:rgba(255,255,255,0.5);
+	
+}
+
+.la{
+	padding:0;
+	margin:0;
+	margin:10px;
+	font-size:25px;
+	color:#F30;
+	font-family:'楷体';
+	letter-spacing:5px;
+	font-weight:600;
+}
+
+.ct{
+	width:350px;
+	height:28px;
+	font-size:24px;
+	font-family:'楷体';
+	background:rgba(255,255,255,0.5); 
+	border-radius: 5px;
+	border: 0.5px solid #0492d6;
+}
+
+.cz{
+	width: 95%; 
+	height: 230px; 
+	font-size: 24px;
+	font-family:'楷体'; 
+	border-radius: 5px; 
+	border: 0.2; 
+	color: red; 
+	background-color: rgba(0, 0, 0, .05);
+	font:'楷体';
+	font-size:18px;
+}
+.report-file {
+	display: block;
+    position: relative;
+    width: 120px;
+    height: 28px;
+    overflow: hidden;
+    border: 1px solid #428bca;
+    background: none repeat scroll 0 0 #428bca;
+    color: #fff;
+    cursor: pointer;
+    text-align: center;
+    float: left;
+    margin-right:5px;
+}
+.report-file span {
+    cursor: pointer;
+    display: block;
+    line-height: 28px;
+}
+.file-prew {
+    position: absolute;
+    top: 0;
+    left:0;
+	width: 120px;
+    height: 30px;
+    font-size: 100px; 
+    opacity: 0; 
+    filter: alpha(opacity=0);
+    cursor: pointer;
+}
+
+
+td:hover{
+	text-overflow:inherit;
+	overflow:visible;
+}
+</style>
+
+<script type="text/javascript">
+	$(document).ready(function(){
+		$("#xg1").click(function(){
+			textName1.value = $("#zs1").text();
+			textName2.value = $("#zs3").text();
+			textName3.value = $("#zs5").text();
+			textName4.value = $("#zs6").text();
+			jj.value = $("#zs2").text();
+			nr.value = $("#zs4").text();
+			lx.value = $("#zs7").text();
+		});
+		
+		$("#xz").click(function(){
+			/*新增*/
+		});
+	});
+</script>
+
+</head>
+<body>
+
+	<div id="dlg" class="easyui-dialog" title="修改"
+		style="width: 80%; height: 400px; max-width: 800px; padding: 2px; display: none;"
+		data-options="
+				closed:true,
+				buttons: [{
+					text:'确定',
+					iconCls:'icon-ccwjcg',
+					handler:function(){
+						alert('ok');
+					}
+				},{
+					text:'取消',
+					iconCls:'icon-ccwjsb',
+					handler:function(){
+						alert('cancel');;
+					}
+				}]
+			">
+		<p>
+			<div class="report-file">
+			      <span>图标</span>
+			      <input tabindex="3" size="3" name="report" class="file-prew" type="file" onchange="document.getElementById('textName1').value=this.value">
+			</div>
+			<input type="text" id="textName1" style="height: 28px;border:1px solid #f1f1f1" />
+			<br />
+			<div class="report-file">
+			      <span>院校图片</span>
+			      <input tabindex="3" size="3" name="report" class="file-prew" type="file" onchange="document.getElementById('textName2').value=this.value">
+			</div>
+			<input type="text" id="textName2" style="height: 28px;border:1px solid #f1f1f1" />
+			<br />
+			<div class="report-file">
+			      <span>专业图片</span>
+			      <input tabindex="3" size="3" name="report" class="file-prew" type="file" onchange="document.getElementById('textName3').value=this.value">
+			</div>
+			<input type="text" id="textName3" style="height: 28px;border:1px solid #f1f1f1" />
+			<br />
+			<div class="report-file">
+			      <span>毕业证图片</span>
+			      <input tabindex="3" size="3" name="report" class="file-prew" type="file" onchange="document.getElementById('textName4').value=this.value">
+			</div>
+			<input type="text" id="textName4" style="height: 28px;border:1px solid #f1f1f1" />
+			<br />
+			
+			<label class="la">学校简介：</label><textarea rows="10" cols="20" id="jj" class="cz" ></textarea>
+			<br />
+			<label class="la">介绍内容：</label><textarea rows="10" cols="20" id="nr" class="cz" ></textarea>
+			<br />
+			
+			<label class="la">类型：</label><input type="text" id="lx" class="ct" />
+			
+		</p>
+	</div>
+	
+	
+
+	<h1>
+		首页新闻管理
+		<div style="float:right">
+			<label title="新增数据">
+				<a type="radio" id="xz" href="javascript:void(0)" onclick="$('#dlg').dialog('open')"
+				 class="role-easyui-linkbutton-edit l-btn l-btn-small l-btn-plain">
+				<label>
+					<img src="../images/png/xzsj.png" style="width:25px;height:25px;top:2px;" />新增
+				</label>
+				</a>
+			</label>
+		</div>
+	</h1>
+	<table>
+		<tr>
+			
+			<th id="Gxw">图标</th>
+			<th id="Gxw">学校简介</th>
+			<th id="Gxw">院校图片</th>
+			<th id="Gxw">介绍内容</th>
+			<th id="Xtt">专业图片</th>
+			<th id="Xtt">毕业证图片</th>
+			<th id="Xtt">类型</th>
+			<th id="SetUp">操作</th>
+		</tr>
+		
+		
+		
+		<tr>
+			
+			<td id="zs1">s1.png</td>
+			<td id="zs2">江西农业大学是一所以农为优势、以生物技术为特色、多学科协调发展的有特色高水平大学；具有博士学位授予权；是我国首批具有学士学位、硕士学位授予权单位之一；是江西省最早开展研究生教育的高校；是农业部与江西省人民政府共建高校，是国家林业局与江西省人民政府共建高校；国家“中西部高校基础能力建设工程”高校。</td>
+			<td id="zs3">school.jpg</td>
+			<td id="zs4">江西农业大学是一所以农为优势、以生物技术为特色、多学科协调发展的有特色高水平大学；具有博士学位授予权；是我国首批具有学士学位、硕士学位授予权单位之一；是江西省最早开展研究生教育的高校；是农业部与江西省人民政府共建高校，是国家林业局与江西省人民政府共建高校；国家“中西部高校基础能力建设工程”高校。学校位于南昌经济技术开发区，总占地面积1.6万亩。校园风景秀丽，景色宜人。 学校溯源于1905年创办的江西实业学堂，1908年更名为江西高等农业学堂。本科教育肇始于1940年创办的国立中正大学，1949年更名为南昌大学，1952年组建江西农学院。1958年创办江西共产主义劳动大学总校，1968年更名为江西共产主义劳动大学。1969年江西农学院和江西共产主义劳动大学合并。1980年11月更名为江西农业大学。 学校育人体系完备。学科涵盖农、理、工、经、管、文、法、教、哲、艺等10大门类。现设有17个学院，各类全日制在校学生达26000余人（含独立学院）。有3个一级学科博士点，19个一级学科硕士点，68个本科专业。有1个国家林业局重点学科，3个江西省高水平学科，7个省级重点学科。有1个国家二类特色专业，4个国家一类特色专业，9个省级特色专业。有2个博士后科研流动站，1个博士后科研工作站。2014年，招收了江西省第一个外籍博士后。 学校师资力量雄厚。现有在职教职工近1600余人，其中具有博士、硕士学位人员占教师总数的80%以上。有中国科学院院士1人，“国家杰出青年基金”获得者2人，国家“万人计划”领军人才3人，国家中青年科技创新领军人才1人。有全国“五四”奖章获得者2人，国家级有突出贡献中青年专家3人，国家“百千万人才工程”人选5人，“中国青年科技奖”获得者3人，国家现代农业产业技术体系岗位科学家3人，教育部“新世纪优秀人才支持计划”人选4人，“赣鄱英才555工程”人选24人。有“全国杰出专业技术人才先进集体”、教育部“长江学者和创新团队发展计划”</td>
+			<td id="zs5">zy.png</td>
+			<td id="zs6">byz.jpg</td>
+			<td id="zs7">江西农业大学</td>
+
+			<td>
+				<label title="修改信息"> 
+					<a type="radio" name="st1" class="role-easyui-linkbutton-edit l-btn l-btn-small l-btn-plain"
+					value="修改" id="xg1" href="javascript:void(0)" onclick="$('#dlg').dialog('open')">
+						<label>
+							<img src="../images/png/xg.png" style="width:15px;height:15px;" />
+						</label>
+						修改
+					</a>
+				</label> 
+				<label title="恢复初始值">
+					<a type="radio" name="st1" value="删除" id="sc1" class="role-easyui-linkbutton-edit l-btn l-btn-small l-btn-plain">
+						<label>
+							<img src="../images/png/sc.png" style="width:15px;height:15px;" />
+						</label>
+						删除
+					</a>
+				</label>
+			</td>
+		</tr>
+		
+		<tr>
+			
+			<td id="zs1">s2.png</td>
+			<td id="zs2">北京外国语大学，简称北外，由中华人民共和国教育部直属，位列国家首批“211工程”，入选“985工程优势学科创新平台”、"2011计划"</td>
+			<td id="zs3">school.jpg</td>
+			<td id="zs4">北京外国语大学（Beijing Foreign Studies University），简称北外，由中华人民共和国教育部直属，位列国家首批“211工程”，入选“985工程优势学科创新平台”、“2011计划”，为财政部6所“小规模试点高校“之一，国际大学翻译学院联合会成员，设有研究生院，是中国外国语类高等院校中历史悠久、教授语种最多、办学层次齐全的全国重点大学，被誉为“共和国外交官摇篮”。 北京外国语大学前身是1941年成立于延安的中国人民抗日军事政治大学三分校俄文大队，后发展为延安外国语学校，建校始隶属于中国共产党领导。新中国成立后，学校归外交部领导。1954年，更名为北京外国语学院；1959年，与北京俄语学院合并组建新的北京外国语学院。1980年后直属国家教育部领导。1994年，正式更名为北京外国语大学。</td>
+			<td id="zs5">zy.png</td>
+			<td id="zs6">byz.jpg</td>
+			<td id="zs7">北京大学</td>
+
+			<td>
+				<label title="修改信息"> 
+					<a type="radio" name="st1" class="role-easyui-linkbutton-edit l-btn l-btn-small l-btn-plain"
+					value="修改" id="xg1" href="javascript:void(0)" onclick="$('#dlg').dialog('open')">
+						<label>
+							<img src="../images/png/xg.png" style="width:15px;height:15px;" />
+						</label>
+						修改
+					</a>
+				</label> 
+				<label title="恢复初始值">
+					<a type="radio" name="st1" value="删除" id="sc1" class="role-easyui-linkbutton-edit l-btn l-btn-small l-btn-plain">
+						<label>
+							<img src="../images/png/sc.png" style="width:15px;height:15px;" />
+						</label>
+						删除
+					</a>
+				</label>
+			</td>
+		</tr>
+		
+		<tr>
+			
+			<td id="zs1">s2.png</td>
+			<td id="zs2">赣南师范大学位于国家历史文化名城、江西省域副中心城市——赣州市。</td>
+			<td id="zs3">school.jpg</td>
+			<td id="zs4">赣南师范大学位于国家历史文化名城、江西省域副中心城市——赣州市。学校创办于1958年6月，时为赣南师范专科学校；1984年更名为赣南师范学院，升格为省属本科师范院校；2003年成为硕士学位授予权单位，是赣粤闽湘四省边际区域唯一具有硕士学位授予权的省属本科师范院校。2016年3月，学校经教育部批准更名为赣南师范大学。 学校现有黄金校区、章贡校区、白塔校区（大学科技园）3个校区，占地2200余亩，校舍建筑面积80余万平方米，教学科研仪器设备总值2.2亿余元，图书馆藏书220余万册。设有19个教学学院、1所独立学院和1所附属中学，有涵盖10个学科门类的71个本科专业、9个一级学科硕士点（涵盖62个二级学科硕士点）和5个硕士专业学位授权点。面向全国27个省（区、市）招生，现有全日制在校生19000余人，其中研究生近1200人。 学校现有专任教师近1000人，其中高级专业技术人员430余人，博士教师230余人；近年来引进和培养了一批学科学术领军人才，现有中国工程院双聘院士1人，有国家新世纪百千万人才工程人选、教育部新世纪优秀人才计划人选、国务院特殊津贴专家等20余人，教师队伍的学历结构、职称结构、学缘结构得到明显优化。广大教师爱岗敬业、教书育人，涌现了“全国优秀教师”“全国优秀科技工作者”“全球孔子学院先进个人”“江西省五一劳动奖章”“江西省教育系统师德标兵”等一批先进典型。 学校始终坚持人才培养中心地位，2014年荣获2项国家教学成果奖二等奖和1项全国教育硕士专业学位教学成果奖一等奖，获批2个国家特色专业、2门国家精品课程、3个教育部专业综合改革项目、4个教育部产学合作协同育人项目、1个全国教育硕士专业学位研究生联合培养示范基地，全力打造赣南及周边地区基础教育师资培养培训中心、研究咨询中心和改革发展服务中心，形成了以教师教育和文理学科为特色、文理管工多学科协调发展的办学格局。 学校始终坚持提高质量的办学宗旨，为国家和社会培养输送了近16万名毕业生。近五年，在校学生参加省级以上各类竞赛屡获大奖，其中荣获中宣部“五个一工程”奖、中国戏剧“梅花奖”、国际大学生数学建模竞赛一等奖、全国大学生创业大赛一等奖、全国大学生艺术展演一等奖、全国师范院校师范生教学技能大赛特等奖等竞赛一等奖190余人次；</td>
+			<td id="zs5">zy.png</td>
+			<td id="zs6">byz.jpg</td>
+			<td id="zs7">赣南师范大学</td>
+
+			<td>
+				<label title="修改信息"> 
+					<a type="radio" name="st1" class="role-easyui-linkbutton-edit l-btn l-btn-small l-btn-plain"
+					value="修改" id="xg1" href="javascript:void(0)" onclick="$('#dlg').dialog('open')">
+						<label>
+							<img src="../images/png/xg.png" style="width:15px;height:15px;" />
+						</label>
+						修改
+					</a>
+				</label> 
+				<label title="恢复初始值">
+					<a type="radio" name="st1" value="删除" id="sc1" class="role-easyui-linkbutton-edit l-btn l-btn-small l-btn-plain">
+						<label>
+							<img src="../images/png/sc.png" style="width:15px;height:15px;" />
+						</label>
+						删除
+					</a>
+				</label>
+			</td>
+		</tr>
+		
+		</table>
+</body>
+</html>

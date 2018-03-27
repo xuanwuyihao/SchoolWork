@@ -1,0 +1,157 @@
+@charset "UTF-8";
+
+html {
+	height: 209%;
+}
+
+body, div, ul, li {
+	margin: 0;
+	padding: 0;
+	display: block;
+	margin: 0 auto;
+}
+
+.br {
+	border-bottom: 1px solid #ccc;
+}
+
+.by {
+	border: 1px solid #999;
+	width: 950px;
+	margin: 0 auto; /*与width结合，居中*/
+	overflow: auto;
+}
+
+.tli {
+	float: right;
+	left: 20px; width : 160px;
+	padding: 20px;
+	background: #F4E7BD;
+	position: static;
+	display: inline;
+	visibility: visible;
+	overflow: auto;
+	width: 160px;
+}
+
+.tli ul li {
+	text-align: center;
+	width: 100%;
+	height: 30px;
+	line-height: 30px;
+	font-size: 17px;
+	list-style: none; /*清除列表默认样式*/
+	border-bottom: 1px solid #ccc;
+}
+
+.tli ul li a {
+	color: #333;
+	font-family: '清茶楷体预览版';
+	text-decoration: none;
+}
+
+.tli ul li a:hover {
+	color: red;
+	font-family: '清茶楷体预览版';
+	text-decoration: none;
+}
+
+.con {
+	float: left; /*向左浮动*/
+	width: 700px;
+	padding: 20px;
+	background: #F6F4EC;
+	font-size: 12px;
+	color: #666;
+	line-height: 150%;
+	overflow: auto;
+	display: block;
+	visibility: visible;
+}
+
+.con h2 {
+	font-size: 27px;
+	text-align: center;
+	font-family: '宋体';
+}
+
+.con p {
+	text-indent: 3em;
+	font-size: 18px;
+	font-family: '宋体';
+	overflow: auto;
+	display: block;
+}
+
+.con section {
+	height: 21px;
+	font-size: 19px;
+	font-family: '楷体';
+	border-bottom: 1px solid #ccc;
+}
+
+.g{
+	float:right;
+	text-decoration: none;
+	font-size:25px;
+}
+
+.im {
+	float: center;
+}
+
+/*学校简介 END*/
+/*专业*/
+.floatdemo {
+	width:600px;
+	height:360px;
+	margin:0 auto; 		 /*与width结合，使元素居中*/
+	margin-top:20px;
+	font-family: '楷体';
+}
+.floatdemo div {
+	width:537px;
+	height:276px;
+	float:left;				/*向左浮动*/
+}
+.floatdemo div h2 {
+	border-bottom:#aaa 1px dashed;		/*下边框为1px实线*/
+	height:20px;
+	font-size:17px;
+	color:#82c6bd;
+	float:left;			 /*向左浮动*/
+	width:180px;
+	font-family: '楷体';
+}
+.floatdemo div p {
+	color:#999;
+	font-size:15px;
+	line-height:20px;
+	/* float:left; */
+	text-align:left;
+	font-family: '楷体';
+}
+.floatdemo div .img-left {
+	float:left;
+}
+.floatdemo div .img-right {
+	float:right;
+}
+.demo03,.demo04 {
+	margin-top:15px;
+}
+.demo01 img,.demo02 img {
+	margin-right:10px;
+	
+}
+.demo03 img,.demo04 img {
+	margin-left:10px;
+}
+.demo01,.demo03 {
+	margin-right:25px;
+}
+
+
+/*--------------------------*/
+
+

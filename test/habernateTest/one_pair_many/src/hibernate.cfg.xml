@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-configuration PUBLIC
+	"-//Hibernate/Hibernate Configuration DTD 3.0//EN"
+	"http://www.hibernate.org/dtd/hibernate-configuration-3.0.dtd">
+	<hibernate-configuration>
+	<session-factory>
+	<!-- 配置数据源 -->
+	<property name="hibernate.connection.driver_class">com.mysql.jdbc.Driver</property>
+	<property name="hibernate.connection.url">jdbc:mysql://localhost:3306/test</property>
+	<property name="hibernate.connection.username">root</property>
+	<property name="hibernate.connection.password">0628</property>
+	
+	<!-- 配置数据库方言 -->
+	<property name="hibernate.dialect">org.hibernate.dialect.MySQLDialect</property>
+	<!-- 设置自动创建更新表 -->
+	<property name="hibernate.hbm2ddl.auto">update</property>
+	<!-- 打印SQL语句 -->
+	<property name="hibernate.show_sql">true</property>
+	<!-- 整理SQL语句格式 -->
+	<property name="hibernate.fromat_sql">true</property>
+	
+	<mapping resource="model/Department.hbm.xml"/>
+	<mapping resource="model/Employee.hbm.xml"/>
+	
+	</session-factory>
+	</hibernate-configuration>

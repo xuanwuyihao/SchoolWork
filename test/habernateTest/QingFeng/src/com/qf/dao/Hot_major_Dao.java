@@ -1,0 +1,15 @@
+package com.qf.dao;
+
+import java.util.List;
+
+import com.qf.model.Hot_major;
+
+public interface Hot_major_Dao {
+
+	public abstract void save(Hot_major hot_major);    //保存
+	public abstract void update(Hot_major hot_major);   //修改
+	public abstract void delete(int a_id);      //删除
+	public abstract List<Hot_major> list();	  //查询全部
+	public abstract Hot_major getHot_major(int a_id);	//查询单个
+	public abstract void remove(Integer[] a_ids);  //批量移除
+}

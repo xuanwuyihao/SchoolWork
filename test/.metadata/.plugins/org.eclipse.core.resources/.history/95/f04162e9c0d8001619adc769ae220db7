@@ -1,0 +1,63 @@
+package Face;
+
+import java.awt.Color;
+import java.awt.Container;
+import java.awt.Image;
+import java.awt.Panel;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
+
+import javax.swing.ImageIcon;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+
+import Face.Centerpanel.KeyListener;
+
+public class kaishi extends JFrame{
+	Panel p1;
+	public kaishi(){
+		Container c=getContentPane();
+		c.setLayout(null);
+//		c.setBackground(new Color(45,81,111));
+		
+		
+		
+		ImageIcon img=new ImageIcon("Image/推箱子5.jpg");
+		JLabel l=new JLabel(img);
+		l.setBounds(0, 0, 600, 700);
+//		c.setBackground(Color.BLUE);
+		c.add(l);
+		
+		
+		p1=new Panel();
+		p1.setSize(242,67);
+		p1.setBackground(new Color(193,135,38));
+		ImageIcon img1=new ImageIcon("Image/推箱子tu1.jpg");
+		JLabel l1=new JLabel(img1);
+		l1.setBounds(181, 172, 242, 67);
+		p1.setBounds(181, 172, 242, 67);
+		p1.add(l1);
+		c.add(p1);
+
+		
+		
+		setSize(600,730);
+		setVisible(true);
+		setLocationRelativeTo(null);
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+	}
+	public static void main(String[] args) {
+		new kaishi();
+	}
+	
+	class keyListener extends MouseAdapter{
+		@Override
+		public void mouseClicked(MouseEvent e) {
+			if (e.getSource()==p1) {
+				new MyPanel();
+			}
+		}
+	}
+
+}

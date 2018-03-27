@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+
+<class name="com.qf.model.Payment" table="payment">
+<id name="pay_id" column="pay_id"  type="java.lang.Integer">
+<generator class="native"></generator>
+</id>
+<property name="s_id" column="s_id"  type="java.lang.Integer"></property>
+<property name="emp_id" column="emp_id"  type="java.lang.Integer"></property>
+<property name="pay_pattern" column="pay_pattern" type="java.lang.String"></property>
+<property name="p_money" column="p_money"  type="java.lang.Double"></property>
+<property name="p_time" column="p_time"   type="java.lang.String"></property>
+<property name="p_test" column="p_test"   type="java.lang.String"></property>
+<property name="arrears" column="arrears"  type="java.lang.Double"></property>
+<property name="state" column="state"   type="java.lang.String"></property>
+<property name="acount_money" column="acount_money"  type="java.lang.Double"></property>
+
+</class>
+</hibernate-mapping>
+	

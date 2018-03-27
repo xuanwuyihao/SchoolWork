@@ -1,0 +1,19 @@
+package t1;
+
+public class lianxi6 {
+	public static void main(String[] agrs){
+		/*
+		//6、写一个猜数字游戏，先得到一个100以内的随机整数，然后循环让用户输入数字，
+		 * 输入的数字太大或太小都要给予提示，直到用户输入和随机数一样的数结束
+	如何得到一个100以内的随机数？
+		//随机数的类
+		Random ran=new Random();
+		//0-99
+		int num=ran.nextInt(100);//num为要得到的数
+		*/
+		System.out.print("请输入一个数看看是否能猜中：");
+		Scanner 
+		
+		
+	}
+}

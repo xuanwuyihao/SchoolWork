@@ -1,0 +1,251 @@
+package com.qf.action;
+
+import java.io.IOException;
+import java.io.PrintWriter;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
+import javax.servlet.ServletContext;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+
+import org.apache.struts2.ServletActionContext;
+import org.apache.struts2.interceptor.ServletResponseAware;
+
+import com.alibaba.fastjson.JSON;
+import com.opensymphony.xwork2.ActionSupport;
+import com.qf.model.QuanXian;
+import com.qf.model.Rolesqx;
+import com.qf.model.User;
+import com.qf.service.Student_Service;
+import com.qf.service.User_Service;
+
+public class User_Action extends ActionSupport implements ServletResponseAware{
+	
+	private User_Service user_Service;
+	private HttpServletResponse response;
+	private HttpServletRequest request;
+	private HttpSession session;  
+	private ServletContext application;
+	
+	private User user;
+	private Integer u_id;
+	private String jsonResult;
+	
+	//-----------ÊÚÈ¨
+	private List<QuanXian> qx_list;
+	private List<Integer> obj;
+	private Integer id;
+	private String resourceId;
+
+	public String getResourceId() {
+		return resourceId;
+	}
+
+	public void setResourceId(String resourceId) {
+		this.resourceId = resourceId;
+	}
+
+	public Integer getId() {
+		return id;
+	}
+
+	public void setId(Integer id) {
+		this.id = id;
+	}
+
+	public List<QuanXian> getQx_list() {
+		return qx_list;
+	}
+
+	public void setQx_list(List<QuanXian> qx_list) {
+		this.qx_list = qx_list;
+	}
+
+
+
+	public List<Integer> getObj() {
+		return obj;
+	}
+
+	public void setObj(List<Integer> obj) {
+		this.obj = obj;
+	}
+
+	public HttpServletResponse getResponse() {
+		return response;
+	}
+
+	public void setResponse(HttpServletResponse response) {
+		this.response = response;
+	}
+
+	public HttpServletRequest getRequest() {
+		return request;
+	}
+
+	public void setRequest(HttpServletRequest request) {
+		this.request = request;
+	}
+
+	public HttpSession getSession() {
+		return session;
+	}
+
+	public void setSession(HttpSession session) {
+		this.session = session;
+	}
+
+	public ServletContext getApplication() {
+		return application;
+	}
+
+	public void setApplication(ServletContext application) {
+		this.application = application;
+	}
+
+	public String getJsonResult() {
+		return jsonResult;
+	}
+
+	public void setJsonResult(String jsonResult) {
+		this.jsonResult = jsonResult;
+	}
+
+	public Integer getU_id() {
+		return u_id;
+	}
+
+	public void setU_id(Integer u_id) {
+		this.u_id = u_id;
+	}
+
+	public User getUser() {
+		return user;
+	}
+
+	public void setUser(User user) {
+		this.user = user;
+	}
+
+	public User_Service getUser_Service() {
+		return user_Service;
+	}
+
+	public void setUser_Service(User_Service user_Service) {
+		this.user_Service = user_Service;
+	}
+	
+	@Override
+	public void setServletResponse(HttpServletResponse arg0) {
+		// TODO Auto-generated method stub
+		this.response = response;
+	}
+	
+	//ï¿½ï¿½ï¿½ï¿½
+	public String save()throws Exception{
+		HttpServletResponse resp = ServletActionContext.getResponse();
+		HttpServletRequest req = ServletActionContext.getRequest();
+		resp.setContentType("text/html; charset=utf-8");  //htmlï¿½ï¿½ï¿½ï¿½
+		req.setCharacterEncoding("UTF-8");
+		//System.out.println("ï¿½ï¿½ï¿½ï¿½ï¿½Ë±ï¿½ï¿½ï¿½");
+		user_Service.save(user);
+		
+		return SUCCESS;
+	}
+	
+	//É¾ï¿½ï¿½
+		public String delete(){
+			user_Service.delete(u_id);
+			
+			return SUCCESS;
+		}
+		
+		//ï¿½Þ¸ï¿½
+				public String update(){
+					user_Service.update(user);;
+					
+					return SUCCESS;
+				}
+		
+	//ï¿½ï¿½Ñ¯È«ï¿½ï¿½
+		public String list() throws Exception{
+			HttpServletResponse resp = ServletActionContext.getResponse();
+			resp.setContentType("text/html; charset=utf-8");  //htmlï¿½ï¿½ï¿½ï¿½
+
+			
+			//System.out.println("ï¿½ï¿½ï¿½ï¿½ListAction");
+			Map<String,Object>	jsonMap = new HashMap<>();
+			List list = user_Service.list();
+			List list2 = new ArrayList<User>();
+			for (int i = 0; i < list.size(); i++) {
+				User u = (User)list.get(i);
+				User u2 = new User();
+				u2.setU_id(u.getU_id());
+				u2.setU_description(u.getU_description());
+				u2.setU_name(u.getU_name());
+				u2.setU_state(u.getU_state());
+				u2.setU_seq(u.getU_seq());
+			
+				list2.add(u2);
+				
+			}
+			jsonMap.put("rows", list2);  //rows  total  ï¿½ï¿½Ò³
+			jsonMap.put("total", 20);
+			jsonResult = JSON.toJSONString(jsonMap);
+			System.out.println(jsonResult);
+			PrintWriter pw = resp.getWriter();
+			pw.println(jsonResult);  //ï¿½ï¿½jsonï¿½Ä¸ï¿½Ê½ï¿½ï¿½ï¿½Øµï¿½Ò³ï¿½ï¿½ï¿½ï¿½
+			return null;
+		}
+
+	//ÊÚÈ¨´úÂë-----------------------------------------------------------------------------------------------
+		public String shouquan(){
+		//µ÷½ÚÃæµÄ
+			return SUCCESS;
+		}
+		
+		public String shou_list() throws IOException {
+			System.out.println("²éÑ¯È¨ÏÞlist");
+			qx_list = user_Service.shoulist();
+			
+		
+			String jString = JSON.toJSONString(qx_list);
+			System.out.println(jString);
+			HttpServletResponse response=ServletActionContext.getResponse();
+			response.setCharacterEncoding("utf-8");
+			
+			PrintWriter pWriter = response.getWriter();
+			
+			pWriter.println(jString);
+			return null;
+		}
+		
+		//--------------------------------------------
+		public String cha_id() throws IOException {
+			System.out.println("²éÑ¯½ÇÉ«id½øÀ´ÁË     £º"+id);
+			obj = user_Service.cha_r_id(id);
+			
+			String jString = JSON.toJSONString(obj);
+			System.out.println(jString);
+			HttpServletResponse response=ServletActionContext.getResponse();
+			response.setCharacterEncoding("utf-8");
+			PrintWriter pWriter = response.getWriter();
+			pWriter.println(jString);
+			
+			return null;
+		}
+		//-------------------------------------------------------
+		
+		//¸øÓÃ»§ÊÚÈ¨
+		public String shouquan_upd() {
+			System.out.println("½ÇÉ«ÊÚÈ¨½øÀ´ÁË ¹þ¹þ£¡£¡£¡       "+id);
+			System.out.println("×Ö·û´®£º  "+resourceId);
+			user_Service.updroles_qx(id, resourceId);
+			return SUCCESS;
+		}
+	
+}

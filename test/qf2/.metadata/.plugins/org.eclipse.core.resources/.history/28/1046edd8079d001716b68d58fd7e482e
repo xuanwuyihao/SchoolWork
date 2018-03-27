@@ -1,0 +1,59 @@
+package com.qf.service.impl;
+
+import java.util.List;
+
+import com.qf.dao.Hot_major_Dao;
+import com.qf.model.Hot_major;
+import com.qf.service.Hot_major_Service;
+
+public class Hot_major_ServiceImpl implements Hot_major_Service{
+
+	private Hot_major_Dao hot_major_Dao;
+	
+	
+	
+	public Hot_major_Dao getHot_major_Dao() {
+		return hot_major_Dao;
+	}
+
+	public void setHot_major_Dao(Hot_major_Dao hot_major_Dao) {
+		this.hot_major_Dao = hot_major_Dao;
+	}
+
+	@Override
+	public void save(Hot_major hot_major) {
+		hot_major_Dao.save(hot_major);
+		
+	}
+
+	@Override
+	public void update(Hot_major hot_major) {
+		// TODO Auto-generated method stub
+		hot_major_Dao.update(hot_major);
+	}
+
+	@Override
+	public void delete(int a_id) {
+		// TODO Auto-generated method stub
+		hot_major_Dao.delete(a_id);
+	}
+
+	@Override
+	public List<Hot_major> list() {
+		
+		return hot_major_Dao.list();
+	}
+
+	@Override
+	public Hot_major getHot_major(int a_id) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public void remove(Integer[] a_ids) {
+		
+		
+	}
+
+}

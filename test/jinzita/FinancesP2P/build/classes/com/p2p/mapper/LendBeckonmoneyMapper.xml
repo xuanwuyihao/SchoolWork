@@ -1,0 +1,225 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.p2p.mapper.LendBeckonmoneyMapper" >
+  <resultMap id="BaseResultMap" type="com.p2p.pojo.LendBeckonmoney" >
+
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="userName" property="username" jdbcType="VARCHAR" />
+    <result column="realName" property="realname" jdbcType="VARCHAR" />
+    <result column="people" property="people" jdbcType="VARCHAR" />
+    <result column="type" property="type" jdbcType="VARCHAR" />
+    <result column="title" property="title" jdbcType="VARCHAR" />
+    <result column="lendMoney" property="lendmoney" jdbcType="DECIMAL" />
+    <result column="rate" property="rate" jdbcType="DECIMAL" />
+    <result column="lendTime" property="lendtime" jdbcType="INTEGER" />
+    <result column="raiseTime" property="raisetime" jdbcType="INTEGER" />
+    <result column="status" property="status" jdbcType="VARCHAR" />
+    <result column="releaseTime" property="releasetime" jdbcType="TIMESTAMP" />
+    <result column="billcode" property="billcode" jdbcType="VARCHAR" />
+    <result column="back_type" property="back_type" jdbcType="VARCHAR" />
+    <result column="have_cast" property="have_cast" jdbcType="DECIMAL" />
+    <result column="financing" property="financing" jdbcType="DECIMAL" />
+
+  </resultMap>
+  	<!-- 前台查询 -->
+  	<select id="xylist" resultMap="BaseResultMap">
+		select * from lend_beckonmoney <where> type='信用标' </where> order by id desc limit 4;
+	</select>
+	<select id="dylist" resultMap="BaseResultMap">
+		select * from lend_beckonmoney <where> type='抵押标' </where> order by id desc limit 4;
+	</select>
+	
+	<!-- 标题模糊查询 -->
+	<select id="credit" resultMap="BaseResultMap" parameterType="com.p2p.pojo.Page">
+		select * from lend_beckonmoney
+		 <where>
+		 	<if test="title!=null and title!=''">
+			title like '%${title}%'
+			</if>
+		</where>
+	</select>
+	
+	<!-- 条件查询 -->
+	<select id="pledge" resultMap="BaseResultMap" parameterType="com.p2p.pojo.Page">
+		select * from lend_beckonmoney t
+		 <where> 
+		<if test="six!=null and six!=''">
+	 		t.type like '%${six}%' 
+	 		</if>
+	 		<if test="people!=null and people!='' and htree!=null and htree!=''">
+	 		and t.lendTime  >= #{people} and t.lendTime &lt;= #{htree}
+	 		</if>
+	 		<if test="people!=null and people!='' and  htree==''">
+	 		and t.lendTime  >= #{people}
+	 		</if>
+	 		<if test="four!=null and four!='' and five !=null and five!=''">
+	 		and t.rate >=#{four} and t.rate &lt;= #{five}
+			</if>
+		 </where>
+	</select>
+	
+	<!-- 条件查询分页 -->
+	<select id="selectPage" resultMap="BaseResultMap" parameterType="com.p2p.pojo.Page">
+
+		select * from lend_beckonmoney t
+		<where>
+	 		<if test="six!=null and six!=''">
+	 		t.type like '%${six}%' 
+	 		</if>
+	 		<if test="people!=null and people!='' and htree!=null and htree!=''">
+	 		and t.lendTime  >= #{people} and t.lendTime &lt;= #{htree}
+	 		</if>
+	 		<if test="people!=null and people!='' and htree==''">
+	 		and t.lendTime  >= #{people} 
+	 		</if>
+	 		<if test="four!=null and four!='' and five !=null and five!=''">
+	 		and t.rate >=#{four} and t.rate &lt;= #{five}
+			</if>
+		</where>
+		limit #{fist},#{tow};
+	</select>
+	
+	<!-- 分页 -->
+	<select id="pagingSelect" resultMap="BaseResultMap" parameterType="com.p2p.pojo.Page">
+		select * from lend_beckonmoney limit #{fist},#{tow};
+	</select>
+	
+	<!-- 模糊查询标题 -->
+	<select id="headline" resultMap="BaseResultMap" parameterType="com.p2p.pojo.Page">
+		select * from lend_beckonmoney 
+		<where>
+			title like '%${title}%'
+		</where>
+		limit #{fist},#{tow};
+	</select>
+	
+	
+	
+	<!-- 后台增删改查 -->
+	<select id="list" resultMap="BaseResultMap">
+	    select * from lend_beckonmoney  limit 0,4;
+	</select>
+	<insert id="save" parameterType="com.p2p.pojo.LendBeckonmoney">
+
+		insert into lend_beckonmoney(userName, realName, people, type, title, lendMoney, rate, lendTime, raiseTime, status, releaseTime, billcode, back_type,have_cast,financing) value(#{username}, #{realname}, #{people}, #{type}, #{title}, #{lendmoney}, #{rate}, #{lendtime}, #{raisetime}, #{status}, #{releasetime}, #{billcode}, #{back_type},#{have_cast}, #{financing})
+
+	</insert>
+	<select id="getById" resultMap="BaseResultMap">
+		select * from lend_beckonmoney where id = #{id}
+	</select>
+	<update id="update" parameterType="com.p2p.pojo.LendBeckonmoney">
+
+		update lend_beckonmoney set userName = #{username}, realName = #{realname}, people = #{people}, type = #{type}, title = #{title}, lendMoney = #{lendmoney}, rate = #{rate}, lendTime = #{lendtime}, raiseTime = #{raisetime}, status = #{status}, releaseTime = #{releasetime}, billcode = #{billcode}, back_type = #{back_type}
+
+		update lend_beckonmoney set userName = #{username}, realName = #{realname}, people = #{people}, type = #{type}, title = #{title}, lendMoney = #{lendmoney}, rate = #{rate}, lendTime = #{lendtime}, raiseTime = #{raisetime}, status = #{status}, releaseTime = #{releasetime}, billcode = #{billcode}, back_type = #{back_type}, financing=#{financing}}
+		
+		where id = #{id}
+	</update>
+	<delete id="remove" parameterType="int">
+		delete from lend_beckonmoney where id = #{id}
+	</delete>
+	
+	<select id="count" resultType="int">
+        select count(*) from lend_beckonmoney;
+	</select>
+	
+	  
+	<select id="selectpeople"  parameterType="com.p2p.pojo.Page" resultMap="BaseResultMap">  
+		select * from (select * from lend_beckonmoney  where title like "%"#{title}"%" and type like "%"#{people}"%") b  limit #{fist},#{tow}; 
+	</select>
+	
+	<select id="selectlike"  parameterType="com.p2p.pojo.LendBeckonmoney" resultMap="BaseResultMap">  
+		select * from lend_beckonmoney  where title like "%"#{title}"%" and type like "%"#{people}"%";  
+	</select>
+	
+	<select id="selectpaging" parameterType="com.p2p.pojo.Page"  resultMap="BaseResultMap">
+		select * from lend_beckonmoney  limit #{fist},#{tow}; 
+	</select>
+
+	
+	<update id="upateMoney" parameterType="com.p2p.pojo.LendBeckonmoney">
+		update lend_beckonmoney set  have_cast = #{have_cast}
+		where id = #{id}
+	</update>
+	
+	<update id="upateStatus" parameterType="com.p2p.pojo.LendBeckonmoney">
+		update lend_beckonmoney set  status = #{status}
+		where id = #{id}
+	</update>
+
+	
+	<!-- 后台招标中的借款 -->
+	<select id="list0" resultMap="BaseResultMap">
+	    select * from lend_beckonmoney <where> status='招标中' </where> limit 0,4;
+	</select>
+	
+	<select id="count0" resultType="int">
+        select count(*) from lend_beckonmoney <where> status='招标中' </where>;
+	</select>
+	
+	<select id="selectpeople0"  parameterType="com.p2p.pojo.Page" resultMap="BaseResultMap">  
+		select * from (select * from lend_beckonmoney  <where> status='招标中' and title like "%"#{title}"%" and type like "%"#{people}"%"</where>) b  limit #{fist},#{tow}; 
+	</select>
+	
+	<select id="selectlike0"  parameterType="com.p2p.pojo.LendBeckonmoney" resultMap="BaseResultMap">  
+		select * from lend_beckonmoney  <where> status='招标中' and title like "%"#{title}"%" and type like "%"#{people}"%" </where>;  
+	</select>
+	
+	<select id="selectpaging0" parameterType="com.p2p.pojo.Page"  resultMap="BaseResultMap">
+		select * from lend_beckonmoney <where> status='招标中' </where> limit #{fist},#{tow}; 
+	</select>
+
+ 
+	 <select id="getAmount" parameterType="com.p2p.pojo.LendBeckonmoney" resultType="java.lang.Integer">
+	 select sum(lendMoney) lendMoney from lend_beckonmoney where status='满标' and month(releaseTime) = #{id};
+	 </select>
+	 
+	 <select id="list2" resultMap="BaseResultMap">
+	 	select * from lend_beckonmoney;
+	 </select>
+ 
+	 <select id="getSum" resultType="int">
+		select count(distinct(realName)) from lend_beckonmoney;
+	 </select>
+	 
+	 <select id="selLendMoney" parameterType="java.lang.Integer">
+	 	select * from lend_beckonmoney where billcode = #{id};
+	 </select>
+
+	
+	<select id="selmax" resultType="java.lang.Float">
+		select max(rate) rate from lend_beckonmoney;
+	</select>
+	
+	<select id="selUserId" parameterType="com.p2p.pojo.LendBeckonmoney"  resultMap="BaseResultMap">
+		select * from lend_beckonmoney <where> status='招标中' and userName=#{username} </where> order by id desc limit 8; 
+	</select>
+	
+	<select id="selUserIdMoney" parameterType="com.p2p.pojo.LendBeckonmoney"  resultType="java.lang.Float">
+		select sum(lendMoney) lendmoney from lend_beckonmoney <where> status='招标中' and userName=#{username} </where>; 
+	</select>
+ 
+	<select id="getUserId" parameterType="com.p2p.pojo.LendBeckonmoney" resultMap="BaseResultMap">
+		select * from lend_beckonmoney <where> status='满标' and userName=#{username} </where> order by id desc limit 8;
+	</select>
+	
+	<select id="getUserIdMoney" parameterType="com.p2p.pojo.LendBeckonmoney"  resultType="java.lang.Float">
+		select sum(lendMoney) lendmoney from lend_beckonmoney <where> status='满标' and userName=#{username} </where>; 
+	</select>
+	
+	<select id="selLbkByStatus" parameterType="com.p2p.pojo.LendBeckonmoney"  resultMap="BaseResultMap">
+		select * from lend_beckonmoney where status=#{status};
+	</select>
+	<select id="getList" parameterType="com.p2p.pojo.LendBeckonmoney"  resultMap="BaseResultMap">
+	select * from lend_beckonmoney where status='招标中' and userName=#{username};
+	</select>
+	
+	<select id="getLend" parameterType="com.p2p.pojo.LendApply" resultMap="BaseResultMap">
+	select * from lend_apply where status='未处理' and userName=#{username};
+	</select>
+	
+	<select id="getLend_info" parameterType="com.p2p.pojo.LendApplyInfo" resultMap="BaseResultMap">
+	select * from lend_apply_info where status='未审核' and  userName=#{username};
+
+	</select>
+</mapper>

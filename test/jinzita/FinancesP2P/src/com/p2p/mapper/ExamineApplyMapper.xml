@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.p2p.mapper.ExamineApplyMapper">
+  <resultMap id="BaseResultMap" type="com.p2p.pojo.ExamineApply">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="username" jdbcType="VARCHAR" property="username" />
+    <result column="applyLimit" jdbcType="DECIMAL" property="applylimit" />
+    <result column="applyTime" jdbcType="TIMESTAMP" property="applytime" />
+    <result column="examineLimit" jdbcType="DECIMAL" property="examinelimit" />
+    <result column="examineTime" jdbcType="TIMESTAMP" property="examinetime" />
+    <result column="status" jdbcType="VARCHAR" property="status" />
+    <result column="result" jdbcType="VARCHAR" property="result" />
+  </resultMap>
+  
+  <select id="list" resultMap="BaseResultMap">
+  	select * from examine_apply;
+  </select>
+  
+  <update id="update" parameterType="ExamineApply">
+		update examine_apply set
+		examineLimit=#{examinelimit},
+		examineTime=#{examinetime},
+		status=#{status},
+		result=#{result}
+		where id=#{id}
+	</update>
+	
+	<insert id="save" parameterType="ExamineApply">
+		insert into examine_apply(username,applyLimit,applyTime) values(#{username},#{applylimit},#{applytime});
+	</insert>
+	
+	<select id="getById" parameterType="java.lang.Integer" resultType="ExamineApply">
+		select * from examine_apply where id=#{id};
+	</select>
+	
+	<delete id="remove" parameterType="java.lang.Integer">
+		delete from examine_apply where id=#{id};
+	</delete>
+	
+	<select id="countData" resultType="java.lang.Integer">
+		select count(*) from examine_apply;
+	</select>
+	
+	<!-- 借款管理 -->
+	<select id="sele" resultMap="BaseResultMap">
+		select * from examine_apply;
+	</select>
+	
+</mapper>

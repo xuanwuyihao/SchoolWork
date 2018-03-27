@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:aop="http://www.springframework.org/schema/aop"
+	xmlns:tx="http://www.springframework.org/schema/tx"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans 
+	http://www.springframework.org/schema/beans/spring-beans.xsd
+	http://www.springframework.org/schema/context
+	http://www.springframework.org/schema/context/spring-context.xsd
+	http://www.springframework.org/schema/aop
+	http://www.springframework.org/schema/aop/spring-aop.xsd
+	http://www.springframework.org/schema/tx
+	http://www.springframework.org/schema/tx/spring-tx.xsd">
+	<!-- antowire 一种是通过类     一种是通过名字 -->
+	<bean id="bean1" class="Demo.Bean" autowire="byType">
+	<property name="id" value="6666"></property>
+	<property name="name" value="王者毒药"></property>
+	<property name="sex" value="游戏"></property>
+	<property name="list">
+	<list>
+	<value>金</value>
+	<value>木</value>
+	<value>水</value>
+	<value>火</value>
+	<value>土</value>
+	</list>
+	</property>
+	<property name="map">
+	<map>
+	<entry key="涂梅城" value="笨蛋"></entry>
+	<entry key="傻逼梅" value="傻逼"></entry>
+	<entry key="丑逼梅" value="丑逼"></entry>
+	</map>
+	</property>
+	<property name="set">
+	<set>
+	<value>上</value>
+	<value>中</value>
+	<value>下</value>
+	</set>
+	</property>
+	<property name="attr" value="{左,右}"></property>
+	</bean>
+	<bean id="userDao" class="impl.UserDenoImpl"></bean>
+	</beans>
+	
+	
+	
+	

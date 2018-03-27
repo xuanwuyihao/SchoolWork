@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+
+<class name="com.qf.model.Employee" table="employee">
+<id name="emp_id">
+<generator class="native"></generator>
+</id>
+<property name="emp_Account"></property>
+<property name="emp_pwd"></property>
+<property name="emp_name"></property>
+<property name="dep_id"></property>
+<property name="emp_time"></property>
+<property name="sex"></property>
+<property name="age"></property>
+<property name="emp_phone"></property>
+<property name="user_id"></property>
+<property name="emp_state"></property>
+
+<!-- column表示对应的外键 insert和update取消 -->
+<many-to-one name="department" class="com.qf.model.Department" column="dep_id" insert="false" update="false"></many-to-one>
+
+
+<many-to-one name="user" class="com.qf.model.User" column="user_id" insert="false" update="false" ></many-to-one>
+</class>
+</hibernate-mapping>
+

@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/FinancesP2P/FinancesP2P.iml" filepath="$PROJECT_DIR$/FinancesP2P/FinancesP2P.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Lucene/Lucene.iml" filepath="$PROJECT_DIR$/Lucene/Lucene.iml" />
+      <module fileurl="file://$PROJECT_DIR$/MavenDemo/MavenDemo.iml" filepath="$PROJECT_DIR$/MavenDemo/MavenDemo.iml" />
+      <module fileurl="file://$PROJECT_DIR$/MavenSSM/MavenSSM.iml" filepath="$PROJECT_DIR$/MavenSSM/MavenSSM.iml" />
+      <module fileurl="file://$PROJECT_DIR$/MavenTest/MavenTest.iml" filepath="$PROJECT_DIR$/MavenTest/MavenTest.iml" />
+      <module fileurl="file://$PROJECT_DIR$/MySSH/MySSH.iml" filepath="$PROJECT_DIR$/MySSH/MySSH.iml" />
+      <module fileurl="file://$PROJECT_DIR$/MySSM/MySSM.iml" filepath="$PROJECT_DIR$/MySSM/MySSM.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Quartz/Quartz.iml" filepath="$PROJECT_DIR$/Quartz/Quartz.iml" />
+      <module fileurl="file://$PROJECT_DIR$/SHHDemo2/SHHDemo2.iml" filepath="$PROJECT_DIR$/SHHDemo2/SHHDemo2.iml" />
+      <module fileurl="file://$PROJECT_DIR$/SSHDemo/SSHDemo.iml" filepath="$PROJECT_DIR$/SSHDemo/SSHDemo.iml" />
+      <module fileurl="file://$PROJECT_DIR$/SSHDome_one/SSHDome_one.iml" filepath="$PROJECT_DIR$/SSHDome_one/SSHDome_one.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Servers/Servers.iml" filepath="$PROJECT_DIR$/Servers/Servers.iml" />
+      <module fileurl="file://$PROJECT_DIR$/pyramid/pyramid.iml" filepath="$PROJECT_DIR$/pyramid/pyramid.iml" />
+    </modules>
+  </component>
+</project>

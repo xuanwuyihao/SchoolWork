@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project-module
+  type="WEB"
+  name="json_ajax_struts"
+  id="myeclipse.1501040000006"
+  context-root="/json_ajax_struts"
+  j2ee-spec="5.0"
+  archive="json_ajax_struts.war">
+  <attributes>
+    <attribute name="webrootdir" value="WebRoot" />
+  </attributes>
+</project-module>
+

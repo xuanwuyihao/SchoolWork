@@ -1,0 +1,78 @@
+<%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
+<%
+String path = request.getContextPath();
+String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
+%>
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+  <head>
+    <base href="<%=basePath%>">
+    
+    <title>My JSP 'AjaxDome.jsp' starting page</title>
+    
+	<meta http-equiv="pragma" content="no-cache">
+	<meta http-equiv="cache-control" content="no-cache">
+	<meta http-equiv="expires" content="0">    
+	<meta http-equiv="keywords" content="keyword1,keyword2,keyword3">
+	<meta http-equiv="description" content="This is my page">
+	<!--
+	<link rel="stylesheet" type="text/css" href="styles.css">
+	-->
+
+  <script type="text/javascript">
+	 /*ajax:是指一种创建交互式网页应用的网页开发技术*/
+	function create(){
+	var xmlreq=null;
+	//适应每个浏览器
+	if(window.XMLHttpRequest){
+	xmlreq=new XMLHttpRequest();
+	}else if(window.ActiveXObject){
+	try{
+	xmlreq =new ActiveObject("Msxml2.XMLHTTP");
+	}catch(e1){
+	try{
+	xmlreq=new ActiveObject("Microsoft.XMLHTTP");
+	}
+	}
+	return xmlreq;
+	}
+	function ajaxdome(){
+	/*
+	1、获取rquest,拿到地址
+	2、send到后台
+	3、接受后台来的消息
+	*/
+	var username=document.all.username.value;
+	var request =createxmlHttp();
+	request.open("post","AjaxDome.do?username="+username);
+	request.send();
+	request.onreadystatechange=function(){
+	if(request.readyState==4){
+	//提取当前HTTP的就绪状态,状态4表示：响应已完成，可以访问服务器响应并使用它
+	if(request.staus==200){//HTTP状态,我们期望的状态码是 200，它表示一切顺利。
+	//如果就绪状态是 4 而且状态码是 200，就可以处理服务器的数据了，而且这些数据应该就是要求的数据
+	var value=request.responseText;
+	if(value==true){
+	document.all.ugs.innerHTML="用户存在！";
+	}else{
+	document.all.ugs.innerHTML="用户不存在！";
+	}
+	}
+	
+	}
+	}
+	
+	}
+	
+	
+	</script>
+  </head>
+ 
+  
+  <body>
+   
+    <input type="text" name="username" id="username" onblur="ajaxdome()"/>
+    <font id="ugs" stye="color:red"></font>
+  </body>
+</html>

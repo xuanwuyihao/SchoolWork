@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring accessors="true" comment="Delete 3 element(s) from project &apos;MyMoveBox&apos;&#x0D;&#x0A;- Original project: &apos;MyMoveBox&apos;&#x0D;&#x0A;- Original elements:&#x0D;&#x0A;     a.gif&#x0D;&#x0A;     b.gif&#x0D;&#x0A;     c.gif" description="Delete elements" element1="Image/c.gif" element2="Image/a.gif" element3="Image/b.gif" elements="0" flags="589830" id="org.eclipse.jdt.ui.delete" resources="3" stamp="1484726265914" subPackages="false" version="1.0"/>
+</session>

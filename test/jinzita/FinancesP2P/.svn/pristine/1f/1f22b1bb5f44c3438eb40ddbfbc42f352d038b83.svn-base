@@ -1,0 +1,29 @@
+.dj{
+	border: 1px dashed #c3c3c3;
+	height: 60px;
+	width: 96%;
+}
+.x1{
+	border-bottom: 1px solid #f3f3f3;
+}
+.z{
+	width: 96%;
+}
+.z.c1{
+	display: inline;
+	float: left;
+}
+.yz{
+	outline: none;
+	border:1px solid #f6b002;
+	background-color:#ffcc66;/* #fcc300 */
+	color: white;
+	font-size: 10px;
+}
+.yz:hover {
+	background-color: #fcc300;
+}
+.pj{
+	display: inline;
+	float: left;
+}

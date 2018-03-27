@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<section name="Workbench">
+	<item value="567" key="ExportRemoteFolderDialog.location.x"/>
+	<item value="185" key="ExportRemoteFolderDialog.location.y"/>
+	<item value="" key="DirectorySelectionPage.lastParent_svn://39.108.119.153"/>
+	<item value="232" key="ExportRemoteFolderDialog.size.x"/>
+	<item value="269" key="ExportRemoteFolderDialog.size.y"/>
+	<item value="svn://39.108.119.153" key="RepositorySelectionPage.lastRepository"/>
+	<section name="NewLocationWizard">
+		<list key="ConfigurationWizardMainPage.STORE_URL_ID">
+			<item value="svn://39.108.119.153"/>
+			<item value=""/>
+		</list>
+	</section>
+</section>

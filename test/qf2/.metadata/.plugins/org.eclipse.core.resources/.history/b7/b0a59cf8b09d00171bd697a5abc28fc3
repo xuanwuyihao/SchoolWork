@@ -1,0 +1,139 @@
+package com.qf.action;
+
+import java.io.IOException;
+import java.io.PrintWriter;
+import java.net.InetAddress;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+import org.apache.log4j.Logger;
+import org.apache.log4j.MDC;
+import org.apache.struts2.ServletActionContext;
+
+import com.alibaba.fastjson.JSON;
+import com.opensymphony.xwork2.ActionSupport;
+import com.qf.model.Log;
+import com.qf.model.Logf;
+import com.qf.service.Log_Service;
+import com.qf.service.impl.Log_ServiceImpl;
+
+public class Log_Action extends ActionSupport{
+	private Log_ServiceImpl log_service;
+	private static final Logger logger=Logger.getLogger(Logf.class);
+	private Integer log_id;
+	private String emp_Account;
+	private String emp_name ;
+	private String ip_address;
+	private String log_data;
+	private List list;
+	private List list2;
+	public List getList2() {
+		return list2;
+	}
+	public void setList2(List list2) {
+		this.list2 = list2;
+	}
+
+
+	private Log log;
+	
+	
+	
+	public Log getLog() {
+		return log;
+	}
+	public void setLog(Log log) {
+		this.log = log;
+	}
+	
+	
+	public Log_ServiceImpl getLog_service() {
+		return log_service;
+	}
+	public void setLog_service(Log_ServiceImpl log_service) {
+		this.log_service = log_service;
+	}
+	public Integer getLog_id() {
+		return log_id;
+	}
+	public void setLog_id(Integer log_id) {
+		this.log_id = log_id;
+	}
+	public String getEmp_Account() {
+		return emp_Account;
+	}
+	public void setEmp_Account(String emp_Account) {
+		this.emp_Account = emp_Account;
+	}
+	public String getEmp_name() {
+		return emp_name;
+	}
+	public void setEmp_name(String emp_name) {
+		this.emp_name = emp_name;
+	}
+	public String getIp_address() {
+		return ip_address;
+	}
+	public void setIp_address(String ip_address) {
+		this.ip_address = ip_address;
+	}
+	public String getLog_data() {
+		return log_data;
+	}
+	public void setLog_data(String log_data) {
+		this.log_data = log_data;
+	}
+	
+	//查询全部
+	public String selects() throws IOException{
+		System.out.println("进来1");
+		list=log_service.list();
+		System.out.println("list大小:"+list.size());
+		 Map<String, Object> map=new HashMap<>();
+		   map.put("total",100);
+		   map.put("rows", list);
+		   String mapJson=JSON.toJSONString(map);
+		   HttpServletResponse response = ServletActionContext.getResponse();
+		   PrintWriter pw= response.getWriter();
+		   System.out.println(mapJson);
+		   pw.print(mapJson);
+		   pw.close();
+		   
+		   logger.info("启动中");
+		   return null; 
+	}
+	
+	//删除
+	public String delete(){
+		System.out.println("........");
+		log_service.delete(log_id);
+		return SUCCESS;
+	}
+	
+	
+	//操作
+		public String cz() throws IOException{
+			System.out.println("操作:"+emp_name);
+			
+			
+		 list2=log_service.getlog(emp_name);
+		 System.out.println("list2大小:"+list2);
+		 Map<String, Object> map=new HashMap<>();
+		   map.put("total",100);
+		   map.put("rows", list2);
+		   String mapJson=JSON.toJSONString(map);
+		   HttpServletResponse response = ServletActionContext.getResponse();
+		   PrintWriter pw= response.getWriter();
+		   System.out.println(mapJson);
+		   pw.print(mapJson);
+		   pw.close();
+		   System.out.println("888888888");
+			
+			return SUCCESS;
+		}
+
+}

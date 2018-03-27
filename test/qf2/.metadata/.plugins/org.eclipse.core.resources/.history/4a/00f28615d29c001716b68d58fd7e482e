@@ -1,0 +1,506 @@
+package com.qf.action;
+
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.PrintWriter;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+import javax.swing.JOptionPane;
+
+import org.apache.commons.collections.set.SynchronizedSortedSet;
+import org.apache.struts2.ServletActionContext;
+
+import com.alibaba.fastjson.JSON;
+import com.google.gson.Gson;
+import com.opensymphony.xwork2.ActionContext;
+import com.opensymphony.xwork2.ActionSupport;
+import com.qf.model.Academy;
+import com.qf.model.Employee;
+import com.qf.model.Major;
+import com.qf.model.Payment2;
+import com.qf.model.Student;
+import com.qf.model.Student_Zhikao;
+import com.qf.service.Student_Service;
+import com.qf.service.impl.Istudent_ServiceImpl;
+import com.sun.net.httpserver.Authenticator.Success;
+
+import net.sf.json.JSONArray;
+/**
+ * 
+ * @author Administrator
+ *
+ *瀛︾敓Action
+ *
+ */
+public class Student_Action  extends ActionSupport{
+	
+	private Student_Service student_Service;
+	private List list;
+	private Student student;
+	private Integer s_id;
+	private Integer[]  s_ids;
+	private Integer a_id;
+	
+	private Map map;
+	
+	
+	
+	//---------------------------------------
+
+
+	private List<Payment2> payment2s;
+	
+	
+	
+	
+	
+
+	public Map getMap() {
+		return map;
+	}
+
+	public void setMap(Map map) {
+		this.map = map;
+	}
+
+	public List<Payment2> getPayment2s() {
+		return payment2s;
+	}
+
+	public void setPayment2s(List<Payment2> payment2s) {
+		this.payment2s = payment2s;
+	}
+
+	public Integer getA_id() {
+		return a_id;
+	}
+
+	public void setA_id(Integer a_id) {
+		this.a_id = a_id;
+	}
+
+	private HttpServletRequest request;
+	private HttpServletResponse response;
+	
+	
+	
+	public Integer getS_id() {
+		return s_id;
+	}
+
+	public void setS_id(Integer s_id) {
+		this.s_id = s_id;
+	}
+
+	public Integer[] getS_ids() {
+		return s_ids;
+	}
+
+	public void setS_ids(Integer[] s_ids) {
+		this.s_ids = s_ids;
+	}
+
+
+	public HttpServletRequest getRequest() {
+		return request;
+	}
+
+	public void setRequest(HttpServletRequest request) {
+		this.request = request;
+	}
+
+	public HttpServletResponse getResponse() {
+		return response;
+	}
+
+	public void setResponse(HttpServletResponse response) {
+		this.response = response;
+	}
+
+	public Student getStudent() {
+		return student;
+	}
+
+	public void setStudent(Student student) {
+		this.student = student;
+	}
+
+
+	public List getList() {
+		return list;
+	}
+
+	public void setList(List list) {
+		this.list = list;
+	}
+
+
+
+
+	public Student_Service getStudent_Service() {
+		return student_Service;
+	}
+
+	public void setStudent_Service(Student_Service student_Service) {
+		this.student_Service = student_Service;
+	}
+
+	//查询全部list
+	public String list() throws IOException{
+		HttpServletResponse resp = ServletActionContext.getResponse();
+		HttpServletRequest req = ServletActionContext.getRequest();
+		resp.setContentType("text/html; charset=utf-8");  //html数据
+		list =student_Service.stu_list();
+		Map m2 = new HashMap<>();
+		m2.put("rows", list);
+		m2.put("total", 20);
+		String jsonResult = JSON.toJSONString(m2);
+		System.out.println("map中的json格式："+jsonResult);
+		PrintWriter pw = resp.getWriter();
+		pw.println(jsonResult);  //以json的格式返回到页面中
+		return null;
+	}
+	
+	//成考添加
+	public String save(){
+		HttpServletResponse resp = ServletActionContext.getResponse();
+		HttpServletRequest req = ServletActionContext.getRequest();
+		resp.setContentType("text/html; charset=utf-8");  //html数据
+		System.out.println("来到了成考报名action");
+		
+		student.setS_type(1);   	//报名类型：1成人高考  2:艺考
+		
+		student_Service.save(student);
+		
+		//student_Service.save(student);
+		return SUCCESS;
+	}
+	
+	//鍒犻櫎
+	public String delete(){
+		student_Service.delete(s_id);
+		return SUCCESS;
+	}
+	
+	//鏌ヨ鍗曚釜鏁版嵁
+	public String sel_Studnet(){
+		student_Service.getStudent(s_id);
+		return SUCCESS;
+	}
+	
+	//淇敼
+	public String update(){
+		student_Service.update(student);
+		return SUCCESS;
+	}
+	
+	//鎵归噺鍒犻櫎
+	public String remove(){
+		student_Service.remove_Students(s_ids);
+		return SUCCESS;
+	}
+	
+	//查询院校下拉框
+	public String getAcademy_list() throws IOException{
+		HttpServletResponse resp = ServletActionContext.getResponse();
+		HttpServletRequest req = ServletActionContext.getRequest();
+		resp.setContentType("text/html; charset=utf-8");  //html数据
+		System.out.println("来到了查询下拉框action");
+		
+		List list = (List)student_Service.getAcademy_list().get("rows");
+		List list2 = new ArrayList();
+		for (int i = 0; i < list.size(); i++) {
+			Academy a = (Academy)list.get(i);
+			Academy b = new Academy();
+			b.setA_id(a.getA_id());
+			b.setA_school(a.getA_school());
+			
+			list2.add(b);
+		}
+		
+		JSONArray jsonArray = JSONArray.fromObject(list2);
+		String str = jsonArray.toString();
+		System.out.println("院校Map:"+str);
+		PrintWriter pWriter = resp.getWriter();
+		pWriter.println(str);
+
+		pWriter.flush();
+		
+		
+		
+	return null;
+	}
+	
+	//查询专业下拉框ttt
+	public String getMajor_list() throws IOException{
+		HttpServletResponse resp = ServletActionContext.getResponse();
+		HttpServletRequest req = ServletActionContext.getRequest();
+		resp.setContentType("text/html; charset=utf-8");  //html数据
+		System.out.println("来到了查询专业下拉框action");
+		Integer aaa = Integer.parseInt(req.getParameter("a_id"));
+		List<Major> list = student_Service.getMajor_list(aaa);
+		
+		JSONArray jsonArray = JSONArray.fromObject(list);
+		String str = jsonArray.toString();
+		System.out.println("院校Map:"+str);
+		PrintWriter pWriter = resp.getWriter();
+		pWriter.println(str);
+
+		pWriter.flush();
+		
+		return null;
+	}
+	
+	//成考报名
+	public String ckLogin(){
+		HttpServletResponse resp = ServletActionContext.getResponse();
+		HttpServletRequest req = ServletActionContext.getRequest();
+		resp.setContentType("text/html; charset=utf-8");  //html数据
+		System.out.println("来到了成考报名action");
+		String sname = req.getParameter("stuname");
+		
+		int empid = Integer.parseInt(req.getParameter("emp_id"));
+
+		student.setEmp_id(empid);   //推荐老师id
+		student.setS_type(1);   	//报名类型：1成人高考  2:艺考
+		
+		System.out.println(student.getS_name()+student.getEmp_id());
+		
+		student_Service.save(student);
+		return SUCCESS;
+	}
+	
+	//查询学生账号是否存在
+	public String find_Stu() throws IOException{
+		HttpServletResponse resp = ServletActionContext.getResponse();
+		HttpServletRequest req = ServletActionContext.getRequest();
+		resp.setContentType("text/html; charset=utf-8");  //html数据
+		System.out.println("来到了检测学生账号action");
+		
+		String sname = req.getParameter("s_name");
+		
+		String result = this.student_Service.find_Stu(sname);
+		
+		PrintWriter pWriter = resp.getWriter();
+		pWriter.print(result);
+		pWriter.flush();
+		
+		return null;
+	}
+	
+	//查询学生手机是否正确
+		public String find_Sphone() throws IOException{
+			HttpServletResponse resp = ServletActionContext.getResponse();
+			HttpServletRequest req = ServletActionContext.getRequest();
+			resp.setContentType("text/html; charset=utf-8");  //html数据
+			System.out.println("来到了检测学生手机action");
+			String sname = req.getParameter("s_name");
+			String s_phone = req.getParameter("s_phone");
+			
+			String result = this.student_Service.find_Sphone(sname, s_phone);
+			
+			PrintWriter pWriter = resp.getWriter();
+			pWriter.print(result);
+			pWriter.flush();
+			
+			return null;
+		}
+	
+	//查询学生缴费记录
+	public String stu_Login() throws IOException{
+		HttpServletResponse resp = ServletActionContext.getResponse();
+		HttpServletRequest req = ServletActionContext.getRequest();
+		resp.setContentType("text/html; charset=utf-8");  //html数据
+		Student stu = this.student_Service.StuLogin(student.getS_name(), student.getS_phone());
+		HttpSession session = req.getSession();
+		session.setAttribute("student", stu);
+		payment2s = this.student_Service.find_Money(student.getS_name(), student.getS_phone());
+		
+		return SUCCESS;
+	}
+	
+	//查询学生缴费记录
+	public String find_moneys() throws IOException{
+		HttpServletResponse resp = ServletActionContext.getResponse();
+		HttpServletRequest req = ServletActionContext.getRequest();
+		resp.setContentType("text/html; charset=utf-8");  //html数据
+		HttpSession session = req.getSession();
+		System.out.println("来到了查询学生缴费记录action");
+		Student stu =(Student) session.getAttribute("student");	
+		System.out.println("姓名："+stu.getS_name());
+		payment2s = this.student_Service.find_Money(stu.getS_name(), stu.getS_phone());
+		
+		return SUCCESS;
+	}
+	
+	//退出登录
+		public String removeStudent() throws IOException{
+			HttpServletResponse resp = ServletActionContext.getResponse();
+			HttpServletRequest req = ServletActionContext.getRequest();
+			resp.setContentType("text/html; charset=utf-8");  //html数据
+			HttpSession session = req.getSession();
+			session.removeAttribute("student");   //移除session中的学生对象
+			PrintWriter pWriter = resp.getWriter();
+			
+			String result = "已经安全退出当前账号。";
+			
+			pWriter.print(result);
+			pWriter.flush();
+			return null;
+		}
+
+
+		
+		//添加自考
+		public String save_zhikao(){
+			
+			HttpServletResponse resp = ServletActionContext.getResponse();
+			HttpServletRequest req = ServletActionContext.getRequest();
+			HttpSession  session=req.getSession();
+			student.setS_date(new Date().toLocaleString());
+			
+			if(student.getEmp_id()==null){
+				student.setEmp_id(1);//默认老师
+			}
+			System.out.println("pppppppppppp进来了！“");
+			list=student_Service.lists3(student.getId_number());
+			System.out.println("jjjjjjjjjjjj========进来了！“");
+			if(list.size()==0){
+				session.setAttribute("student", student);
+				student_Service.saves(student);
+				return SUCCESS;
+			}else{
+				//str="你已经报名了！";
+				//JOptionPane.showMessageDialog(null, "你已经报名了！");
+				
+				Student stu=null;
+				for(int i=0 ;i<list.size();i++){
+					stu=(Student) list.get(i);
+					
+					
+					
+				}
+				session.setAttribute("stu", stu);
+				//req.setAttribute("list","kkkkkkkkk");
+		
+				
+				return ERROR;
+			}
+
+			
+		}
+		//查询自考
+		public String list_zhikao(){
+			
+			 System.out.println("000000000000");
+					HttpServletRequest request = ServletActionContext.getRequest();
+					HttpServletResponse response = ServletActionContext.getResponse();
+					response.setContentType("text/html;charset=utf-8");
+					System.out.println("9999999999999999999");
+					list = student_Service.lists2();
+					
+					System.out.println("list="+list.size());
+					
+					List li = new ArrayList();
+					Map m=new HashMap();
+					for(int i=0;i<list.size();i++){
+						Object[] obj = (Object[]) list.get(i);
+						Student studentt=(Student)obj[0];
+						Employee employee=(Employee)obj[1];
+				
+						Student_Zhikao zhikao=new Student_Zhikao();
+						zhikao.setS_id(studentt.getS_id());
+						zhikao.setS_content(studentt.getS_content());
+						zhikao.setS_date(studentt.getS_date());
+						zhikao.setS_name(studentt.getS_name());
+						zhikao.setS_phone(studentt.getS_phone());
+						zhikao.setS_teacher(employee.getEmp_name());
+						zhikao.setS_type(studentt.getS_type());
+						System.out.println("ooooooo="+zhikao.getS_name());
+						li.add(zhikao);
+//						m.put("i", zhikao);
+						
+					}
+					map = new HashMap();
+					map.put("rows", li);
+					map.put("total", 20);
+
+					PrintWriter out;
+					try {
+						out = response.getWriter();
+						// net.sf.json.JSONArray json=net.sf.json.JSONArray.fromObject(map);
+						String json = JSON.toJSONString(map);
+						out.println(json);
+						out.flush();
+					} catch (IOException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+					return null;
+		}
+		
+
+
+
+		public String Listsave_zhikao(){
+			
+			student.setS_date(new Date().toLocaleString());
+			student_Service.saves(student);
+			
+			return SUCCESS;
+		}
+
+		
+
+		public String Update_zhikao(){
+			System.out.println("进来了jjjjjj!");
+			student_Service.update(student);
+			return SUCCESS;
+		}
+
+		public String Delete_zhikao(){
+		student_Service.delete(s_id);
+		
+		return SUCCESS;
+	}
+		
+		public String jians_zhikao(){
+			
+			HttpServletRequest request = ServletActionContext.getRequest();
+			HttpServletResponse response = ServletActionContext.getResponse();
+			response.setContentType("text/html;charset=utf-8");
+			String id_number=request.getParameter("id_number");
+			
+			list =student_Service.lists2();
+			
+			String str="成功";
+			for(int i=0;i<list.size();i++){
+				Student student=(Student) list.get(i);
+				if(student.getId_number().equals(id_number)){
+					
+					str= "你已经登入过！";
+				}
+			}	
+			Gson gson=new Gson();
+			String st=gson.toJson(str);
+			try {
+				PrintWriter prin=response.getWriter();
+				prin.print(st);
+				prin.flush();
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+
+			return null;
+		}
+}

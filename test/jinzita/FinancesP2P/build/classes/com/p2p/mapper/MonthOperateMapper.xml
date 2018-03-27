@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.p2p.mapper.MonthOperateMapper" >
+  <resultMap id="BaseResultMap" type="com.p2p.pojo.MonthOperate" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="title" property="title" jdbcType="VARCHAR" />
+    <result column="date" property="date" jdbcType="TIMESTAMP" />
+    <result column="allmoney" property="allmoney" jdbcType="DECIMAL" />
+    <result column="monthMoney" property="monthmoney" jdbcType="DECIMAL" />
+    <result column="actingMoney" property="actingmoney" jdbcType="DECIMAL" />
+    <result column="allInterest" property="allinterest" jdbcType="DECIMAL" />
+    <result column="monthInterest" property="monthinterest" jdbcType="DECIMAL" />
+    <result column="allUser" property="alluser" jdbcType="INTEGER" />
+    <result column="monthReqister" property="monthreqister" jdbcType="INTEGER" />
+    <result column="allimest" property="allimest" jdbcType="INTEGER" />
+    <result column="monthInvest" property="monthinvest" jdbcType="INTEGER" />
+    <result column="userMoney" property="usermoney" jdbcType="DECIMAL" />
+    <result column="monthInvestMoney" property="monthinvestmoney" jdbcType="DECIMAL" />
+    <result column="allLendUser" property="alllenduser" jdbcType="INTEGER" />
+    <result column="allLendCount" property="alllendcount" jdbcType="INTEGER" />
+    <result column="monthLendCount" property="monthlendcount" jdbcType="INTEGER" />
+    <result column="monthLend" property="monthlend" jdbcType="DECIMAL" />
+    <result column="stayMoney" property="staymoney" jdbcType="DECIMAL" />
+    <result column="stayCount" property="staycount" jdbcType="INTEGER" />
+    <result column="oyh2" property="oyh2" jdbcType="VARCHAR" />
+  </resultMap>
+  	
+  	<select id="list0" resultMap="BaseResultMap">
+		select * from month_operate;
+	</select>
+  
+	<select id="list" resultMap="BaseResultMap">
+		select * from month_operate limit 0,1;
+	</select>
+  
+	<select id="count" resultType="int">
+		select count(*) from month_operate;
+	</select>
+	
+	<select id="selectpeople"  parameterType="com.p2p.pojo.Page" resultMap="BaseResultMap">  
+		select * from (select * from month_operate) m  limit #{fist},#{tow}; 
+	</select>
+	
+	<select id="selectpaging" parameterType="com.p2p.pojo.Page"  resultMap="BaseResultMap">
+		select * from month_operate limit #{fist},#{tow}; 
+	</select>
+  
+</mapper>

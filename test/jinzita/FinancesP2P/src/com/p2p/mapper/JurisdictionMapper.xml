@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.p2p.mapper.JurisdictionMapper" >
+  <resultMap id="BaseResultMap" type="com.p2p.pojo.Jurisdiction" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="name" property="name" jdbcType="VARCHAR" />
+    <result column="alias" property="alias" jdbcType="VARCHAR" />
+    <result column="pId" property="pid" jdbcType="INTEGER" />
+    <result column="oyh1" property="oyh1" jdbcType="VARCHAR" />
+    <result column="oyh2" property="oyh2" jdbcType="VARCHAR" />
+  </resultMap>
+  
+  <resultMap type="com.p2p.pojo.Jurisdiction" id="roleJurMap">		
+ 		<id column="id" property="id" jdbcType="INTEGER" />
+	    <result column="name" property="name" jdbcType="VARCHAR" />
+	    <result column="alias" property="alias" jdbcType="VARCHAR" />
+	    <result column="pId" property="pid" jdbcType="INTEGER" />
+	 		<!-- 一对一关系 -->
+	 		<association property="roleJur" javaType="com.p2p.pojo.RoleJur">
+	 			<result column="role_id" property="roleId" jdbcType="INTEGER" />
+			    <result column="checked" property="checked" jdbcType="VARCHAR" />
+	 		</association>	
+ 	</resultMap>
+  
+  <select id="roleJur" resultMap="roleJurMap" parameterType="java.lang.Integer" >
+  	select r.role_id,j.id,j.`name`,j.pId,r.checked from jurisdiction j LEFT JOIN role_jur r on j.id = r.j_id where r.role_id=#{id};
+  </select>
+  
+  <update id="updateAll" parameterType="java.lang.Integer">
+  	update role_jur set checked='false'  where role_id=#{id} and j_id>100
+  </update>
+  
+  <update id="updateNeed">
+  	update role_jur set checked='true' where role_id=#{arg0} and j_id = #{arg1}
+  </update>
+  
+   <delete id="deleteRolejurByRid" parameterType="java.lang.Integer">
+  delete from role_jur where role_id=#{role_id}
+  </delete>
+  
+  <insert id="addRolejurAllnoByRid" parameterType="java.lang.Integer">
+     insert into role_jur(role_id,j_id,checked) values
+     (#{arg0},#{arg1},'true');
+  </insert>
+  
+  <select id="getRolejur" resultMap="BaseResultMap">
+<!--   select * from jurisdiction where id in ( -->
+<!-- 	select j_id from role_jur where checked='true' and  role_id=(select id from role where alias=#{arg0})); -->
+ select * from jurisdiction where id in (
+	select j_id from role_jur where checked='true' and  role_id=
+(select id from role where roleName=(select role from manager where username=#{arg0})));
+ 
+ 
+  </select>
+  
+  <select id="list" resultMap="BaseResultMap">
+  select * from jurisdiction;
+  </select>
+</mapper>

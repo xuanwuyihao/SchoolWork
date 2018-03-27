@@ -1,0 +1,10 @@
+package t1;
+
+public class xx {
+	public static void main(String[] argss){
+System.out.println("请输入一个数：");
+Scanner scan=new Scanner(System.in);
+
+
+	}
+}

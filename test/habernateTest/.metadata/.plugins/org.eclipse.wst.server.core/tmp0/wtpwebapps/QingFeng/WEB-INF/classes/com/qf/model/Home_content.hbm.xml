@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+<class name="com.qf.model.Home_content" table="home_content">
+<id name="hc_id">
+<generator class="native"></generator>
+</id>
+<property name="picture_one"></property>
+<property name="picture_two"></property>
+<property name="picture_three"></property>
+<property name="qrcode_two"></property>
+<property name="hc_phone"></property>
+<property name="hc_address"></property>
+<property name="interlinkage_one"></property>
+<property name="interlinkage_two"></property>
+<property name="interlinkage_three"></property>
+<property name="interlinkage_four"></property>
+</class>
+</hibernate-mapping>
+
+

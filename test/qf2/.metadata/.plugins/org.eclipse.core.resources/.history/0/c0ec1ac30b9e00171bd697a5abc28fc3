@@ -1,0 +1,227 @@
+package com.qf.action;
+
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.PrintWriter;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import java.util.Date;
+
+import org.apache.catalina.core.ApplicationContext;
+import org.apache.log4j.Logger;
+import org.apache.log4j.MDC;
+import org.apache.struts2.ServletActionContext;
+
+import com.alibaba.fastjson.JSON;
+import com.opensymphony.xwork2.ActionSupport;
+import com.qf.model.Carousel_figure;
+import com.qf.model.Hot_major;
+import com.qf.model.Log;
+import com.qf.model.Logf;
+import com.qf.service.Hot_major_Service;
+
+public class Hot_major_Action extends ActionSupport{
+
+	private Hot_major_Service hot_major_Service;
+	private static final Logger logger=Logger.getLogger(Logf.class);
+	
+	private Integer hm_id;
+	private String hm_title;
+	private List list;
+	private Hot_major hot_major;
+	
+	
+	private File file;
+	private String filename;
+	private String reportFileName; 
+    private String reportContentType; 
+	
+	
+	
+	
+	public String getReportFileName() {
+		return reportFileName;
+	}
+
+	public void setReportFileName(String reportFileName) {
+		this.reportFileName = reportFileName;
+	}
+
+	public String getReportContentType() {
+		return reportContentType;
+	}
+
+	public void setReportContentType(String reportContentType) {
+		this.reportContentType = reportContentType;
+	}
+
+	public String getFilename() {
+		return filename;
+	}
+
+	public void setFilename(String filename) {
+		this.filename = filename;
+	}
+
+	public Hot_major getHot_major() {
+		return hot_major;
+	}
+
+	public void setHot_major(Hot_major hot_major) {
+		this.hot_major = hot_major;
+	}
+
+
+	public Integer getHm_id() {
+		return hm_id;
+	}
+
+	public void setHm_id(Integer hm_id) {
+		this.hm_id = hm_id;
+	}
+
+	public String getHm_title() {
+		return hm_title;
+	}
+
+	public void setHm_title(String hm_title) {
+		this.hm_title = hm_title;
+	}
+
+	public String getHm_picture() {
+		return hm_picture;
+	}
+
+	public void setHm_picture(String hm_picture) {
+		this.hm_picture = hm_picture;
+	}
+
+	public String getHm_content() {
+		return hm_content;
+	}
+
+	public void setHm_content(String hm_content) {
+		this.hm_content = hm_content;
+	}
+
+	private String hm_picture;
+	private String hm_content;
+
+	public Hot_major_Service getHot_major_Service() {
+		return hot_major_Service;
+	}
+
+	public void setHot_major_Service(Hot_major_Service hot_major_Service) {
+		this.hot_major_Service = hot_major_Service;
+	}
+	
+	private static String getExtention(String Filename){
+		String and=Filename;
+		int pos=and.lastIndexOf(".");
+		
+		
+		return new Date().getTime()+Filename.substring(pos);
+	}
+	
+	//查询全部
+	public String selected() throws IOException{
+		System.out.println("11111");
+	   list=hot_major_Service.list();
+	   System.out.println("list的大小"+list.size());
+	   Map<String, Object> map=new HashMap<>();
+	   map.put("total",100);
+	   map.put("rows", list);
+	   String mapJson=JSON.toJSONString(map);
+	   HttpServletResponse response = ServletActionContext.getResponse();
+	   PrintWriter pw= response.getWriter();
+	   System.out.println(mapJson);
+	   pw.print(mapJson);
+	   pw.close();
+	   
+		return null; 
+	}
+	
+	//修改
+	public String update(){
+		
+		HttpServletRequest req = ServletActionContext.getRequest();
+		
+		
+		System.out.println( req.getParameter("hot_major.hm_title"));
+		hot_major_Service.update(hot_major);
+		//System.out.println("hhhhhhh:"+hot_major.getHm_title());
+		List list= hot_major_Service.listh();
+		Log l =(Log) list.get(0);
+		logger.info(l.getEmp_name());
+		
+		return SUCCESS;
+	}
+	
+	//新增
+	public String add() throws IOException{
+		System.out.println("进来了");
+		hot_major_Service.save(hot_major);
+		System.out.println("内容："+hot_major.getHm_title());
+		
+		
+		Hot_major hot=new Hot_major();
+		
+		
+		String report=ServletActionContext.getRequest().getParameter("report");
+		
+		System.out.println("图片新增的路径为："+report);
+		String filename=getExtention(getReportFileName());
+		reportFileName=filename;
+		System.out.println(reportFileName);
+		System.out.println(ServletActionContext.getServletContext().getRealPath("/Myfiles")+"/"+filename);
+		File imgfile=new File(ServletActionContext.getServletContext().getRealPath("/Myfiles")+"/"+filename);
+		FileOutputStream fos=new FileOutputStream(imgfile);
+		
+		FileInputStream fis=new FileInputStream(file);
+		byte[] buffer=new byte[1024];
+		int len=0;
+		while((len=fis.read(buffer))>0){
+			fos.write(buffer, 0, len);
+		}
+		hot.setHm_picture(filename);
+		fos.close();
+		fis.close();
+		
+		
+
+		List list= hot_major_Service.listh();
+		Log l =(Log) list.get(0);
+		logger.info(l.getEmp_name());
+		
+		return SUCCESS;
+	}
+	
+	//查询单个
+	public String selectone(){
+		hot_major_Service.getHot_major(hm_id);
+		return SUCCESS;
+	}
+	
+	//删除单个
+	public String delectone(){
+		System.out.println("hm_id:"+hm_id);
+		hot_major_Service.delete(hm_id);
+		
+		//List list=hot_major_Service.listh();
+		List list= hot_major_Service.listh();
+		Log l =(Log) list.get(0);
+		logger.info(l.getEmp_name());
+		return SUCCESS;
+	}
+	
+	
+
+	
+}

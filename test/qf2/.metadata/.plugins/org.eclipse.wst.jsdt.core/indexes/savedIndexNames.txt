@@ -1,0 +1,15 @@
+INDEX VERSION 1.3+E:\test\qf2\.metadata\.plugins\org.eclipse.wst.jsdt.core\indexes
+2920111002.index
+2863231245.index
+1445414910.index
+2781373496.index
+666116768.index
+1565004288.index
+3291981102.index
+887760173.index
+1364557836.index
+3025699675.index
+4104749809.index
+3276455232.index
+4183425682.index
+30075233.index

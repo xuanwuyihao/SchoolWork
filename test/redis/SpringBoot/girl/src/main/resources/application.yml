@@ -1,0 +1,17 @@
+spring:
+  profiles:
+    active: dev
+  datasource:
+    driver-class-name: com.mysql.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/test
+    username: root
+    password: root
+    tomcat.max-active: 100
+    tomcat.max-idle: 200
+    tomcat.initialSize: 20
+
+  jpa:
+    hibernate:
+      ddl-auto: update
+      show-sql: true
+    database: mysql

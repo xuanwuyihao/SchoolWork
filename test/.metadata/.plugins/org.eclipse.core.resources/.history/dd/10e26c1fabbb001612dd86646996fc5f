@@ -1,0 +1,19 @@
+package t1;
+
+public class xx {
+	public static void main(String[] args){
+	
+		
+	
+		
+		
+		
+System.out.println("请输入一个数：");
+Scanner scan = new Scanner(System.in);
+System.out.println("请再输入一个数：");
+int b = scan.nextlnt();
+System.out.println("结果是"+(a+b));
+
+
+	}
+}

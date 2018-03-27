@@ -1,0 +1,4 @@
+#Tomcat publish data
+#Tue Nov 07 15:40:26 CST 2017
+org.eclipse.jst.jee.server\:/binary\:E\:\\test\\Spring\ MVC\\SpringMvcDemo1\\WebContent\\WEB-INF\\lib\\spring-web-4.1.1.RELEASE.jar=WEB-INF/lib/spring-web-4.1.1.RELEASE.jar
+org.eclipse.jst.jee.server\:/binary\:E\:\\test\\Spring\ MVC\\Activitiday1\\WebContent\\WEB-INF\\lib\\spring-web-4.1.5.RELEASE.jar=WEB-INF/lib/spring-web-4.1.5.RELEASE.jar

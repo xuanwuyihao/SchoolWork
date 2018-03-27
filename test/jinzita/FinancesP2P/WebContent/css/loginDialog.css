@@ -1,0 +1,17 @@
+﻿@charset "utf-8";
+.mask{margin:0;padding:0;border:none;width:100%;height:100%;background:0;opacity:0.6;filter:alpha(opacity=60);z-index:9999;position:fixed;top:0;left:0;display:none;}
+#LoginBox{box-shadow: #666 0px 0px 10px;position:absolute;left:40px;top:50px;background:white;border:1px solid #999;width:600px;height:400px;z-index:10000;display:none;}
+.row1{background:#f7f7f7;padding:0px 20px;line-height:60px;height:60px;color:#666;font-size:20px;text-align:center;}
+.close_btn{font-family:arial;font-size:30px;font-weight:700;color:#999;text-decoration:none;float:right;padding-right:4px;}
+
+.xbtn{font-family:arial;font-size:30px;font-weight:700;color:#999;text-decoration:none;float:right;padding-right:4px;}
+/*绑定邮箱*/
+#BandingEmail{box-shadow: #666 0px 0px 10px;position:absolute;left:40px;top:100px;background:white;border:1px solid #999;width:600px;height:270px;z-index:10000;display:none;}
+/*修改登录密码*/
+#UpdLoginPwd{box-shadow: #666 0px 0px 10px;position:absolute;left:40px;top:50px;background:white;border:1px solid #999;width:600px;height:400px;z-index:10000;display:none;}
+
+.row2{background:#f7f7f7;padding:0px 20px;line-height:60px;height:60px;color:#666;font-size:20px;text-align:center;}
+/* 绑定银行卡弹出框div */
+#BandingCard{box-shadow: #666 0px 0px 10px;position:absolute;left:250px;top:150px;background:white;border:1px solid #999;width:300px;height:120px;z-index:10000;display:none;}
+/*借款发布报告*/
+#baogao{box-shadow: #666 0px 0px 10px;position:absolute;left:40px;top:50px;background:white;border:1px solid #999;width:600px;height:400px;z-index:10000;display:none;}

@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ht.mapper.UsersMapper" >
+  <resultMap id="BaseResultMap" type="com.ht.model.Users" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="custid" property="custid" jdbcType="VARCHAR" />
+    <result column="pwd" property="pwd" jdbcType="VARCHAR" />
+    <result column="merid" property="merid" jdbcType="VARCHAR" />
+    <result column="username" property="username" jdbcType="VARCHAR" />
+    <result column="idno" property="idno" jdbcType="VARCHAR" />
+    <result column="userphone" property="userphone" jdbcType="VARCHAR" />
+    <result column="usermail" property="usermail" jdbcType="VARCHAR" />
+    <result column="datetime" property="datetime" jdbcType="TIMESTAMP" />
+    <result column="stay1" property="stay1" jdbcType="VARCHAR" />
+    <result column="stay2" property="stay2" jdbcType="VARCHAR" />
+    <result column="stay3" property="stay3" jdbcType="VARCHAR" />
+  </resultMap>
+ 
+<select id="list" resultMap="BaseResultMap">
+select * from users
+</select>
+
+<insert id="insert" parameterType="com.ht.model.Users">
+insert into users(custid,pwd,merid,username,idno,userphone,usermail,datetime,stay1,stay2,stay3) 
+values(#{custid},#{pwd},#{merid},#{username},#{idno},#{userphone},#{usermail},#{datetime},#{stay1},#{stay2},#{stay3})
+</insert>
+
+
+<delete id="delete" parameterType="java.lang.Integer">
+delete from users where id=#{id}
+</delete>
+
+<select id="getById" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+select * from users where id=#{id}
+</select>
+
+<update id="update" parameterType="com.ht.model.Users">
+update users
+    set custid = #{custid,jdbcType=VARCHAR},
+      pwd = #{pwd,jdbcType=VARCHAR},
+      merid = #{merid,jdbcType=VARCHAR},
+      username = #{username,jdbcType=VARCHAR},
+      idno = #{idno,jdbcType=VARCHAR},
+      userphone = #{userphone,jdbcType=VARCHAR},
+      usermail = #{usermail,jdbcType=VARCHAR},
+      datetime = #{datetime,jdbcType=TIMESTAMP},
+      stay1 = #{stay1,jdbcType=VARCHAR},
+      stay2 = #{stay2,jdbcType=VARCHAR},
+      stay3 = #{stay3,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+</update> 
+
+
+<select id="getByPhone" resultMap="BaseResultMap">
+select * from users where userphone=#{userphone}
+</select>
+
+
+
+
+</mapper>

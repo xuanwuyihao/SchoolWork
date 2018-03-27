@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?><project-modules id="moduleCoreId" project-version="1.5.0">
+    <wb-module deploy-name="PoiExcel">
+        <property name="context-root" value="PoiExcel"/>
+        <property name="java-output-path" value="/PoiExcel/build/classes"/>
+    </wb-module>
+</project-modules>

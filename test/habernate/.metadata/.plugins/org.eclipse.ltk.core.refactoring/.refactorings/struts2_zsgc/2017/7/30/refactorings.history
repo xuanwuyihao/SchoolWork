@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Rename resource &apos;/struts2_zsgc/WebRoot/booklist.jsp&apos; to &apos;List.jsp&apos;&#x0D;&#x0A;- Original project: &apos;struts2_zsgc&apos;&#x0D;&#x0A;- Original element: &apos;booklist.jsp&apos;" description="Rename resource &apos;booklist.jsp&apos;" flags="7" id="org.eclipse.jdt.ui.rename.resource" input="WebRoot/booklist.jsp" name="List.jsp" stamp="1501291814824" version="1.0"/>
+</session>

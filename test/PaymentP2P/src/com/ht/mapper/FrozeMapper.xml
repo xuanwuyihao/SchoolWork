@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ht.mapper.FrozeMapper" >
+  <resultMap id="BaseResultMap" type="com.ht.model.Froze" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="ordid" property="ordid" jdbcType="VARCHAR" />
+    <result column="custid" property="custid" jdbcType="VARCHAR" />
+    <result column="frozeamt" property="frozeamt" jdbcType="DECIMAL" />
+    <result column="orddate" property="orddate" jdbcType="TIMESTAMP" />
+    <result column="subjectid" property="subjectid" jdbcType="VARCHAR" />
+    <result column="frozestatus" property="frozestatus" jdbcType="VARCHAR" />
+    <result column="stay1" property="stay1" jdbcType="VARCHAR" />
+    <result column="stay2" property="stay2" jdbcType="VARCHAR" />
+    <result column="stay3" property="stay3" jdbcType="VARCHAR" />
+  </resultMap>
+
+<select id="list" resultMap="BaseResultMap">
+select * from froze
+</select>
+
+<insert id="insert" parameterType="com.ht.model.Froze">
+insert into froze (id, ordid, custid, 
+      frozeamt, orddate, subjectid, 
+      frozestatus, stay1, stay2, 
+      stay3)
+    values (#{id,jdbcType=INTEGER}, #{ordid,jdbcType=VARCHAR}, #{custid,jdbcType=VARCHAR}, 
+      #{frozeamt,jdbcType=DECIMAL}, #{orddate,jdbcType=TIMESTAMP}, #{subjectid,jdbcType=VARCHAR}, 
+      #{frozestatus,jdbcType=VARCHAR}, #{stay1,jdbcType=VARCHAR}, #{stay2,jdbcType=VARCHAR}, 
+      #{stay3,jdbcType=VARCHAR})
+</insert>
+
+<delete id="delete" parameterType="java.lang.Integer">
+delete from froze where id=#{id}
+</delete>
+
+<select id="getById" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+select * from froze where id=#{id}
+</select>
+
+<update id="update" parameterType="com.ht.model.Froze">
+update froze
+    set ordid = #{ordid,jdbcType=VARCHAR},
+      custid = #{custid,jdbcType=VARCHAR},
+      frozeamt = #{frozeamt,jdbcType=DECIMAL},
+      orddate = #{orddate,jdbcType=TIMESTAMP},
+      subjectid = #{subjectid,jdbcType=VARCHAR},
+      frozestatus = #{frozestatus,jdbcType=VARCHAR},
+      stay1 = #{stay1,jdbcType=VARCHAR},
+      stay2 = #{stay2,jdbcType=VARCHAR},
+      stay3 = #{stay3,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+</update>
+
+<select id="getFrozeMaxId" resultType="java.lang.Integer">
+ select max(id) from froze
+</select> 
+
+<select id="getFrozeThaw" parameterType="com.ht.model.Froze" resultMap="BaseResultMap">
+select * from froze where subjectid=#{subjectid} and frozestatus=#{frozestatus}
+</select> 
+  
+</mapper>

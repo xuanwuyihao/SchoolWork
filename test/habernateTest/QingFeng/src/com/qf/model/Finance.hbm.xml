@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+<class name="com.qf.model.Finance" table="finance">
+<id name="f_id">
+<generator class="native"></generator>
+</id>
+<property name="stu_no"></property>
+<property name="tea_class"></property>
+<property name="need_monuy"></property>
+<property name="practical_money"></property>
+<property name="f_way"></property>
+<property name="f_accumulative"></property>
+<property name="f_state"></property>
+<property name="f_test"></property>
+</class>
+
+</hibernate-mapping>
+
+	

@@ -1,0 +1,47 @@
+<!--index.wxml-->
+<view class="container">
+  <view class="swiper-image">
+    <swiper indicator-dots="{{indicatorDots}}"
+      autoplay="{{autoplay}}" interval="{{interval}}" duration="{{duration}}">
+      <block wx:for="{{imgUrls}}">
+        <swiper-item>
+          <image src="{{item}}"/>
+        </swiper-item>
+      </block>
+    </swiper>
+  </view>
+
+<view>
+<block wx:for="{{products}}" wx:for-index="i" wx:for-item="p1">
+    <view wx:if="{{i%2==0}}" class="detail">
+    <view class="products">
+      <view class="detail">
+        <image bindtap="showDetail" data-id="{{p1.id}}" src="{{p1.imageUrl}}"/>
+        <text class="title">{{p1.title}}</text>
+        <text class="des">描述：{{p1.des}}</text>
+        <text class="price">原价:￥{{p1.price}}</text>
+        <text class="sale-price">现价:￥{{p1.salePrice}}</text>
+        <view class="btns">
+          <button data-index="{{i}}" bindtap="addCart">加入购物车</button>
+          <button bindtap>立即购买</button>
+        </view>
+      </view>
+      <block wx:for="{{products}}" wx:for-index="j" wx:for-item="p2">
+      <view wx:if="{{j == i+1}}" class="detail">
+        <image bindtap="showDetail" data-id="{{p2.id}}" src="{{p2.imageUrl}}"/>
+        <text class="title">{{p2.title}}</text>
+        <text class="des">描述：{{p2.des}}</text>
+        <text class="price">原价:￥{{p2.price}}</text>
+        <text class="sale-price">现价:￥{{p2.salePrice}}</text>
+        <view class="btns">
+          <button data-index="{{j}}" bindtap="addCart">加入购物车</button>
+          <button bindtap>立即购买</button>
+        </view>
+      </view>
+      </block>
+    </view>
+    </view>
+    </block>
+    
+</view>
+</view>

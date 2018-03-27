@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+	<class name="com.qf.model.Rolesqx" table="roles_qx">
+		<id name="rq_id">
+			<generator class="native"></generator>
+		</id>
+		<property name="r_id"></property>
+		<property name="qx_id"></property>
+		<property name="panduan"></property>
+	</class>
+</hibernate-mapping>

@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ht.mapper.PayMapper" >
+  <resultMap id="BaseResultMap" type="com.ht.model.Pay" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="ordid" property="ordid" jdbcType="VARCHAR" />
+    <result column="custid" property="custid" jdbcType="VARCHAR" />
+    <result column="tocustid" property="tocustid" jdbcType="VARCHAR" />
+    <result column="transamt" property="transamt" jdbcType="DECIMAL" />
+    <result column="transtype" property="transtype" jdbcType="VARCHAR" />
+    <result column="details" property="details" jdbcType="VARCHAR" />
+    <result column="orddate" property="orddate" jdbcType="TIMESTAMP" />
+    <result column="ordstatus" property="ordstatus" jdbcType="VARCHAR" />
+    <result column="stay1" property="stay1" jdbcType="VARCHAR" />
+    <result column="stay2" property="stay2" jdbcType="VARCHAR" />
+    <result column="stay3" property="stay3" jdbcType="VARCHAR" />
+  </resultMap>
+ 
+<select id="list" resultMap="BaseResultMap">
+ select * from pay
+</select> 
+
+<insert id="insert" parameterType="com.ht.model.Pay">
+ insert into pay (id, ordid, custid, 
+      tocustid, transamt, transtype, 
+      details, orddate, ordstatus, 
+      stay1, stay2, stay3
+      )
+    values (#{id,jdbcType=INTEGER}, #{ordid,jdbcType=VARCHAR}, #{custid,jdbcType=VARCHAR}, 
+      #{tocustid,jdbcType=VARCHAR}, #{transamt,jdbcType=DECIMAL}, #{transtype,jdbcType=VARCHAR}, 
+      #{details,jdbcType=VARCHAR}, #{orddate,jdbcType=TIMESTAMP}, #{ordstatus,jdbcType=VARCHAR}, 
+      #{stay1,jdbcType=VARCHAR}, #{stay2,jdbcType=VARCHAR}, #{stay3,jdbcType=VARCHAR}
+      )
+</insert>
+
+<delete id="delete" parameterType="java.lang.Integer">
+delete from pay where id=#{id}
+</delete>
+
+<select id="getById" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+select * from pay where id=#{id}
+</select>
+
+<update id="update" parameterType="com.ht.model.Pay">
+ update pay
+    set ordid = #{ordid,jdbcType=VARCHAR},
+      custid = #{custid,jdbcType=VARCHAR},
+      tocustid = #{tocustid,jdbcType=VARCHAR},
+      transamt = #{transamt,jdbcType=DECIMAL},
+      transtype = #{transtype,jdbcType=VARCHAR},
+      details = #{details,jdbcType=VARCHAR},
+      orddate = #{orddate,jdbcType=TIMESTAMP},
+      ordstatus = #{ordstatus,jdbcType=VARCHAR},
+      stay1 = #{stay1,jdbcType=VARCHAR},
+      stay2 = #{stay2,jdbcType=VARCHAR},
+      stay3 = #{stay3,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+</update> 
+  
+<select id="getPayMaxId" resultType="java.lang.Integer">
+ select max(id) from pay
+</select>  
+
+<update id="updatePayStatus" parameterType="com.ht.model.Pay">
+ update pay
+    set ordstatus = #{stay2},orddate = #{orddate}
+    where ordstatus = #{ordstatus} and stay1 = #{stay1}
+</update> 
+
+<select id="getOrdidByPay" parameterType="com.ht.model.Pay" resultMap="BaseResultMap">
+ select * from pay where ordstatus = #{ordstatus} and stay1 = #{stay1}
+</select>  
+
+</mapper>

@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+<class name="com.qf.model.Work_assistant" table="work_assistant">
+<id name="work_id">
+<generator class="native"></generator>
+</id>
+<property name="founder"></property>
+<property name="plan_title"></property>
+<property name="plan_content"></property>
+<property name="emp_name"></property>
+<property name="create_time"></property>
+<property name="end_time"></property>
+<property name="work_state"></property>
+
+</class>
+</hibernate-mapping>

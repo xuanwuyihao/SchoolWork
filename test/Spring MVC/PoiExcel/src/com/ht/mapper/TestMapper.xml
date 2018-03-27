@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ht.mapper.TestMapper">
+<resultMap type="com.ht.model.Test" id="testResultMap">
+<result column="birthday" property="birthday"/>
+</resultMap>
+
+<select id="list" resultMap="testResultMap">
+select * from tests
+</select>
+<insert id="insert" parameterType="com.th.model.Test">
+insert into test(username,password,name,sex,birthday,remark) value (#{username},#{password},#{name},#{sex},#{birthday},#{remark})
+</insert>
+</mapper>

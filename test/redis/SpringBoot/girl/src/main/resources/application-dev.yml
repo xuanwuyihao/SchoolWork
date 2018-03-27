@@ -1,0 +1,6 @@
+server:
+  port: 8080
+  girl:
+cupSize: C
+age: 21
+count: "cupSize: ${cupSize} , age: ${age}"

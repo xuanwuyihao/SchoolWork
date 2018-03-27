@@ -1,0 +1,32 @@
+content_assist_disabled_computers=org.eclipse.jdt.ui.textProposalCategory\u0000org.eclipse.recommenders.calls.rcp.proposalCategory.templates\u0000org.eclipse.mylyn.java.ui.javaAllProposalCategory\u0000org.eclipse.jdt.ui.javaAllProposalCategory\u0000org.eclipse.jdt.ui.javaTypeProposalCategory\u0000org.eclipse.jdt.ui.javaNoTypeProposalCategory\u0000org.eclipse.recommenders.chain.rcp.proposalCategory.chain\u0000
+content_assist_lru_history=<?xml version\="1.0" encoding\="UTF-8" standalone\="no"?><history maxLHS\="100" maxRHS\="10"><lhs name\="java.util.Collection"><rhs name\="java.util.HashSet"/><rhs name\="java.util.ArrayList"/></lhs><lhs name\="java.lang.Iterable"><rhs name\="java.util.HashSet"/><rhs name\="java.util.ArrayList"/></lhs><lhs name\="java.util.Set"><rhs name\="java.util.HashSet"/></lhs><lhs name\="model.Department"><rhs name\="model.Department"/></lhs><lhs name\="model.Employee"><rhs name\="model.Employee"/></lhs><lhs name\="Test.Demo"><rhs name\="Test.Demo"/></lhs><lhs name\="Demo.Student"><rhs name\="Demo.Student"/></lhs><lhs name\="Test.TestDemo"><rhs name\="Test.TestDemo"/></lhs><lhs name\="demo.Department"><rhs name\="demo.Department"/></lhs><lhs name\="demo.Post"><rhs name\="demo.Post"/></lhs><lhs name\="test.TestDome"><rhs name\="test.TestDome"/></lhs><lhs name\="org.springframework.core.env.EnvironmentCapable"><rhs name\="org.springframework.context.support.ClassPathXmlApplicationContext"/></lhs><lhs name\="org.springframework.beans.factory.ListableBeanFactory"><rhs name\="org.springframework.context.support.ClassPathXmlApplicationContext"/></lhs><lhs name\="org.springframework.beans.factory.HierarchicalBeanFactory"><rhs name\="org.springframework.context.support.ClassPathXmlApplicationContext"/></lhs><lhs name\="org.springframework.context.MessageSource"><rhs name\="org.springframework.context.support.ClassPathXmlApplicationContext"/></lhs><lhs name\="org.springframework.context.ApplicationEventPublisher"><rhs name\="org.springframework.context.support.ClassPathXmlApplicationContext"/></lhs><lhs name\="org.springframework.core.io.support.ResourcePatternResolver"><rhs name\="org.springframework.context.support.ClassPathXmlApplicationContext"/></lhs><lhs name\="org.springframework.beans.factory.BeanFactory"><rhs name\="org.springframework.context.support.ClassPathXmlApplicationContext"/></lhs><lhs name\="org.springframework.core.io.ResourceLoader"><rhs name\="org.springframework.context.support.ClassPathXmlApplicationContext"/></lhs><lhs name\="org.springframework.context.ApplicationContext"><rhs name\="org.springframework.context.support.ClassPathXmlApplicationContext"/></lhs><lhs name\="Demo.Bean"><rhs name\="Demo.Bean"/></lhs><lhs name\="Demo.Bean2"><rhs name\="Demo.Bean2"/></lhs><lhs name\="service.UserService"><rhs name\="service.UserService"/></lhs><lhs name\="dao.userDao"><rhs name\="dao.userDao"/></lhs><lhs name\="java.util.List"><rhs name\="java.util.ArrayList"/></lhs><lhs name\="moder.User"><rhs name\="moder.User"/></lhs><lhs name\="java.util.Map"><rhs name\="java.util.HashMap"/></lhs><lhs name\="com.qf.model.Home_content"><rhs name\="com.qf.model.Home_content"/></lhs><lhs name\="java.io.File"><rhs name\="java.io.File"/></lhs><lhs name\="javax.accessibility.Accessible"><rhs name\="java.awt.Label"/></lhs><lhs name\="java.awt.Component"><rhs name\="java.awt.Label"/></lhs><lhs name\="java.awt.image.ImageObserver"><rhs name\="java.awt.Label"/></lhs><lhs name\="java.awt.MenuContainer"><rhs name\="java.awt.Label"/></lhs><lhs name\="java.awt.Label"><rhs name\="java.awt.Label"/></lhs><lhs name\="org.apache.poi.ss.usermodel.Workbook"><rhs name\="org.apache.poi.hssf.usermodel.HSSFWorkbook"/></lhs><lhs name\="java.io.Closeable"><rhs name\="org.apache.poi.hssf.usermodel.HSSFWorkbook"/></lhs><lhs name\="java.lang.AutoCloseable"><rhs name\="org.apache.poi.hssf.usermodel.HSSFWorkbook"/></lhs><lhs name\="org.apache.poi.POIDocument"><rhs name\="org.apache.poi.hssf.usermodel.HSSFWorkbook"/></lhs></history>
+content_assist_number_of_computers=24
+content_assist_proposals_background=255,255,255
+content_assist_proposals_foreground=0,0,0
+eclipse.preferences.version=1
+fontPropagated=true
+org.eclipse.jdt.internal.ui.navigator.layout=2
+org.eclipse.jdt.ui.editor.tab.width=
+org.eclipse.jdt.ui.formatterprofiles.version=12
+org.eclipse.jdt.ui.javadoclocations.migrated=true
+org.eclipse.jdt.ui.text.code_templates_migrated=true
+org.eclipse.jdt.ui.text.custom_code_templates=<?xml version\="1.0" encoding\="UTF-8" standalone\="no"?><templates/>
+org.eclipse.jdt.ui.text.custom_templates=<?xml version\="1.0" encoding\="UTF-8" standalone\="no"?><templates/>
+org.eclipse.jdt.ui.text.templates_migrated=true
+org.eclipse.jface.textfont=1|Courier New|12.0|0|WINDOWS|1|-16|0|0|0|400|0|0|0|0|3|2|1|49|Courier New;
+proposalOrderMigrated=true
+sourceHoverBackgroundColor=255,255,225
+spelling_ignore_ampersand_in_properties=true
+spelling_ignore_digits=true
+spelling_ignore_java_strings=true
+spelling_ignore_mixed=true
+spelling_ignore_non_letters=true
+spelling_ignore_sentence=true
+spelling_ignore_single_letters=true
+spelling_ignore_upper=true
+spelling_ignore_urls=true
+spelling_locale_initialized=true
+spelling_user_dictionary_encoding=
+tabWidthPropagated=true
+useAnnotationsPrefPage=true
+useQuickDiffPrefPage=true

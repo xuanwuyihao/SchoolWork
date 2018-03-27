@@ -1,0 +1,31 @@
+package tutorial;
+
+public class Book {
+	private String isbn;
+	private double pricle;
+	private String title;
+	public Book(){}
+	public Book(String isbn,double pricle,String title){
+		this.isbn=isbn;
+		this.pricle=pricle;
+		this.title=title;
+	}
+	public String getIsbn() { 
+		return isbn;
+	}
+	public void setIsbn(String isbn) {
+		this.isbn = isbn;
+	}
+	public double getPricle() {
+		return pricle;
+	}
+	public void setPricle(double pricle) {
+		this.pricle = pricle;
+	}
+	public String getTitle() {
+		return title;
+	}
+	public void setTitle(String title) {
+		this.title = title;
+	}
+}

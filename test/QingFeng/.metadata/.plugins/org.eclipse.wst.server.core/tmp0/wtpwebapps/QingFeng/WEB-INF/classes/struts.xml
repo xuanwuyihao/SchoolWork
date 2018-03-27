@@ -1,0 +1,264 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+	"-//Apache Software Foundation//DTD Struts Configuration 2.3//EN"
+	"http://struts.apache.org/dtds/struts-2.3.dtd">
+	
+	<struts>
+	<!-- 开启动态访问方法 -->
+	<constant name="struts.enable.DynamicMethodInvocation" value="true"></constant>
+	
+	<!-- 学生=============================================================================================== -->
+	<package name="strutsDemo" extends="struts-default" namespace="/">
+	
+	<action name="student" class="student_Action" method="list">
+	<result>list.jsp</result>
+	</action>
+	
+	<action name="saveStudent" class="student_Action" method="save">
+	<result>add.jsp</result>
+	</action>
+	</package>
+	
+	<!--relation联系我们 ============================================================== -->
+	<package name="RelationDom"  extends="struts-default" namespace="/">
+	<action name="listRelation" class="com.qf.action.Relation_Action" method="listRelation">
+	<result>index.jsp</result>
+	</action>
+
+	<action name="Relation" class="com.qf.action.Relation_Action" method="group">
+	</action>
+	
+	<action name="Relations" class="com.qf.action.Relation_Action" method="delete">
+	<result>relation1.jsp</result>
+	</action> 
+	
+	
+	<action name="RelationIns" class="com.qf.action.Relation_Action" method="inser">
+	<result >relation1.jsp</result>
+	</action>
+	
+	
+	<action name="RelationUp" class="com.qf.action.Relation_Action" method="update">
+	<result>relation1.jsp</result>
+	</action> 
+	</package>
+	
+	<!--   == 新闻notice ===========================================================================================  -->
+	<package name="NoticeDome"  extends="struts-default" namespace="/">
+		<action name="NoticeSel" class="com.qf.action.Notice_Action" method="select">
+	
+	</action> 
+	
+	<action name="NoticeDel" class="com.qf.action.Notice_Action" method="delete">
+	<result>notice.jsp</result>
+	</action> 
+	
+	<action name="NoticeUp" class="com.qf.action.Notice_Action" method="update">
+	<result>notice.jsp</result>
+	</action> 
+	
+	<action name="NoticeAdd" class="com.qf.action.Notice_Action" method="add">
+	<result>notice.jsp</result>
+	</action>
+	
+	<action name="NoticeFind" class="com.qf.action.Notice_Action" method="find">
+	<result>index.jsp</result>
+	</action>
+	
+	</package>
+	
+<!--院校（academy）=========================================================================================  -->
+	<package name="academyDemo" extends="struts-default" namespace="/">
+	
+	<action name="Academy_list" class="academy_Action" method="list">
+	<result>list2.jsp</result>
+	</action>
+	
+	<!--  type="redirect"  -->
+	<action name="Delete_Academy" class="academy_Action" method="delete">
+	<result>list2.jsp</result>
+	</action>
+	
+	<action name="Save_academy" class="academy_Action" method="save">
+	<result>list2.jsp</result>   <!-- 添加 -->
+	</action>
+	
+	<action name="Edit_academy" class="academy_Action" method="update">
+	<result>list2.jsp</result>  <!-- 修改 -->
+	</action>
+	
+	</package>
+	
+	<!-- user系统角色==================================================================================================== -->
+	<package name="userDemo" extends="struts-default" namespace="/">
+	
+	<action name="User_list" class="user_Action" method="list">
+	<result>user.jsp</result>		<!-- 查询 -->
+	</action>
+	
+	<action name="Save_user" class="user_Action" method="save">
+	<result>user.jsp</result>  	 <!-- 增加 -->
+	</action>
+	
+	<action name="Delete_user" class="user_Action" method="delete">
+	<result>user.jsp</result>   <!-- 删除 -->
+	</action>
+	
+	<action name="Edit_user" class="user_Action" method="update">
+	<result>user.jsp</result>  <!-- 修改 -->
+	</action>
+	
+	</package>
+	
+	<!-- ====部门（department）================================================================================================ -->
+	<package name="departmentDemo" extends="struts-default" namespace="/">
+	
+			<action name="Department_list" class="department_Action" method="list">
+				<result>department.jsp</result>		<!-- 查询 -->
+			</action>
+	
+			<action name="Save_department" class="department_Action" method="save">
+				<result>department.jsp</result>  	 <!-- 增加 -->
+			</action>
+	
+			<action name="Delete_department" class="department_Action" method="delete">
+				<result>department.jsp</result>   <!-- 删除 -->
+			</action>
+	
+			<action name="Edit_department" class="department_Action" method="update">
+				<result>department.jsp</result>  <!-- 修改 -->
+			</action>
+	
+	</package>
+	
+	<!-- ====职员（employee）================================================================================================ -->
+	
+	<package name="employeeDemo" extends="struts-default" namespace="/">
+	
+			<action name="Employee_list" class="employee_Action" method="list">
+				<result>employee.jsp</result>		<!-- 查询 -->
+			</action>
+	
+			<action name="Save_employee" class="employee_Action" method="save">
+				<result>employee.jsp</result>  	 <!-- 增加 -->
+			</action>
+	
+			<action name="Delete_employee" class="employee_Action" method="delete">
+				<result>employee.jsp</result>   <!-- 删除 -->
+			</action>
+	
+			<action name="Edit_employee" class="employee_Action" method="update">
+				<result>employee.jsp</result>  <!-- 修改 -->
+			</action>
+			
+			<action name="Reset_Pwd" class="employee_Action" method="reset_Pwd">
+				<result>employee.jsp</result>  <!-- 重置密码 -->
+			</action>
+			
+			<action name="Sel_UserAndDep" class="employee_Action" method="selectUD">
+				<result>employee.jsp</result>		<!-- 查询部门和角色 -->
+			</action>
+			
+			<action name="getEmp" class="employee_Action" method="getEmp">
+				<result>employee.jsp</result>		<!-- 查询部门和员工联机 -->
+			</action>
+			
+				<action name="Sel_UserAndUser" class="employee_Action" method="select_Pwd">
+				<result>indexsdl.jsp</result>		<!-- 查询角色,密码 -->
+			</action>
+			
+			<action name="Sel_UserAndId" class="employee_Action" method="select_Id">
+				<result>indexsdl.jsp</result>		<!-- 查询id -->
+			</action> 
+			
+			<action name="Sel_UserAndDL" class="employee_Action" method="select_DL">
+				<result>indexs.jsp</result>		<!-- 登录 -->
+			</action>
+			
+			<action name="Sel_UserAndSess" class="employee_Action" method="select_Sess">
+				<result>indexs.jsp</result>		<!--删除session -->
+			</action>
+	
+	</package>
+	
+	<!-- ====work（工作助手管理）================================================================================================ -->
+	
+	<package name="Work_Demo" extends="struts-default" namespace="/">
+	
+			<action name="Work_list" class="work_assistant_Action" method="list">
+				<result>work.jsp</result>		<!-- 查询 全部-->
+			</action>
+		
+	
+			<action name="Work_update" class="work_assistant_Action" method="update">
+				<result>work.jsp</result>  <!-- 修改 -->
+			</action>
+			
+			<action name="Getwork" class="work_assistant_Action" method="getWork">
+				<result>work.jsp</result>		<!-- 查询 单个-->
+			</action>
+			
+			<action name="Work_save" class="work_assistant_Action" method="save">
+				<result>work.jsp</result>  <!-- 添加 -->
+			</action>
+			
+			<action name="Work_delete" class="work_assistant_Action" method="delete">
+				<result>work.jsp</result>  <!-- 删除 -->
+			</action>
+			
+			<action name="Goto_indexs" class="work_assistant_Action" method="find_work">
+				<result>indexs.jsp</result>  <!-- 查询工作事项然后去后台首页 -->
+			</action>
+	</package>
+	
+	<!-- 热门专业 -->
+	<package name="Demo" extends="struts-default" namespace="/">
+	<action name="renmenzy" class="com.qf.action.Hot_major_Action" method="selected">
+	<result>remen.jsp</result>
+	</action>
+	
+	<action name="rmup" class="com.qf.action.Hot_major_Action" method="update">
+	<result>remen.jsp</result>
+	</action>
+	
+	<action name="rmadd" class="com.qf.action.Hot_major_Action" method="add">
+	<result>remen.jsp</result>
+	</action>
+	
+	<action name="rmson" class="com.qf.action.Hot_major_Action" method="selectone">
+	<result>remen.jsp</result>
+	</action>
+	
+	<action name="rmdelo" class="com.qf.action.Hot_major_Action" method="delectone">
+	<result>remen.jsp</result>
+	</action>
+	</package>
+	
+	
+	
+	<package name="Log" extends="struts-default" namespace="/">
+	<action name="Log" class="com.qf.action.Log_Action" method="selects">
+	<result>log.jsp</result>
+	</action>
+	
+	<action name="logdel" class="com.qf.action.Log_Action" method="delete">
+	<result>log.jsp</result>
+	</action>
+	
+	<action name="cz" class="com.qf.action.Log_Action" method="cz">
+	<result>jtcz.jsp</result>
+	</action>
+	
+	<action name="jtcz" class="com.qf.action.Log_Action" method="jtcz">
+	<result>jtcz.jsp</result>
+	</action>
+	
+	</package>
+	
+	
+	
+	
+	
+	</struts>
+	
+	

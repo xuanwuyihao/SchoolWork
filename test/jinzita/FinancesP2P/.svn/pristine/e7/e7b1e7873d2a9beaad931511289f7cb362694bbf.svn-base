@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.p2p.mapper.LogRechargeMapper">
+	<resultMap id="BaseResultMap" type="com.p2p.pojo.LogRecharge">
+		<id column="id" property="id" jdbcType="INTEGER" />
+		<result column="userName" property="username" jdbcType="VARCHAR" />
+		<result column="bankCard" property="bankcard" jdbcType="VARCHAR" />
+		<result column="bankType" property="banktype" jdbcType="VARCHAR" />
+		<result column="money" property="money" jdbcType="DECIMAL" />
+		<result column="time" property="time" jdbcType="TIMESTAMP" />
+		<result column="status" property="status" jdbcType="VARCHAR" />
+		<result column="oyh1" property="oyh1" jdbcType="VARCHAR" />
+		<result column="oyh2" property="oyh2" jdbcType="VARCHAR" />
+	</resultMap>
+	<select id="list" resultMap="BaseResultMap">
+		select * from log_recharge limit 0,7;
+	</select>
+	<select id="count" resultType="int">
+		select count(*) from log_recharge;
+	</select>
+
+	<select id="selectpeople" parameterType="com.p2p.pojo.Page"
+		resultMap="BaseResultMap">
+		select * from (select * from log_recharge where userName like "%"#{title}"%"
+		and time like "%"#{people}"%") n limit #{fist},#{tow};
+	</select>
+
+	<select id="selectlike" parameterType="com.p2p.pojo.Page"
+		resultMap="BaseResultMap">
+		select * from log_recharge where userName like "%"#{title}"%" and time like
+		"%"#{people}"%";
+	</select>
+
+	<select id="selectpaging" parameterType="com.p2p.pojo.Page"
+		resultMap="BaseResultMap">
+
+		select * from log_recharge limit #{fist},#{tow};
+
+	</select>
+
+	<insert id="save" parameterType="com.p2p.pojo.LogRecharge">
+		insert into
+		log_recharge(userName,bankCard,bankType,money,time,status,oyh1,oyh2)
+		values(#{username},#{bankcard},#{banktype},#{money},#{time},#{status},#{oyh1},#{oyh2})
+	</insert>
+	<select id="maxRecharge" resultMap="BaseResultMap">
+		select * from log_recharge
+		where userName=#{username} order by id desc limit 1
+	</select>
+	<select id="getById" resultMap="BaseResultMap">
+		select * from log_recharge where
+		id=#{id}
+	</select>
+	<update id="update" parameterType="com.p2p.pojo.LogRecharge">
+		update log_recharge set
+		userName=#{username},bankCard=#{bankcard},bankType=#{banktype},money=#{money},time=#{time},status=#{status},oyh1=#{oyh1},oyh2=#{oyh2}
+		where id=#{id}
+	</update>
+	<select id="selPhone" resultMap="BaseResultMap">
+		select * from log_recharge where userName=#{phone} 
+			<if test="time1 !=null and time1!=''">
+				and <![CDATA[unix_timestamp(time) > unix_timestamp(#{time1}) ]]>
+			</if>
+			<if test="time2 !=null and time2!=''">
+				and<![CDATA[ unix_timestamp(time) < unix_timestamp(#{time2}) ]]>
+			</if>
+		 limit #{number},#{line}
+	</select>
+	<select id="rechargeCount" resultType="java.lang.Integer">
+		select count(*) from
+		log_recharge where userName=#{username}
+	</select>
+
+</mapper>

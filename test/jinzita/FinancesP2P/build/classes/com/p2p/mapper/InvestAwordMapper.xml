@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.p2p.mapper.InvestAwordMapper" >
+  <resultMap id="BaseResultMap" type="com.p2p.pojo.InvestAword" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="vserName" property="vsername" jdbcType="VARCHAR" />
+    <result column="investMoney" property="investmoney" jdbcType="DECIMAL" />
+    <result column="description" property="description" jdbcType="VARCHAR" />
+    <result column="awordType" property="awordtype" jdbcType="DECIMAL" />
+    <result column="status" property="status" jdbcType="VARCHAR" />
+    <result column="awordTime" property="awordtime" jdbcType="TIMESTAMP" />
+    <result column="invesTimeRange" property="investimerange" jdbcType="TIMESTAMP" />
+    <result column="oyh1" property="oyh1" jdbcType="VARCHAR" />
+    <result column="oyh2" property="oyh2" jdbcType="VARCHAR" />
+  </resultMap>
+  <select id="list" resultMap="BaseResultMap">
+  select * from invest_aword
+  </select>
+  
+  <!-- 模糊查询 -->
+  <select id="seek"  parameterType="com.p2p.pojo.Investseek" resultMap="BaseResultMap">
+  select * from invest_aword where vserName like "%"#{username}"%" and description like "%"#{awa}"%" and status like "%"#{fid}"%"
+  </select>
+  
+  <!-- 分页 -->
+  <select id="selpaging" parameterType="com.p2p.pojo.Paging" resultMap="BaseResultMap">
+   select * from invest_aword limit #{dq},#{mygs}
+  </select>
+   <select id="investpaging"  parameterType="com.p2p.pojo.Investpaging"  resultMap="BaseResultMap">
+   select * from invest_aword where vserName like "%"#{username}"%" and description like "%"#{awa}"%" and status like "%"#{fid}"%" limit #{dq1},#{mygs1}
+  </select>
+  
+  <!-- 修改 -->
+  <select id="update" resultMap="BaseResultMap">
+  update invest_aword set status=#{status} where id=#{id}
+  </select>
+  
+</mapper>

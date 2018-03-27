@@ -1,0 +1,465 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+	"-//Apache Software Foundation//DTD Struts Configuration 2.3//EN"
+	"http://struts.apache.org/dtds/struts-2.3.dtd">
+	
+	<struts>
+	<!-- 开启动态访问方法 -->
+	<constant name="struts.enable.DynamicMethodInvocation" value="true"></constant>
+	
+	<!-- 学生=============================================================================================== -->
+	<package name="strutsDemo" extends="struts-default" namespace="/">
+	
+		<action name="Ckstudent" class="student_Action" method="list">
+			<result>list.jsp</result>
+		</action>
+		
+		<action name="GetAcademy_list" class="student_Action" method="getAcademy_list">
+			<result>exam_chengkao.jsp</result>     <!-- 查询院校下拉框 -->
+		</action>
+		
+		<action name="GetMajor_list" class="student_Action" method="getMajor_list">
+			<result>exam_chengkao.jsp</result>     <!-- 查询专业下拉框 -->
+		</action>
+		
+		<action name="chengkao_Login" class="student_Action" method="ckLogin">
+			<result type="redirect">index.jsp</result>   			 <!-- 成考报名注册 -->
+		</action> 
+		
+		<action name="Save_ck" class="student_Action" method="save">
+			<result>ckStudent.jsp</result>   			 <!-- 成考学生添加 -->
+		</action> 
+		
+		<action name="Update_ck" class="student_Action" method="update">
+			<result>ckStudent.jsp</result>   			 <!-- 成考学生修改-->
+		</action> 
+		
+		<action name="Find_stu" class="student_Action" method="find_Stu">
+			<result></result>   			 <!-- 验证学生是否注册 -->
+		</action> 
+		
+		<action name="Find_sphone" class="student_Action" method="find_Sphone">
+			<result></result>   			 <!-- 验证学生手机号码是否正确 -->
+		</action> 
+		
+		<action name="StuLogin" class="student_Action" method="stu_Login">
+			<result  type="redirect">MaingetCar.action</result>   	 <!-- 学生登录保存-->
+		</action> 
+		
+		<action name="RemoveStudent" class="student_Action" method="removeStudent">
+			<result >index.jsp</result>   	 <!-- 退出登录-->
+		</action> 
+		
+		<action name="find_moneys" class="student_Action" method="find_moneys">
+			<result  >student/jiaofei.jsp</result> <!-- 学生缴费查询-->
+		</action>
+		
+		<action name="yzm" class="com.qf.action.Student_Action" method="yzm">
+		<result>student/stuLogin.jsp</result>
+		</action>
+		
+		
+		<!-- 艺考============================================== -->
+		<action name="saveStudent2" class="student_Action" method="save_zhikao">
+			<result type="redirect" name="success">MaingetCar.action</result><!-- 	自考 添加-->
+			<result type="redirect" name="error">cj.jsp</result><!-- 	自考 添加-->
+		</action>
+	
+		<action name="ListStudent2" class="student_Action" method="list_zhikao">
+			<result>student_zhikao.jsp</result><!-- 	自考 -->
+		</action>
+	
+		<action name="StudentUpdate" class="student_Action" method="Update_zhikao">
+			<result>student_zhikao.jsp</result><!-- 	自考 修改 -->
+		</action>
+	
+		<action name="StudentDelete" class="student_Action" method="Delete_zhikao">
+			<result>student_zhikao.jsp</result><!-- 	自考 删除 -->
+		</action>
+	
+		<action name="Student_Save" class="com.qf.action.Student_Action" method="Listsave_zhikao">
+			<result>student_zhikao.jsp</result><!-- 	自考 增加 -->
+		</action>
+	
+		<action name="Student_jian" class="com.qf.action.Student_Action" method="jians_zhikao">
+			<result>student_zhikao.jsp</result><!-- 	自考检查 -->
+		</action>
+	</package>
+	
+	<!--relation联系我们 ============================================================== -->
+	<package name="RelationDom"  extends="struts-default" namespace="/">
+		<action name="listRelation" class="com.qf.action.Relation_Action" method="listRelation">
+			<result>index.jsp</result>
+		</action>
+
+		<action name="Relation" class="com.qf.action.Relation_Action" method="group">
+		</action>
+		
+		<action name="Relations" class="com.qf.action.Relation_Action" method="delete">
+			<result>relation1.jsp</result>
+		</action> 
+		
+		
+		<action name="RelationIns" class="com.qf.action.Relation_Action" method="inser">
+			<result >relation1.jsp</result>
+		</action>
+		
+		
+		<action name="RelationUp" class="com.qf.action.Relation_Action" method="update">
+			<result>relation1.jsp</result>
+		</action> 
+	</package>
+	
+	<!--   == 新闻notice ===========================================================================================  -->
+	<package name="NoticeDome"  extends="struts-default" namespace="/">
+		<action name="NoticeSel" class="com.qf.action.Notice_Action" method="select">
+	
+		</action> 
+	
+		<action name="NoticeDel" class="com.qf.action.Notice_Action" method="delete">
+			<result>notice.jsp</result>
+		</action> 
+		
+		<action name="NoticeUp" class="com.qf.action.Notice_Action" method="update">
+			<result>notice.jsp</result>
+		</action> 
+		
+		<action name="NoticeAdd" class="com.qf.action.Notice_Action" method="add">
+			<result>notice.jsp</result>
+		</action>
+		
+		<action name="NoticeFind" class="com.qf.action.Notice_Action" method="find">
+			<result>index.jsp</result>
+		</action>
+	
+	</package>
+	
+<!--院校（academy）=========================================================================================  -->
+	<package name="academyDemo" extends="struts-default" namespace="/">
+	
+		<action name="Academy_list" class="academy_Action" method="list">
+			<result>list2.jsp</result>
+		</action>
+		
+		<!--  type="redirect"  -->
+		<action name="Delete_Academy" class="academy_Action" method="delete">
+			<result>list2.jsp</result>
+		</action>
+		
+		<action name="Save_academy" class="academy_Action" method="save">
+			<result>list2.jsp</result>   <!-- 添加 -->
+		</action>
+		
+		<action name="Edit_academy" class="academy_Action" method="update">
+			<result>list2.jsp</result>  <!-- 修改 -->
+		</action>
+		
+	</package>
+	
+	<!-- user系统角色==================================================================================================== -->
+	<package name="userDemo" extends="struts-default" namespace="/">
+	
+		<action name="User_list" class="user_Action" method="list">
+			<result>user.jsp</result>		<!-- 查询 -->
+		</action>
+		
+		<action name="Save_user" class="user_Action" method="save">
+			<result>user.jsp</result>  	 <!-- 增加 -->
+		</action>
+		
+		<action name="Delete_user" class="user_Action" method="delete">
+			<result>user.jsp</result>   <!-- 删除 -->
+		</action>
+		
+		<action name="Edit_user" class="user_Action" method="update">
+			<result>user.jsp</result>  <!-- 修改 -->
+		</action>
+	
+	</package>
+	
+	<!-- ====部门（department）================================================================================================ -->
+	<package name="departmentDemo" extends="struts-default" namespace="/">
+	
+			<action name="Department_list" class="department_Action" method="list">
+				<result>department.jsp</result>		<!-- 查询 -->
+			</action>
+	
+			<action name="Save_department" class="department_Action" method="save">
+				<result>department.jsp</result>  	 <!-- 增加 -->
+			</action>
+	
+			<action name="Delete_department" class="department_Action" method="delete">
+				<result>department.jsp</result>   <!-- 删除 -->
+			</action>
+	
+			<action name="Edit_department" class="department_Action" method="update">
+				<result>department.jsp</result>  <!-- 修改 -->
+			</action>
+	
+	</package>
+	
+	<!-- ====职员（employee）================================================================================================ -->
+	
+	<package name="employeeDemo" extends="struts-default" namespace="/">
+	
+			<action name="Employee_list" class="employee_Action" method="list">
+				<result>employee.jsp</result>		<!-- 查询 -->
+			</action>
+	
+			<action name="Save_employee" class="employee_Action" method="save">
+				<result>employee.jsp</result>  	 <!-- 增加 -->
+			</action>
+	
+			<action name="Delete_employee" class="employee_Action" method="delete">
+				<result>employee.jsp</result>   <!-- 删除 -->
+			</action>
+	
+			<action name="Edit_employee" class="employee_Action" method="update">
+				<result>employee.jsp</result>  <!-- 修改 -->
+			</action>
+			
+			<action name="Reset_Pwd" class="employee_Action" method="reset_Pwd">
+				<result>employee.jsp</result>  <!-- 重置密码 -->
+			</action>
+			
+			<action name="Sel_UserAndDep" class="employee_Action" method="selectUD">
+				<result>employee.jsp</result>		<!-- 查询部门和角色 -->
+			</action>
+			
+			<action name="getEmp" class="employee_Action" method="getEmp">
+				<result>employee.jsp</result>		<!-- 查询部门和员工联机 -->
+			</action>
+			
+				<action name="Sel_UserAndUser" class="employee_Action" method="select_Pwd">
+				<result>indexsdl.jsp</result>		<!-- 查询角色,密码 -->
+			</action>
+			
+			<action name="Sel_UserAndId" class="employee_Action" method="select_Id">
+				<result>indexsdl.jsp</result>		<!-- 查询id -->
+			</action> 
+			
+			<action name="Sel_UserAndDL" class="employee_Action" method="select_DL">
+				<result>indexs.jsp</result>		<!-- 登录 -->
+			</action>
+			
+			<action name="Emp_tc" class="employee_Action" method="select_Sess">
+				<result >mains.jsp</result>  <!-- 退出登录 -->
+			</action>
+			
+			<action name="Zhikao_UserAndList" class="employee_Action" method="select_List">
+				<result>student_zhikao.jsp</result>	<!-- 	自考 -->
+			</action>
+	
+	</package>
+	
+	<!-- ====缴费（payment）================================================================================================ -->
+	
+	<package name="paymentDemo" extends="struts-default" namespace="/">
+	
+			<action name="Payment_list" class="payment_Action" method="list">
+				<result>payment/payments.jsp</result>		<!-- 查询 -->
+			</action>
+	
+			<action name="Save_payment" class="payment_Action" method="save">
+				<result>payments.jsp</result>  	 <!-- 增加 -->
+			</action>
+	
+			<action name="Delete_payment" class="payment_Action" method="delete">
+				<result>payments.jsp</result>   <!-- 删除 -->
+			</action>
+	
+			<action name="Edit_payment" class="payment_Action" method="update">
+				<result>payments.jsp</result>  <!-- 修改 -->
+			</action>
+			
+			<action name="SelectNOStu" class="payment_Action" method="selectNOStu">
+				<result>payments.jsp</result>		<!-- 查询未缴清学生 -->
+			</action>
+			
+			<action name="Payment_list2" class="payment_Action" method="list3">
+				<result>finance_zhikao.jsp</result>		<!-- 查询 -->
+			</action>
+	
+
+			<action name="GetBaoBiao" class="payment_Action" method="baoBiao">
+				<result>cwbb.jsp</result>		<!-- 查询 -->
+			</action>
+
+			<action name="Save_payment2" class="payment_Action" method="save2">
+				<result>finance_zhikao.jsp</result>  	 <!-- 自考增加 -->
+			</action>
+			
+
+	</package>
+	
+	<!-- ====会计表（Finance）================================================================================================ -->
+	
+	<package name="FinanceDemo" extends="struts-default" namespace="/">
+	
+			<action name="Finance_list" class="finance_Action" method="list">
+				<result>finance.jsp</result>		<!-- 查询 -->
+			</action>
+	
+			<action name="Save_finance" class="finance_Action" method="save">
+				<result>finance.jsp</result>  	 <!-- 增加 -->
+			</action>
+	
+			<action name="Delete_finance" class="finance_Action" method="delete">
+				<result>finance.jsp</result>   <!-- 删除 -->
+			</action>
+	
+			<action name="Edit_finance" class="finance_Action" method="update">
+				<result>finance.jsp</result>  <!-- 修改 -->
+			</action>
+			
+			<action name="Finance_list2" class="finance_Action" method="list2">
+				<result>finance.jsp</result>		<!-- 查询 -->
+			</action>
+			
+			
+	</package>
+	
+	<!-- ====stu_File（文件上传）================================================================================================ -->
+	
+	<package name="stu_FileDemo" extends="struts-default" namespace="/">
+	
+			<action name="Stu_file_list" class="stu_file_Action" method="list">
+				<result>stu_file/stu_file.jsp</result>		<!-- 查询 全部-->
+			</action>
+	
+			<action name="Save_stu_File" class="stu_file_Action" method="save">
+				<!-- 要创建/Myfiles文件夹，否则会报找不到文件 -->
+       		 	<!-- 默认拦截器   主要是拦截myfile MyFileContentType MyFileFileName-->
+   		 		<interceptor-ref name="fileUploadStack"/>
+        		<param name="savePath">/Myfiles</param>
+        		<result name="success">uploadcg.jsp</result>
+			</action>
+	
+			<action name="Delete_stu_File" class="stu_file_Action" method="delete">
+				<result>finance.jsp</result>   <!-- 删除 -->
+			</action>
+	
+			<action name="Edit_stu_File" class="stu_file_Action" method="update">
+				<result>finance.jsp</result>  <!-- 修改 -->
+			</action>
+			
+				<action name="Getfile" class="stu_file_Action" method="getFile">
+				<result>uploadcg.jsp</result>		<!-- 查询 单个-->
+			</action>
+	</package>
+	
+	<!-- ====car（轮播图管理）================================================================================================ -->
+	
+	<package name="car_Demo" extends="struts-default" namespace="/">
+	
+			<action name="getCar" class="carousel_figure_Action" method="list">
+				<result>beanimage.jsp</result>		<!-- 查询 全部-->
+			</action>
+			
+			<action name="MaingetCar" class="carousel_figure_Action" method="list">
+				<result>index.jsp</result>		<!-- 首页查询 全部-->
+			</action>
+	
+			<action name="UpdateCar" class="carousel_figure_Action" method="update">
+				<!-- 要创建/Myfiles文件夹，否则会报找不到文件 -->
+       		 	<!-- 默认拦截器   主要是拦截myfile MyFileContentType MyFileFileName-->
+   		 		<interceptor-ref name="fileUploadStack"/>
+        		<param name="savePath">/Myfiles</param>
+        		<result type="redirect">getCar.action</result>
+			</action>
+	
+			<action name="" class="carousel_figure_Action" method="update">
+				<result>finance.jsp</result>  <!-- 修改 -->
+			</action>
+			
+				<action name="" class="carousel_figure_Action" method="getFile">
+				<result>uploadcg.jsp</result>		<!-- 查询 单个-->
+			</action>
+	</package>
+	
+	<!-- ====work（工作助手管理）================================================================================================ -->
+	
+	<package name="Work_Demo" extends="struts-default" namespace="/">
+	
+			<action name="Work_list" class="work_assistant_Action" method="list">
+				<result>work.jsp</result>		<!-- 查询 全部-->
+			</action>
+		
+	
+			<action name="Work_update" class="work_assistant_Action" method="update">
+				<result>work.jsp</result>  <!-- 修改 -->
+			</action>
+			
+			<action name="Getwork" class="work_assistant_Action" method="getWork">
+				<result>work.jsp</result>		<!-- 查询 单个-->
+			</action>
+			
+			<action name="Work_save" class="work_assistant_Action" method="save">
+				<result>work.jsp</result>  <!-- 添加 -->
+			</action>
+			
+			<action name="Work_delete" class="work_assistant_Action" method="delete">
+				<result>work.jsp</result>  <!-- 删除 -->
+			</action>
+			
+			<action name="Goto_indexs" class="work_assistant_Action" method="find_work">
+				<result>indexs.jsp</result>  <!-- 查询工作事项-->
+			</action>
+	</package>
+	
+	
+	<!-- 热门专业 -->
+	<package name="Demo" extends="struts-default" namespace="/">
+		<action name="renmenzy" class="com.qf.action.Hot_major_Action" method="selected">
+			<result>remen.jsp</result>
+		</action>
+		
+		<action name="rmup" class="com.qf.action.Hot_major_Action" method="update">
+			<result>remen.jsp</result>
+		</action>
+		
+		<action name="rmadd" class="com.qf.action.Hot_major_Action" method="add">
+			<result>remen.jsp</result>
+		</action>
+		
+		<action name="rmson" class="com.qf.action.Hot_major_Action" method="selectone">
+			<result>remen.jsp</result>
+		</action>
+		
+		<action name="rmdelo" class="com.qf.action.Hot_major_Action" method="delectone">
+			<result>remen.jsp</result>
+		</action>
+	</package>
+	
+	<!-- 	合作平台Translate -->
+	<package name="tt_Demo" extends="struts-default" namespace="/">
+	
+
+
+	<action name="TranslateList" class="com.qf.action.Translate_Action" method="translate_list">
+				<result>translate.jsp</result>		<!-- 查询 -->
+	</action>
+	
+	<action name="TranslateDelete" class="com.qf.action.Translate_Action" method="translate_delete">
+				<result>translate.jsp</result>		<!-- 删除-->
+	</action>
+	
+	<action name="TranslateUP" class="com.qf.action.Translate_Action" method="translate_update">
+				<result>translate.jsp</result>		<!-- 修改-->
+	</action>
+	
+	<action name="TranslateSave" class="com.qf.action.Translate_Action" method="translate_save">
+				<result>translate.jsp</result>		<!-- 添加-->
+	</action>
+	
+	<action name="TranslateList2" class="com.qf.action.Translate_Action" method="translate_list_index">
+				<result>index.jsp</result>		<!-- index.jsp 获取平台aaaaaa-->
+	</action>
+	
+	
+	</package>
+	
+
+	</struts>
+	
+	

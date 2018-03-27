@@ -1,0 +1,49 @@
+package com.ht.service.impl;
+
+import java.util.List;
+
+import javax.annotation.Resource;
+
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+
+import com.ht.mapper.TestMapper;
+import com.ht.model.Test;
+import com.ht.service.TestService;
+
+@Transactional
+@Service
+public class TestServiceImpl implements TestService {
+
+	@Resource
+	private TestMapper testmapper;
+	
+	@Override
+	public List<Test> list(){
+		return testmapper.list();
+	}
+
+	@Override
+	public Test getByid(Integer id) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public void insert(Test t) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void update(Test t) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void delete(Integer id) {
+		// TODO Auto-generated method stub
+		
+	}
+}

@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.p2p.mapper.CompanyMoneyMapper">
+<resultMap type="com.p2p.pojo.CompanyMoney" id="BaseResultMap">
+<id column="id" property="id"/>
+<result column="money" property="money"/>
+<result column="decription" property="decription"/>
+<result column="time" property="time"/>
+<result column="type" property="type"/>
+<result column="oyh1" property="oyh1"/>
+<result column="oyh2" property="oyh2"/>
+</resultMap>
+<select id="getMoney" parameterType="com.p2p.pojo.CompanyMoney" resultType="int">
+select sum(money) from company_money where type=#{type};
+</select>
+<select id="list" resultMap="BaseResultMap">
+select * from company_money;
+</select>
+
+
+</mapper>

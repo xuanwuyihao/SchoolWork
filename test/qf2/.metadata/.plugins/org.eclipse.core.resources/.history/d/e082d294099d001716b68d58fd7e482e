@@ -1,0 +1,8 @@
+package snippet;
+
+public class Snippet {
+	public static void main(String[] args) {
+		<value>com/qf/model/Log.hbm.xml</value>
+	}
+}
+

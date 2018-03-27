@@ -1,0 +1,44 @@
+package edu.ht.event;
+
+import java.awt.Button;
+import java.awt.Color;
+import java.awt.FlowLayout;
+import java.awt.Frame;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
+public class EventDemo1 extends Frame implements ActionListener{
+	//在全局重定义组件(事件方法要调用)
+	Button enter,cancle;
+	
+	public  EventDemo1(){
+		super("按钮事件例子");
+		setLayout(new FlowLayout());
+		enter=new Button("确认");
+		//授权
+		enter.addActionListener(this);
+		add(enter);
+		
+		cancle=new Button("取消");
+		cancle.addActionListener(this);
+		//授权
+		add(cancle);
+		
+		
+		setSize(500,300);
+		setBackground(Color.YELLOW);
+		setVisible(true);
+	}
+
+	public void actionPerformed(ActionEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+	public static void main(String[] args) {
+		new EventDemo1();
+	}
+
+	
+	
+
+}

@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Rename package &apos;com.yihao.tz&apos; to &apos;com.yihao.Quartz&apos;&#x0D;&#x0A;- Original project: &apos;Quartz&apos;&#x0D;&#x0A;- Original element: &apos;Quartz/src/main/java/com.yihao.tz&apos;&#x0D;&#x0A;- Renamed element: &apos;Quartz/src/main/java/com.yihao.Quartz&apos;&#x0D;&#x0A;- Update references to refactored element&#x0D;&#x0A;- Update textual occurrences in comments and strings" description="Rename package &apos;com.yihao.tz&apos;" flags="589830" hierarchical="false" id="org.eclipse.jdt.ui.rename.package" input="/src\/main\/java&lt;com.yihao.tz" name="com.yihao.Quartz" qualified="false" references="true" stamp="1514115690452" textual="false" version="1.0"/>
+</session>

@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Copy 4 elements to &apos;MavenSSM/src/main/resources&apos;&#x0D;&#x0A;- Original project: &apos;MavenDemo&apos;&#x0D;&#x0A;- Destination element: &apos;MavenSSM/src/main/resources&apos;&#x0D;&#x0A;- Original elements:&#x0D;&#x0A;     applicationContext.xml&#x0D;&#x0A;     jdbc.properties&#x0D;&#x0A;     springmvc.xml&#x0D;&#x0A;     mybatis.xml" description="Copy files" destination="=MavenSSM/src\/main\/resources" element1="src/main/resources/applicationContext.xml" element2="src/main/resources/jdbc.properties" element3="src/main/resources/springmvc.xml" element4="src/main/resources/mybatis.xml" files="4" flags="589830" folders="0" id="org.eclipse.jdt.ui.copy" policy="org.eclipse.jdt.ui.copyResources" stamp="1516611034838" units="0" version="1.0"/>
+</session>

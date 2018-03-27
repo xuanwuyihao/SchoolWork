@@ -1,0 +1,152 @@
+@charset "UTF-8";
+/*
+*project: 综合理财全局样式
+*version: v4.0
+*date: 20170829
+*auther:ljb
+*/
+/*公用变量定义*/
+.col-lg-6, .col-lg-5, .col-lg-4, .col-lg-3, .col-lg-2, .col-lg-1, .tdw-btn, .tdw-btn-lg, .tdw-count-btn, .tdw-count-btn-lg, .tdw-btn-gray, .tdw-btn-gray-lg, .tdw-count-gray-btn, .tdw-count-gray-btn-lg { display: inline-block; *display: inline; *zoom: 1; }
+
+/*layout */
+.wth-1200 { width: 1200px; margin-left: auto; margin-right: auto; }
+
+a:hover { color: #ffb700; }
+
+/*内、外边距调用*/
+.mt0 { margin-top: 0; }
+
+.mt4 { margin-top: 4px; }
+
+.mt5 { margin-top: 5px; }
+
+.mt10 { margin-top: 10px; }
+
+.mt15 { margin-top: 15px; }
+
+.mt16 { margin-top: 16px; }
+
+.mt18 { margin-top: 18px; }
+
+.mt20 { margin-top: 20px; }
+
+.mt25 { margin-top: 25px; }
+
+.mt30 { margin-top: 30px; }
+
+.mt38 { margin-top: 38px; }
+
+.mt63 { margin-top: 63px; }
+
+.mb10 { margin-bottom: 10px; }
+
+.mb20 { margin-bottom: 20px; }
+
+.mr16 { margin-right: 16px; }
+
+.pl30 { padding-left: 30px; }
+
+.ml5 { margin-left: 5px; }
+
+/*栅格布局  
+间距 mr16 最后一样不加mr16
+<div class="col-lg-1"></div>
+*/
+.col-lg-6, .col-lg-5, .col-lg-4, .col-lg-3, .col-lg-2, .col-lg-1 { float: left; }
+
+.col-lg-6 { width: 100%; }
+
+.col-lg-5 { width: 896px; }
+
+.col-lg-4 { width: 592px; }
+
+.col-lg-3 { width: 329px; }
+
+.col-lg-2 { width: 288px; }
+
+.col-lg-1 { width: 227px; }
+
+/*文字颜色调用*/
+.bg-wrap { background: #f6f6f6; }
+
+.text-yellow { color: #ffb700; }
+
+.text-orange { color: #ff7800; }
+
+.text-333 { color: #333; }
+
+.text-666 { color: #666; }
+
+.text-999 { color: #999; }
+
+.text-aaa { color: #aaa; }
+
+.text-ccc { color: #ccc; }
+
+/*字体大小设置*/
+.fz12 { font-size: 12px; }
+
+.fz14 { font-size: 14px; }
+
+.fz16 { font-size: 16px; }
+
+.fz18 { font-size: 18px; }
+
+.fz20 { font-size: 20px; }
+
+.fz24 { font-size: 24px; }
+
+.fz26 { font-size: 26px; }
+
+/*统一调用图标样式*/
+.tdw-icons {display: inline-block;vertical-align: middle;background: url("//js2.tdw.cn/images/v2/icons.png") no-repeat;}
+
+.i-customer { width: 16px; height: 17px; margin-right: 5px; vertical-align: -3px; *vertical-align: -2px; background-position: -175px -39px; }
+
+.i-wechat { width: 19px; height: 14px; vertical-align: -3px; *vertical-align: 0; background-position: -191px -39px; }
+
+.i-sina { width: 18px; height: 14px; vertical-align: -3px; *vertical-align: 0; background-position: -211px -39px; }
+
+.i-app { width: 12px; height: 15px; margin-right: 5px; vertical-align: -2px; *vertical-align: -1px; background-position: -230px -39px; }
+
+.i-arrow-up, .i-arrow-down { width: 7px; height: 5px; margin-left: 4px; }
+
+.i-arrow-up { background-position: -157px -46px; }
+
+.i-arrow-down { background-position: -157px -39px; }
+
+.i-tips-arrow { top: -6px; left: 50%; margin-left: -70px; width: 140px; height: 6px; background-position: -244px -39px; background-position: -384px -39px\9; }
+
+/***综合理财组件样式***/
+/*团贷等级*/
+.lv i { width: 19px; height: 19px; display: inline-block; *display: inline; *vertical-align: 4px; background: url(//js2.tdw.cn/images/member/member-lv.png); }
+
+.lv .i1 { background-position: 0 0; }
+
+.lv .i2 { background-position: -19px 0; }
+
+.lv .i3 { background-position: -38px 0; }
+
+.lv .i4 { background-position: -57px 0; }
+
+.lv .i5 { background-position: -76px 0; }
+
+.lv .i6 { background-position: -95px 0; }
+
+.lv .i7 { background-position: -114px 0; }
+
+.lv .i8 { background-position: -133px 0; }
+
+/*btn组件*/
+.tdw-btn, .tdw-btn-lg, .tdw-count-btn, .tdw-count-btn-lg, .tdw-btn-gray, .tdw-btn-gray-lg, .tdw-count-gray-btn, .tdw-count-gray-btn-lg { position: relative; overflow: hidden; width: 148px; height: 32px; line-height: 32px; text-align: center; }
+
+.tdw-btn, .tdw-btn-lg, .tdw-count-btn, .tdw-count-btn-lg { border: 1px solid #ffb700; color: #ffb700; }
+
+.tdw-btn-gray, .tdw-btn-gray-lg, .tdw-count-gray-btn, .tdw-count-gray-btn-lg { border: 1px solid #ccc; color: #999; }
+.tdw-btn-gray:hover, .tdw-btn-gray-lg:hover, .tdw-count-gray-btn:hover, .tdw-count-gray-btn-lg:hover { color: #999; }
+
+.tdw-btn .btn-text, .tdw-btn-lg .btn-text, .custombox .btn-text { z-index: 2; display: block; position: absolute; left: 0; top: 0; width: 100%; height: 100%; cursor: pointer; -webkit-transition: all 0.3s; -moz-transition: all 0.3s; -ms-transition: all 0.3s; -o-transition: all 0.3s; transition: all 0.3s; }
+.tdw-btn:before, .tdw-btn-lg:before, .custombox:before { content: ''; position: absolute; bottom: 0; left: 0; width: 100%; height: 0%; z-index: 1; background: none; -webkit-transition: all 0.3s; -moz-transition: all 0.3s; -ms-transition: all 0.3s; -o-transition: all 0.3s; transition: all 0.3s; }
+.tdw-btn:hover, .tdw-btn-lg:hover, .custombox:hover { -webkit-transition: all 0.5s; -moz-transition: all 0.5s; -ms-transition: all 0.5s; -o-transition: all 0.5s; transition: all 0.5s; *background: #ffb700; }
+.tdw-btn:hover .btn-text, .tdw-btn-lg:hover .btn-text, .custombox:hover .btn-text { color: #fff; }
+.tdw-btn:hover:before, .tdw-btn-lg:hover:before, .custombox:hover:before { background: #ffb700; height: 100%; }

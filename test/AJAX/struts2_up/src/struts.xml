@@ -1,0 +1,13 @@
+<!DOCTYPE struts PUBLIC
+        "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+        "http://struts.apache.org/dtds/struts-2.0.dtd">
+<struts>
+	<include file="struts-default.xml"></include>
+	<package name="fileupDome" extends="struts-default">
+	<action name="fileup" class="Dome.FileUpAction">
+		<!-- 默认拦截器   主要是拦截myfile MyFileContentType MyFileFileName-->
+		<interceptor-ref name="fileUploadStack"></interceptor-ref>
+		<result name="success">ShowUp.jsp</result>
+	</action>
+	</package>
+</struts>

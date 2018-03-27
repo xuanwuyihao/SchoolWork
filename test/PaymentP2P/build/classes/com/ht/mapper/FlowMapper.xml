@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ht.mapper.FlowMapper" >
+  <resultMap id="BaseResultMap" type="com.ht.model.Flow" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="ordid" property="ordid" jdbcType="VARCHAR" />
+    <result column="merid" property="merid" jdbcType="VARCHAR" />
+    <result column="custid" property="custid" jdbcType="VARCHAR" />
+    <result column="transamt" property="transamt" jdbcType="DECIMAL" />
+    <result column="realamt" property="realamt" jdbcType="DECIMAL" />
+    <result column="orddate" property="orddate" jdbcType="TIMESTAMP" />
+    <result column="ordertype" property="ordertype" jdbcType="VARCHAR" />
+    <result column="orderstatus" property="orderstatus" jdbcType="VARCHAR" />
+    <result column="stay1" property="stay1" jdbcType="VARCHAR" />
+    <result column="stay2" property="stay2" jdbcType="VARCHAR" />
+    <result column="stay3" property="stay3" jdbcType="VARCHAR" />
+  </resultMap>
+ 
+<select id="list" resultMap="BaseResultMap">
+select * from flow
+</select> 
+
+<insert id="insert" parameterType="com.ht.model.Flow">
+ insert into flow (id, ordid, merid, 
+      custid, transamt, realamt, 
+      orddate, ordertype, orderstatus, 
+      stay1, stay2, stay3
+      )
+    values (#{id,jdbcType=INTEGER}, #{ordid,jdbcType=VARCHAR}, #{merid,jdbcType=VARCHAR}, 
+      #{custid,jdbcType=VARCHAR}, #{transamt,jdbcType=DECIMAL}, #{realamt,jdbcType=DECIMAL}, 
+      #{orddate,jdbcType=TIMESTAMP}, #{ordertype,jdbcType=VARCHAR}, #{orderstatus,jdbcType=VARCHAR}, 
+      #{stay1,jdbcType=VARCHAR}, #{stay2,jdbcType=VARCHAR}, #{stay3,jdbcType=VARCHAR}
+      )
+</insert>
+
+<delete id="delete" parameterType="java.lang.Integer">
+delete from flow where id=#{id}
+</delete>
+
+<select id="getById" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+select * from flow where id=#{id}
+</select>
+
+<update id="update" parameterType="com.ht.model.Flow">
+ update flow
+    set ordid = #{ordid,jdbcType=VARCHAR},
+      merid = #{merid,jdbcType=VARCHAR},
+      custid = #{custid,jdbcType=VARCHAR},
+      transamt = #{transamt,jdbcType=DECIMAL},
+      realamt = #{realamt,jdbcType=DECIMAL},
+      orddate = #{orddate,jdbcType=TIMESTAMP},
+      ordertype = #{ordertype,jdbcType=VARCHAR},
+      orderstatus = #{orderstatus,jdbcType=VARCHAR},
+      stay1 = #{stay1,jdbcType=VARCHAR},
+      stay2 = #{stay2,jdbcType=VARCHAR},
+      stay3 = #{stay3,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+</update>
+
+<update id="upFlowByOid" parameterType="com.ht.model.Flow">
+ update flow
+    set orderstatus = #{orderstatus},orddate = #{orddate}    
+    where ordid = #{ordid}
+</update>
+
+</mapper>

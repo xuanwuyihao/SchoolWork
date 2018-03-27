@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:aop="http://www.springframework.org/schema/aop"
+	xmlns:tx="http://www.springframework.org/schema/tx"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans 
+	http://www.springframework.org/schema/beans/spring-beans.xsd
+	http://www.springframework.org/schema/context
+	http://www.springframework.org/schema/context/spring-context.xsd
+	http://www.springframework.org/schema/aop
+	http://www.springframework.org/schema/aop/spring-aop.xsd
+	http://www.springframework.org/schema/tx
+	http://www.springframework.org/schema/tx/spring-tx.xsd">
+	
+	<bean id="student_Action" class="com.qf.action.Student_Action">
+		<property name="student_Service" ref="student_Service"></property>
+	</bean>
+	
+	<bean id="academy_Action" class="com.qf.action.Academy_Action">
+		<property name="academy_Service" ref="academy_Service"></property>
+	</bean>
+	
+	<bean id="apply_type_Action" class="com.qf.action.Apply_type_Action">
+		<property name="apply_type_Service" ref="apply_type_Service"></property>
+	</bean>
+	
+	<bean id="finance_Action" class="com.qf.action.Finance_Action">
+		<property name="finance_Service" ref="finance_Service"></property>
+	</bean>
+	
+	<bean id="home_content_Action" class="com.qf.action.Home_content_Action">
+		<property name="home_content_Service" ref="home_content_Service"></property>
+	</bean>
+	
+	<bean id="hot_major_Action" class="com.qf.action.Hot_major_Action">
+		<property name="hot_major_Service" ref="hot_major_Service"></property>
+	</bean>
+	
+	<bean id="notice_Action" class="com.qf.action.Notice_Action">
+		<property name="notice_Service" ref="notice_Service"></property>
+	</bean>
+	
+	<bean id="relation_Action" class="com.qf.action.Relation_Action">
+		<property name="relation_Service" ref="relation_Service"></property>
+	</bean>
+	
+	<bean id="schedule_Action" class="com.qf.action.Schedule_Action">
+		<property name="schedule_Service" ref="schedule_Service"></property>
+	</bean>
+	
+	<bean id="stu_file_Action" class="com.qf.action.Stu_file_Action">
+		<property name="stu_file_Service" ref="stu_file_Service"></property>
+	</bean>
+	
+		<bean id="user_Action" class="com.qf.action.User_Action">
+		<property name="user_Service" ref="user_Service"></property>
+	</bean>
+	
+	<bean id="log_Action" class="com.qf.action.Log_Action">
+		<property name="log_Service" ref="log_Service"></property>
+	</bean>
+	
+	
+	</beans>

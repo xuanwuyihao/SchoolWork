@@ -1,0 +1,78 @@
+<%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
+<%
+String path = request.getContextPath();
+String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
+%>
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+  <head>
+    <base href="<%=basePath%>">
+    
+    <title>My JSP 'jQueryDome.jsp' starting page</title>
+    
+	<meta http-equiv="pragma" content="no-cache">
+	<meta http-equiv="cache-control" content="no-cache">
+	<meta http-equiv="expires" content="0">    
+	<meta http-equiv="keywords" content="keyword1,keyword2,keyword3">
+	<meta http-equiv="description" content="This is my page">
+	<!--
+	<link rel="stylesheet" type="text/css" href="styles.css">
+	-->
+	
+	<!-- --------------淡入/淡出------------------------------- -->
+	<script type="text/javascript" src="script/danrudanchu.js"></script>
+	<script>
+	$(document).ready(function(){
+	$("#s").click(function(){
+	$("#div1").fadeToggle();
+	$("#div2").fadeToggle("hide");
+	$("#div3").fadeToggle(4000);
+	});
+	});
+	</script>
+	
+	<!-- ----------------获取文本框中的内容----------------------------- -->
+	<script type="text/javascript" src="script/gettextboxcontent.js"></script>
+	<script>
+	$(document).ready(function(){
+	$("#p").click(function(){
+	$("#test").val("8888888888");
+	});
+	});
+	</script>
+	
+	<!-- -----------------追加列表项---------------------------------- -->
+	<script type="text/javascript" scr="script/addlistboxIten.jsp"></script>
+	<script>
+	$(document).ready(function(){
+	$("#b").click(function(){
+	$("ol").append("<li>追加文本</li>");
+	});
+	});
+	</script>
+  </head>
+  
+  <body>
+    <button id="s">点击淡入/淡出</button>
+    <br><br>
+    <div id="div1" style="width:100px;height:100px;background-color:red;"></div>
+    <br>
+    <div id="div2" style="width:100px;height:100px;background-color:yellow;"></div>
+    <br>
+    <div id="div3" style="width:100px;height:100px;background-color:blue;"></div>
+    
+    
+    <p>名称:<input type="text" id="test" value="999999999"></p>
+    <button id="p">显示值</button>
+    
+    
+    <ol>
+    <li>xxxxxxxxx</li>
+    <li>yyyyyyyyy</li>
+    <li>zzzzzzzzz</li>
+    </ol>
+    
+    <button id="b">添加列表项</button>
+  </body>
+</html>

@@ -1,0 +1,141 @@
+package com.qf.action;
+
+import java.io.IOException;
+import java.io.PrintWriter;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+import org.apache.log4j.Logger;
+import org.apache.struts2.ServletActionContext;
+
+import com.alibaba.fastjson.JSON;
+import com.opensymphony.xwork2.ActionSupport;
+import com.qf.model.Hot_major;
+import com.qf.model.Logf;
+import com.qf.service.Hot_major_Service;
+
+public class Hot_major_Action extends ActionSupport{
+
+
+	private Hot_major_Service hot_major_Service;
+	private static final Logger logger=Logger.getLogger(Logf.class);
+	
+	private Integer hm_id;
+	private String hm_title;
+	private List list;
+	private Hot_major hot_major;
+	
+	
+	public Hot_major getHot_major() {
+		return hot_major;
+	}
+
+	public void setHot_major(Hot_major hot_major) {
+		this.hot_major = hot_major;
+	}
+
+
+	public Integer getHm_id() {
+		return hm_id;
+	}
+
+	public void setHm_id(Integer hm_id) {
+		this.hm_id = hm_id;
+	}
+
+	public String getHm_title() {
+		return hm_title;
+	}
+
+	public void setHm_title(String hm_title) {
+		this.hm_title = hm_title;
+	}
+
+	public String getHm_picture() {
+		return hm_picture;
+	}
+
+	public void setHm_picture(String hm_picture) {
+		this.hm_picture = hm_picture;
+	}
+
+	public String getHm_content() {
+		return hm_content;
+	}
+
+	public void setHm_content(String hm_content) {
+		this.hm_content = hm_content;
+	}
+
+	private String hm_picture;
+	private String hm_content;
+
+	public Hot_major_Service getHot_major_Service() {
+		return hot_major_Service;
+	}
+
+	public void setHot_major_Service(Hot_major_Service hot_major_Service) {
+		this.hot_major_Service = hot_major_Service;
+	}
+	
+	//查询全部
+	public String selected() throws IOException{
+		HttpServletResponse response = ServletActionContext.getResponse();
+		response.setContentType("text/html; charset=utf-8");  //html数据
+	   list=hot_major_Service.list();
+	   Map<String, Object> map=new HashMap<>();
+	   map.put("total",100);
+	   map.put("rows", list);
+	   String mapJson=JSON.toJSONString(map);
+	  
+	   PrintWriter pw= response.getWriter();
+	   System.out.println(mapJson);
+	   pw.print(mapJson);
+	   pw.close();
+	   
+		return null; 
+	}
+	
+	//修改
+	public String update(){
+		
+		HttpServletRequest req = ServletActionContext.getRequest();
+		 HttpServletResponse response = ServletActionContext.getResponse();
+		 response.setContentType("text/html; charset=utf-8");  //html数据
+		
+		System.out.println( req.getParameter("hot_major.hm_title"));
+		hot_major_Service.update(hot_major);
+		//System.out.println("hhhhhhh:"+hot_major.getHm_title());
+		logger.info("修改数据");
+		return SUCCESS;
+	}
+	
+	//新增
+	public String add(){
+		System.out.println("进来了");
+		hot_major_Service.save(hot_major);
+		System.out.println("内容："+hot_major.getHm_title());
+		logger.info("新增数据");
+		
+		return SUCCESS;
+	}
+	
+	//查询单个
+	public String selectone(){
+		hot_major_Service.getHot_major(hm_id);
+		return SUCCESS;
+	}
+	
+	//删除单个
+	public String delectone(){
+		System.out.println("hm_id:"+hm_id);
+		hot_major_Service.delete(hm_id);
+		logger.info("删除数据");
+		return SUCCESS;
+	}
+	
+}

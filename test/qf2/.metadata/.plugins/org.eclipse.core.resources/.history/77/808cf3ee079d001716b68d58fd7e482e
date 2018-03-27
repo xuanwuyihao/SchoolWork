@@ -1,0 +1,95 @@
+package com.qf.service.impl;
+
+import java.util.List;
+import java.util.Map;
+
+import com.qf.dao.Employee_Dao;
+import com.qf.model.Employee;
+import com.qf.model.Employee2;
+import com.qf.service.Employee_Service;
+
+public class Employee_ServiceImpl implements Employee_Service{
+   
+	private Employee_Dao employee_Dao;
+
+	public Employee_Dao getEmpoyee_Dao() {
+		return employee_Dao;
+	}
+	
+	public Employee_Dao getEmployee_Dao() {
+		return employee_Dao;
+	}
+
+	public void setEmployee_Dao(Employee_Dao employee_Dao) {
+		this.employee_Dao = employee_Dao;
+	}
+
+	@Override
+	public void delete(int emp_id) {
+		// TODO Auto-generated method stub
+		employee_Dao.delete(emp_id);
+	}
+
+	@Override
+	public Map<String, Object> list() {
+		// TODO Auto-generated method stub
+		return employee_Dao.list();
+	}
+
+
+	@Override
+	public void remove(Integer[] emp_ids) {
+		// TODO Auto-generated method stub
+		employee_Dao.remove(emp_ids);
+	}
+
+	@Override
+	public void save(Employee employee) {
+		// TODO Auto-generated method stub
+		this.employee_Dao.save(employee);
+	}
+
+	@Override
+	public void update(Employee employee) {
+		// TODO Auto-generated method stub
+		this.employee_Dao.update(employee);
+	}
+
+	@Override
+	public Employee getEmployee(int emp_id) {
+		// TODO Auto-generated method stub
+		return this.employee_Dao.getEmployee(emp_id);
+	}
+
+	//查询部门和角色表
+	@Override
+	public Map selUser_Dep() {
+		// TODO Auto-generated method stub
+		return employee_Dao.selUser_Dep();
+	}
+
+	@Override
+	public void reset_Pwd(String emp_id) {
+		// TODO Auto-generated method stub
+		this.employee_Dao.reset_Pwd(emp_id);
+	}
+	
+	@Override
+	public int select_Pwd(String empl_name, String emp_pwd) {
+		// TODO Auto-generated method stub
+		return employee_Dao.select_Pwd(empl_name,emp_pwd);
+	}
+
+	@Override
+	public int select_Id(String empl_name, String emp_pwd) {
+		// TODO Auto-generated method stub
+		return employee_Dao.select_Id(empl_name,emp_pwd);
+	}
+
+	@Override
+	public List lists() {
+		// TODO Auto-generated method stub
+		return employee_Dao.lists();
+	}
+	
+}

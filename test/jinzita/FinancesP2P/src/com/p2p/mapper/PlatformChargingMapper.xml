@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.p2p.mapper.PlatformChargingMapper" >
+  <resultMap id="BaseResultMap" type="com.p2p.pojo.PlatformCharging" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="describe" property="describe" jdbcType="VARCHAR" />
+    <result column="percentage" property="percentage" jdbcType="VARCHAR" />
+    <result column="remarks" property="remarks" jdbcType="VARCHAR" />
+  </resultMap>
+  <select id="list" resultMap="BaseResultMap">
+  	select * from platformCharging
+  </select>
+  <select id="maxCount" resultType="java.lang.Integer">
+  	select count(*) from platformCharging
+  </select>
+</mapper>

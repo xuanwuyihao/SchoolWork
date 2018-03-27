@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.p2p.mapper.LendApplyMapper" >
+  <resultMap id="BaseResultMap" type="com.p2p.pojo.LendApply" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="userName" property="username" jdbcType="VARCHAR" />
+    <result column="realName" property="realname" jdbcType="VARCHAR" />
+    <result column="phone" property="phone" jdbcType="VARCHAR" />
+    <result column="sex" property="sex" jdbcType="VARCHAR" />
+    <result column="tupe" property="tupe" jdbcType="VARCHAR" />
+    <result column="lendMoney" property="lendmoney" jdbcType="DECIMAL" />
+    <result column="title" property="title" jdbcType="VARCHAR" />
+    <result column="rate" property="rate" jdbcType="DECIMAL" />
+    <result column="lendTime" property="lendtime" jdbcType="INTEGER" />
+    <result column="applyTime" property="applytime" jdbcType="TIMESTAMP" />
+    <result column="back_type" property="backType" jdbcType="VARCHAR" />
+    <result column="status" property="status" jdbcType="VARCHAR" />
+    <result column="oyh1" property="oyh1" jdbcType="VARCHAR" />
+    <result column="oyh2" property="oyh2" jdbcType="VARCHAR" />
+  </resultMap>
+ 	<select id="list0" resultMap="BaseResultMap" >
+ 	select * from lend_apply
+ 	</select>
+ 	<select id="list" resultMap="BaseResultMap" >
+ 	select * from lend_apply limit 0,7;
+ 	</select>
+ 
+ 	<delete id="remove"  parameterType="java.lang.Integer">
+ 	delete from lend_apply where id=#{id}
+ 	</delete>
+ 	
+ 	<insert id="save" parameterType="com.p2p.pojo.LendApply" useGeneratedKeys="true">
+ 	insert into lend_apply(userName,realName,phone,sex,tupe,lendMoney,title,rate,lendTime,applyTime,back_type,status,oyh1,oyh2) 
+ 	value(#{username},#{realname},#{phone},#{sex},#{tupe},#{lendmoney},#{title},#{rate},#{lendtime},#{applytime},#{backType},#{status},#{oyh1},#{oyh2})
+ 	</insert>
+ 	
+ 	<update id="update" parameterType="com.p2p.pojo.LendApply" >
+ 	update lend_apply 
+ 	set userName=#{username},realName=#{realname},phone=#{phone},sex=#{sex},tupe=#{tupe},lendMoney=#{lendmoney},title=#{title},rate=#{rate},lendTime=#{lendtime},applyTime=#{applytime},back_type=#{backType},status=#{status},oyh1=#{oyh1},oyh2=#{oyh2} 
+ 	where id=#{id}
+ 	</update>
+ 	
+ 	<select id="getById" resultMap="BaseResultMap" parameterType="java.lang.Integer">
+ 	select * from lend_apply where id=#{id}
+ 	</select>
+ 	
+ 	<select id="count" resultType="int" > 
+ 	select count(*) from lend_apply
+ 	</select>
+ 	
+ 	<select id="selectpeople"  parameterType="com.p2p.pojo.Page" resultMap="BaseResultMap">  
+	select * from (select * from lend_apply where userName like "%"#{title}"%" and realName like "%"#{people}"%") n  limit #{fist},#{tow}; 
+	</select>
+
+	<select id="selectlike"  parameterType="com.p2p.pojo.LendApply" resultMap="BaseResultMap">  
+  	select * from lend_apply  where userName like "%"#{title}"%" and realName like "%"#{people}"%";  
+	</select>
+
+	<select id="selectpaging" parameterType="com.p2p.pojo.Page"  resultMap="BaseResultMap">
+	select * from lend_apply  limit #{fist},#{tow}; 
+	</select>
+ 	
+ 	<select id="list2" resultMap="BaseResultMap" >
+ 	select * from lend_apply;
+ 	</select>
+ 	
+ 	<select id="getusername" resultMap="BaseResultMap">
+ 	select * from lend_apply where userName = #{username}
+ 	</select>
+</mapper>

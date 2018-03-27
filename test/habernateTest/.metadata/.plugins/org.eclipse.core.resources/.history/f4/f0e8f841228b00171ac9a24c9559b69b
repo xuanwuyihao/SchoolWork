@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+	"-//Apache Software Foundation//DTD Struts Configuration 2.3//EN"
+	"http://struts.apache.org/dtds/struts-2.3.dtd">
+	
+	<struts>
+	<!-- 开启动态访问方法 -->
+	<constant name="struts.enable.DynamicMethodInvocation" value="true"></constant>
+	<!-- 学生=============================================================================================== -->
+	<package name="strutsDemo" extends="struts-default" namespace="/">
+	
+	<action name="student" class="student_Action" method="list">
+	<result>list.jsp</result>
+	</action>
+	
+	<action name="saveStudent" class="student_Action" method="save">
+	<result>add.jsp</result>
+	</action>
+	
+	</package>
+	<!-- 院校================================================================================================== -->
+	
+	<package name="academyDemo" extends="struts-default" namespace="/">
+	
+	<action name="academy_list" class="academy_Action" method="list">
+	<result>list2.jsp</result>
+	</action>
+	
+	<!--  type="redirect"  -->
+	<action name="save_Academy" class="academy_Action" method="save">
+	<result>/list2.jsp</result>
+	</action>
+	
+	</package>
+	<!-- 首页==================================================================================================== -->
+	<package name="homeDemo" extends="struts-default" namespace="/">
+	<action name="home_content" class="Home_content_Action" method="update">
+	<result>neamimage.jsp</result>
+	</action>
+	</package>
+	<!-- 热门专业============================================================================= -->
+	<package name="renmen" extends="struts-default" namespace="/"></package>
+	<action name="renmenzy" class="com.qf.action.Hot_major_Action">
+	<result>Hot_major_Action.java</result>
+	</action>
+	
+	</struts>
+	
+	

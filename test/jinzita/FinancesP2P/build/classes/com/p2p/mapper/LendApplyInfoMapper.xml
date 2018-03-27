@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.p2p.mapper.LendApplyInfoMapper">
+	<resultMap id="BaseResultMap" type="com.p2p.pojo.LendApplyInfo">
+		<id column="id" property="id" jdbcType="INTEGER" />
+		<result column="userName" property="username" jdbcType="VARCHAR" />
+		<result column="lendMoney" property="lendmoney" jdbcType="DECIMAL" />
+		<result column="rate" property="rate" jdbcType="DECIMAL" />
+		<result column="hasTime" property="hastime" jdbcType="TIMESTAMP" />
+		<result column="moneyPurpose" property="moneypurpose" jdbcType="VARCHAR" />
+		<result column="backType" property="backtype" jdbcType="VARCHAR" />
+		<result column="stillSoure" property="stillsoure" jdbcType="VARCHAR" />
+		<result column="introduce" property="introduce" jdbcType="VARCHAR" />
+		<result column="description" property="description" jdbcType="VARCHAR" />
+		<result column="ensure" property="ensure" jdbcType="VARCHAR" />
+		<result column="cardPhoto" property="cardphoto" jdbcType="VARCHAR" />
+		<result column="license" property="license" jdbcType="VARCHAR" />
+		<result column="backAccount" property="backaccount" jdbcType="VARCHAR" />
+		<result column="other" property="other" jdbcType="VARCHAR" />
+		<result column="adoptTime" property="adopttime" jdbcType="TIMESTAMP" />
+		<result column="status" property="status" jdbcType="VARCHAR" />
+		<result column="oyh1" property="oyh1" jdbcType="VARCHAR" />
+		<result column="oyh2" property="oyh2" jdbcType="VARCHAR" />
+		
+	</resultMap>
+	<insert id="save" parameterType="LendApplyInfo"
+		useGeneratedKeys="true">
+		insert into
+		lend_apply_info(userName,lendMoney,rate,hasTime,moneyPurpose,backType,stillSoure,introduce,description,ensure,cardPhoto,license,backAccount,other,adoptTime,status,oyh2)
+		value(#{username},#{lendmoney},#{rate},#{hastime},#{moneypurpose},#{backtype},#{stillsoure},#{introduce},#{description},#{ensure},#{cardphoto},#{license},#{backaccount},#{other},#{adopttime},#{status},#{oyh2})
+	</insert>
+	
+	<select id="list"  resultMap="BaseResultMap">
+		select * from lend_apply_info;
+	</select>
+	
+	<select id="getById" resultMap="BaseResultMap">
+		select * from lend_apply_info where id=#{id}
+	</select>
+	
+	
+	<!-- 查询所有数据带分页 -->
+	<select id="paging" resultMap="BaseResultMap" parameterType="com.p2p.pojo.Page">
+	select * from lend_apply_info limit #{fist},#{tow};
+	</select>
+	
+	<delete id="remove" parameterType="java.lang.Integer" >
+	delete from lend_apply_info where id=#{id};
+	</delete>
+	
+	<!-- 借款表修改 -->
+	<update id="update" parameterType="com.p2p.pojo.LendApplyInfo">
+		update lend_apply_info set userName = #{username}, lendMoney = #{lendmoney}
+		  where id=#{id};
+	</update>
+	
+	<!-- 模糊查所有 -->
+	<select id="selectlike" resultMap="BaseResultMap"  >
+		select * from lend_apply_info
+		<where>
+		 	<if test="people!=null and people!=''">
+			userName like '%${people}%'
+			</if>
+			<if test="money!=null and money!=''">
+			and lendMoney = #{money} 
+			</if>
+		</where>
+	</select>
+	
+	<!-- 模糊分页 -->
+	<select id="selectpeople" resultMap="BaseResultMap" parameterType="com.p2p.pojo.Page" >
+		select * from lend_apply_info
+		<where>
+			<if test="people!=null and people!=''">
+				userName like '%${people}%'
+			</if>
+			<if test="money!=null and money!=''">
+				and lendMoney = #{money} 
+			</if>
+		</where>
+			limit #{fist},#{tow};
+	</select>
+	
+	<!-- 模糊查所有 -->
+	<select id="selectcont" resultMap="BaseResultMap" parameterType="com.p2p.pojo.Page">
+			select * from lend_apply_info
+		<where>
+		 	<if test="people!=null and people!=''">
+			userName like '%${people}%'
+			</if>
+			<if test="money!=null and money!=''">
+			and lendMoney = #{money} 
+			</if>
+		</where>
+	</select>
+	
+	<!-- 查询所有用户名 -->
+	<select id="username" resultMap="BaseResultMap">
+		select userName from lend_apply_info 
+	</select>
+	
+	<!-- 修改文件上传 -->
+	<update id="updatefile" parameterType="com.p2p.pojo.LendApplyInfo">
+		update lend_apply_info  set  cardPhoto = #{cardphoto},license = #{license},backAccount = #{backaccount},oyh2 = #{oyh2}
+		where id = #{id}
+	</update>
+	
+	<!-- 查询文件上传 -->
+	<select id="listfile" resultType="com.p2p.pojo.LendApplyInfo">
+		select cardPhoto,license,backAccount from lend_apply_info where id = #{id}
+	</select>
+	
+	<!-- 查询资料列表的状态 -->
+	<select id="oyh" resultType="String">
+		select oyh2 from lend_apply_info where id = #{id}
+	</select>
+	
+	<!-- 修改借款状态 -->
+	<update id="updatestatus" parameterType="com.p2p.pojo.LendApplyInfo">
+		update lend_apply_info set status = '已审核' where id = #{id}
+	</update>
+	
+	<update id="uploadTest" parameterType="com.p2p.pojo.LendApplyInfo" >
+			update lend_apply_info  set  cardPhoto = #{cardphoto},license = #{license} 
+		where id = #{id}
+	</update>
+</mapper>

@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+	
+	<!--  配置SecurityManager（安全管理器）！ -->
+	<bean id="securityManager" class="org.apache.shiro.web.mgt.DefaultWebSecurityManager">
+        <property name="cacheManager" ref="cacheManager"/>
+        <property name="realm" ref="jdbcRealm"/>
+    </bean>
+
+	<!-- 配置 CacheManager（缓存管理器）！ -->
+	<bean id="cacheManager" class="org.apache.shiro.cache.ehcache.EhCacheManager">
+		<property name="cacheManagerConfigFile" value="classpath:ehcache.xml"></property>
+	</bean>
+	
+	<!-- 配置Realm -->
+	<bean id="jdbcRealm" class="com.p2p.realm.CustomRealm">
+    	<property name="credentialsMatcher">
+    		<bean class="org.apache.shiro.authc.credential.HashedCredentialsMatcher">
+    			<property name="hashAlgorithmName" value="MD5"></property>
+    			<property name="hashIterations" value="1024"></property>
+    		</bean>
+    	</property>    	
+    </bean>
+    
+     <!-- 
+    	配置 LifecycleBeanPostProcessor，可以自动调用配置在 spring IOC 容器中 shiro bean 的生命周期方法.
+     -->
+    <bean id="lifecycleBeanPostProcessor" class="org.apache.shiro.spring.LifecycleBeanPostProcessor"/>
+	
+	<!-- 
+    	启用 IOC 容器中使用 shiro 的注解，但必须在配置了LifecycleBeanPostProcessor 之后才可以使用.
+     -->
+    <bean class="org.springframework.aop.framework.autoproxy.DefaultAdvisorAutoProxyCreator"
+          depends-on="lifecycleBeanPostProcessor"/>
+    <bean class="org.apache.shiro.spring.security.interceptor.AuthorizationAttributeSourceAdvisor">
+        <property name="securityManager" ref="securityManager"/>
+    </bean>
+    
+    
+    <!--
+		配置shiroFilter.
+		id 必须和 web.xml 文件中 DelegatingFilterProxy 的 <filter-name> 一致.
+				若不一致，则会抛出：NoSuchBeanDefinitionException 异常，
+				因为 Shiro 会来 IOC 容器中查找和 <filter-name> 名字对应的 filter bean.
+	 -->
+    <bean id="shiroFilter" class="org.apache.shiro.spring.web.ShiroFilterFactoryBean">
+        <property name="securityManager" ref="securityManager"/>
+        <!-- 登录界面 -->
+        <property name="loginUrl" value="/login.jsp"/>
+        <!-- 登录成功界面 -->
+        <property name="successUrl" value="/success.jsp"/>
+         <!-- 非法的（未授权的）界面 -->
+        <property name="unauthorizedUrl" value="/unauthorized.jsp"/>                
+        <!-- 
+        	配置那些页面需要收保护.
+        	以及访问这些页面需要的权限.
+        	1).  anon 可以匿名访问的页面.
+        	2).  authc 需要认证通过（即登录）后才能访问的页面.
+        	3).  logout 注销.
+        	4).  roles 角色过滤器
+         -->      
+        <property name="filterChainDefinitions">
+            <value>
+               <!--  /view/login.jsp = anon 
+
+                /shiro/logout = logout
+                
+                /view/blog/** = roles[ware]
+                /view/author/** = roles[admin]
+                
+               /view/author/** = authc
+               /view/blog/** = authc -->
+                
+            </value>
+        </property>        
+    </bean>
+    
+    <!-- spring mvc 声明式异常配置 -->
+	<bean class="org.springframework.web.servlet.handler.SimpleMappingExceptionResolver">
+		<property name="exceptionMappings">
+			<props>
+				<prop key="org.apache.shiro.authz.UnauthorizedException">
+					/refuse
+				</prop>
+				<prop key="org.apache.shiro.authz.UnauthenticatedException">
+					/refuse
+				</prop>
+			</props>
+		</property>
+	</bean>
+	
+</beans>

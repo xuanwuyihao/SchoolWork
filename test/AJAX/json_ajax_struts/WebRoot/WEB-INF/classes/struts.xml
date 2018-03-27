@@ -1,0 +1,21 @@
+<!DOCTYPE struts PUBLIC
+        "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+        "http://struts.apache.org/dtds/struts-2.0.dtd">
+  <struts>
+  <package name="default" namespace="/" extends="json-default">
+  <action name="checkName" class="org.action.jectionAction" method="checkName"/>
+  <action name="chkName" class="org.action jectionAction" method="chkName">
+   <!-- 返回的是json格式的字符串 -->
+  <result type="json">
+  <param name="root">reult</param>
+  
+ 
+  
+  </result>
+  </action>
+  <action name="index" class="org.action.jectionAction" method="index">
+  <result name="success">idex.jsp</result>
+  
+  </action>
+  </package>
+  </struts>

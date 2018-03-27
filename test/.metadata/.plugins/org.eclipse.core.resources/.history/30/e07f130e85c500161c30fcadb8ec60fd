@@ -1,0 +1,27 @@
+package t5;
+
+import java.util.HashSet;
+import java.util.Set;
+
+public class lianxi5_5 {
+	public static void main(String[] args){
+		
+		class T1_2 {
+				public int hashCode() {
+					return 1;
+				}
+				public boolean equals(Object b) {
+					return true;
+				}
+				public void main(String args[]) {
+					Set set = new HashSet();
+					set.add(new T1_2());
+					set.add(new String("ABC"));
+					set.add(new T1_2());
+					System.out.println(set.size());
+				}
+		}
+
+	}
+
+}

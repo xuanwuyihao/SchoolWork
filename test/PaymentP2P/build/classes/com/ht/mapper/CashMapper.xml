@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ht.mapper.CashMapper" >
+  <resultMap id="BaseResultMap" type="com.ht.model.Cash" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="ordid" property="ordid" jdbcType="VARCHAR" />
+    <result column="custis" property="custis" jdbcType="VARCHAR" />
+    <result column="openaccid" property="openaccid" jdbcType="VARCHAR" />
+    <result column="transamt" property="transamt" jdbcType="DECIMAL" />
+    <result column="serfee" property="serfee" jdbcType="DECIMAL" />
+    <result column="sercustid" property="sercustid" jdbcType="VARCHAR" />
+    <result column="fee" property="fee" jdbcType="DECIMAL" />
+    <result column="feecustid" property="feecustid" jdbcType="VARCHAR" />
+    <result column="realamt" property="realamt" jdbcType="DECIMAL" />
+    <result column="orderdate" property="orderdate" jdbcType="TIMESTAMP" />
+    <result column="ordstatus" property="ordstatus" jdbcType="VARCHAR" />
+    <result column="stay1" property="stay1" jdbcType="VARCHAR" />
+    <result column="stay2" property="stay2" jdbcType="VARCHAR" />
+    <result column="stay3" property="stay3" jdbcType="VARCHAR" />
+  </resultMap>
+  
+<select id="list" resultMap="BaseResultMap">
+select * from cash
+</select> 
+
+<insert id="insert" parameterType="com.ht.model.Cash">
+insert into cash(ordid,custis,openaccid,transamt,serfee,sercustid,fee,feecustid,realamt,orderdate,ordstatus,stay1,stay2,stay3) values
+(#{ordid},#{custis},#{openaccid},#{transamt},#{serfee},#{sercustid},#{fee},#{feecustid},#{realamt},#{orderdate},#{ordstatus},#{stay1},#{stay2},#{stay3})
+</insert>
+
+<delete id="delete" parameterType="java.lang.Integer">
+delete from cash where id=#{id}
+</delete>
+
+<select id="getById" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+select * from cash where id=#{id}
+</select>
+
+<update id="update" parameterType="com.ht.model.Cash">
+update cash
+    set ordid = #{ordid,jdbcType=VARCHAR},
+      custis = #{custis,jdbcType=VARCHAR},
+      openaccid = #{openaccid,jdbcType=VARCHAR},
+      transamt = #{transamt,jdbcType=DECIMAL},
+      serfee = #{serfee,jdbcType=DECIMAL},
+      sercustid = #{sercustid,jdbcType=VARCHAR},
+      fee = #{fee,jdbcType=DECIMAL},
+      feecustid = #{feecustid,jdbcType=VARCHAR},
+      realamt = #{realamt,jdbcType=DECIMAL},
+      orderdate = #{orderdate,jdbcType=TIMESTAMP},
+      ordstatus = #{ordstatus,jdbcType=VARCHAR},
+      stay1 = #{stay1,jdbcType=VARCHAR},
+      stay2 = #{stay2,jdbcType=VARCHAR},
+      stay3 = #{stay3,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+</update>
+
+
+<select id="getCashMaxId" resultType="java.lang.Integer">
+select max(id) from cash
+</select>
+  
+</mapper>

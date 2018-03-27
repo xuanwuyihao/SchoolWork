@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+    
+    
+ <!-- 配置Shiro的SecurityManager Bean -->   
+    <bean id="securityManager" class="org.apache.shiro.web.mgt.DefaultWebSecurityManager">
+    	<property name="cacheManager" ref="cacheManager"></property>
+		<property name="authenticator" ref="authenticator" ></property>
+		<!-- 多个realm -->       
+        <property name="realms">
+        	<list>
+				<ref bean ="backRealm" />
+			</list>
+        </property>
+       
+    </bean>
+    
+    <bean id="authenticator" class="org.apache.shiro.authc.pam.ModularRealmAuthenticator">
+		<!-- 配置认证策略 -->
+		<property name="authenticationStrategy">
+		<!-- 设置为必须所有Realm认证成功才能认证通过 -->
+			<!-- <bean class="org.apache.shiro.authc.pam.AllSuccessfulStrategy"></bean> -->
+		<!-- ，设置为一个Realm认证成功即可认证通过 -->
+		<bean class="org.apache.shiro.authc.pam.AtLeastOneSuccessfulStrategy"></bean>
+		</property>
+	</bean>
+    
+    <!-- 引用ehcache文件，把ehcache交给shiro -->
+    <bean id="cacheManager" class="org.apache.shiro.cache.ehcache.EhCacheManager">
+    	<property name="cacheManagerConfigFile" value="classpath:ehcache.xml" ></property>
+    
+    </bean>
+    
+    
+    <!-- 
+    	3、配置 Realm
+    	3.1、直接配置实现了 org.apache.shiro.realm.Realm 接口的 bean
+     -->
+    <bean id="backRealm" class="com.p2p.realm.BackRealm">
+    	<property name="credentialsMatcher">
+    		<bean class="org.apache.shiro.authc.credential.HashedCredentialsMatcher">
+    			<property name="hashAlgorithmName" value="MD5"></property>
+    			<property name="hashIterations" value="10"></property>
+    		</bean>
+    	</property>    	
+    </bean>
+    
+    
+   
+    
+ <!-- 配置 Bean 后置处理器: 会自动的调用和 Spring 整合后各个组件的生命周期方法. -->
+  	  <bean id="lifecycleBeanPostProcessor" 
+        class="org.apache.shiro.spring.LifecycleBeanPostProcessor"/>
+        
+  <!-- 5 启用IOC 容器中使用shiro的注解 但必须在配置了LifecycleBeanPostProcessor之后才能使用-->
+   <bean class="org.springframework.aop.framework.autoproxy.DefaultAdvisorAutoProxyCreator"
+          depends-on="lifecycleBeanPostProcessor"/>
+    <bean class="org.apache.shiro.spring.security.interceptor.AuthorizationAttributeSourceAdvisor">
+        <property name="securityManager" ref="securityManager"/>
+    </bean>
+  
+<!-- 配置 ShiroFilter bean: 该 bean 的 id 必须和 web.xml 文件中配置的 shiro filter 的 name 一致  -->
+	<bean id="shiroFilter" class="org.apache.shiro.spring.web.ShiroFilterFactoryBean">
+		 <!-- 装配 securityManager -->
+        <property name="securityManager" ref="securityManager"/>
+        <!-- 配置登陆页面 -->
+        <property name="loginUrl" value="/back/login"/>
+        <!-- 登陆成功后的一面 -->
+        <!-- <property name="successUrl" value="user/list"/> -->
+        <!-- <property name="unauthorizedUrl" value="/shiro-unauthorized.jsp"/> -->
+        <!-- 具体配置需要拦截哪些 URL, 以及访问对应的 URL 时使用 Shiro 的什么 Filter 进行拦截.  -->
+        <property name="filterChainDefinitions">
+            <value>
+             <!-- 
+                    anon  不需要认证
+                    authc 需要认证
+                    user  验证通过或RememberMe登录的都可以
+                -->
+                <!-- 配置登出: 使用 logout 过滤器 -->
+                <!-- /user/** = logout
+                /user/** = anon -->
+                /logout = anon
+                /back/login = anon
+                /back/** = authc
+            </value>
+        </property>
+	
+	</bean>
+
+    
+</beans>

@@ -1,0 +1,174 @@
+package Pratice;
+
+
+import java.awt.BorderLayout;
+import java.awt.Button;
+import java.awt.Color;
+import java.awt.FlowLayout;
+import java.awt.Font;
+import java.awt.Image;
+import java.awt.Label;
+import java.awt.Panel;
+import java.awt.TextField;
+import java.awt.Toolkit;
+import java.awt.event.WindowEvent;
+import java.awt.event.WindowListener;
+
+import javax.swing.ImageIcon;
+import javax.swing.JCheckBox;
+import javax.swing.JLabel;
+
+
+
+
+
+public class Windowclos extends java.awt.Frame implements WindowListener{
+	public Windowclos(){
+		super("QQ登录界面");
+		
+		setLayout(null);
+		//窗口图片
+		Toolkit tk=Toolkit.getDefaultToolkit();
+		//得到图片对象
+		Image img=tk.getImage("MyImage/tubiao.png");
+		//将图片导入
+		setIconImage(img);
+		
+		//让图片在窗口中显示
+		Panel p=new Panel();
+		
+		p.setLayout(new FlowLayout());
+		//p.setBackground(Color.BLUE);
+		
+		ImageIcon image=new ImageIcon("MYImage/north.gif");
+		JLabel jl=new JLabel(image);
+		//jl.setBounds(100,30,200,100);
+		p.setBounds(0,0,450,210);
+		p.add(jl);
+		add(p);
+		addWindowListener(this);
+		
+		
+		
+		
+		
+		
+		//创建面板
+		Panel p1=new Panel();
+		//setLayout(null);
+		p1.setLayout(new BorderLayout());
+		
+		ImageIcon inage=new ImageIcon("MyImage/tupian0.jpg");
+		JLabel jlb=new JLabel(inage);
+		p1.setBounds(45,215,80,80);
+		p1.add(jlb);
+		add(p1);
+		addWindowListener(this);
+		
+		//输入框
+		TextField t=new TextField();
+		t.setFont(new Font("宋体",Font.BOLD,20));
+		t.setBounds(130,220,200,30);
+		add(t);
+		TextField t1=new TextField();
+		t1.setFont(new Font("Dialoglnput",Font.BOLD,20));
+		t1.setBounds(130,250,200,30);
+		add(t1);
+		
+		//标签
+		Label la=new Label("注册账号");
+		la.setForeground(Color.BLUE);
+		la.setBounds(342, 225, 60, 20);
+		add(la);
+		
+		Label la2=new Label("找回密码");
+		la2.setForeground(Color.BLUE);
+		la2.setBounds(342, 255, 60, 20);
+		add(la2);
+		
+		
+		
+		
+		
+		Label la3=new Label("记住密码");
+		la3.setBounds(150, 285, 60, 20);
+		JCheckBox j1=new JCheckBox();
+		j1.setBounds(130, 285, 20, 20);
+		add(j1);
+		add(la3);
+		
+		Label la5=new Label("自动登录");
+		la5.setBounds(280, 285, 60, 20);
+		add(la5);
+		
+		//登录按钮
+		Button b=new Button("登录");
+		b.setBounds(130, 310, 200, 30);
+		add(b);
+		
+		//创建面板
+		Panel p2=new Panel();
+		//setLayout(null);
+		p2.setLayout(new BorderLayout());
+		
+		ImageIcon ig=new ImageIcon("MyImage/erweima1.png");
+		JLabel jbe=new JLabel(ig);
+		//p2.setBackground(Color.BLUE);
+		p2.setBounds(416,326,25,25);
+		p2.add(jbe);
+		add(p2);
+		//addWindowListener(this);
+		
+		//创建面板
+		Panel p3=new Panel();
+		//setLayout(null);
+		p3.setLayout(new BorderLayout());
+		
+		ImageIcon ige=new ImageIcon("MyImage/more1.png");
+		JLabel jbel=new JLabel(ige);
+		//p2.setBackground(Color.BLUE);
+		p3.setBounds(12,328,25,25);
+		p3.add(jbel);
+		add(p3);
+		
+		
+		
+		setSize(450,360);
+		setLocationRelativeTo(null);
+		setBackground(Color.white);
+		setVisible(true);
+		
+	}
+	public static void main(String[] args) {
+		new Windowclos();
+	}
+	public void windowActivated(WindowEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+	public void windowClosed(WindowEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+	public void windowClosing(WindowEvent e) {
+		// TODO Auto-generated method stub
+		this.dispose();
+	}
+	public void windowDeactivated(WindowEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+	public void windowDeiconified(WindowEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+	public void windowIconified(WindowEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+	public void windowOpened(WindowEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+
+}

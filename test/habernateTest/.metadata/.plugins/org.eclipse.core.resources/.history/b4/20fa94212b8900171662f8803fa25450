@@ -1,0 +1,80 @@
+package com.qf.action;
+
+import java.util.List;
+
+import com.opensymphony.xwork2.ActionSupport;
+import com.qf.model.Home_content;
+import com.qf.service.Home_content_Service;
+
+public class Home_content_Action extends ActionSupport{
+
+	private Home_content_Service home_content_Service;
+
+	public Home_content_Service getHome_content_Service() {
+		return home_content_Service;
+	}
+
+	public void setHome_content_Service(Home_content_Service home_content_Service) {
+		this.home_content_Service = home_content_Service;
+	}
+	
+	private Home_content home;
+	private List<Home_content> list;
+	private Integer id;
+
+	public Home_content getHome() {
+		return home;
+	}
+
+	public void setHome(Home_content home) {
+		this.home = home;
+	}
+
+	public List<Home_content> getList() {
+		return list;
+	}
+
+	public void setList(List<Home_content> list) {
+		this.list = list;
+	}
+
+	public Integer getId() {
+		return id;
+	}
+
+	public void setId(Integer id) {
+		this.id = id;
+	}
+	
+	public String list(){
+		list=home_content_Service.list();
+		for(Home_content home:list){
+			System.out.println("图片1是："+home.getPicture_one());
+			System.out.println("图片2是："+home.getPicture_two());
+			System.out.println("图片3是："+home.getPicture_three());
+			System.out.println("二维码1是："+home.getQrcode_one());
+			System.out.println("联系电话是："+home.getHc_phone());
+			System.out.println("地址是："+home.getHc_address());
+			System.out.println("链接1是："+home.getInterlinkage_one());
+		}
+		return SUCCESS;
+	}
+	
+	//新增
+	public String add(){
+		home_content_Service.save(home);
+		return SUCCESS;
+	}
+	
+	//修改
+	public String update(){
+		home_content_Service.update(home);
+		return SUCCESS;
+	}
+	
+	//删除
+	public String delete(){
+		home_content_Service.delete(id);
+		return SUCCESS;
+	}
+}

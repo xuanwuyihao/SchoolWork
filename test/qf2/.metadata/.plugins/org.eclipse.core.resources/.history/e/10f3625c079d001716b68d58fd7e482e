@@ -1,0 +1,193 @@
+package com.qf.dao.impl;
+
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
+
+import org.springframework.orm.hibernate3.HibernateTemplate;
+import com.qf.dao.Employee_Dao;
+
+import com.qf.model.Department;
+import com.qf.model.Employee;
+import com.qf.model.Employee2;
+import com.qf.model.User;
+
+import freemarker.template.EmptyMap;
+
+public class Employee_DaoImpl implements Employee_Dao {
+
+	private HibernateTemplate hibernateTemplate;
+
+	public void setHibernateTemplate(HibernateTemplate hibernateTemplate) {
+		this.hibernateTemplate = hibernateTemplate;
+	}
+	
+	public HibernateTemplate getHibernateTemplate() {
+		return hibernateTemplate;
+	}
+
+
+
+	@Override
+	public void update(Employee employee) {
+		// TODO Auto-generated method stub
+		this.hibernateTemplate.update(employee);
+	}
+
+	@Override
+	public void delete(int emp_id) {
+		// TODO Auto-generated method stub
+		this.hibernateTemplate.delete(this.hibernateTemplate.get(Employee.class, emp_id));
+	}
+
+
+	@Override
+	public void remove(Integer[] emp_ids) {
+		// TODO Auto-generated method stub
+		for (int i = 0; i < emp_ids.length; i++) {
+			int j = emp_ids[i];
+			Employee emp = this.hibernateTemplate.get(Employee.class, j);
+			this.hibernateTemplate.delete(emp);
+		}
+		
+	}
+
+	@Override
+	public Map<String, Object> list() {
+		
+		List<Employee> list = hibernateTemplate.find("from Employee");
+		Map jsonMap = new HashMap();
+		
+		List list2 = new ArrayList();
+		for (int i = 0; i<list.size(); i++) {
+			Employee em = list.get(i);
+			Department dep = this.hibernateTemplate.get(Department.class, Integer.valueOf(em.getDep_id()));
+			User  user = this.hibernateTemplate.get(User.class, Integer.valueOf(em.getUser_id()));
+			
+			Employee2 e2 = new Employee2();
+			
+			e2.setEmp_id(em.getEmp_id());
+			e2.setAge(em.getAge());
+			e2.setDep_id(em.getDep_id());
+			e2.setDep_name(dep.getDep_name());
+			e2.setEmp_Account(em.getEmp_Account());
+			e2.setEmp_name(em.getEmp_name());
+			e2.setSex(em.getSex());
+			e2.setEmp_phone(em.getEmp_phone());
+			e2.setEmp_state(em.getEmp_state());
+			e2.setEmp_time(em.getEmp_time());
+			e2.setUser_name(user.getU_name());
+			e2.setUser_description(user.getU_description());
+			e2.setUser_id(user.getU_id()+"");
+			e2.setEmp_pwd(em.getEmp_pwd());
+			
+			list2.add(e2);
+		}
+		
+		jsonMap.put("rows", list2);  //rows  total  分页
+		jsonMap.put("total", 20);
+		return jsonMap;
+		
+	
+		}
+
+	@Override
+	public Employee getEmployee(int emp_id) {
+		// TODO Auto-generated method stub
+		System.out.println("查询当儿登录："+emp_id);
+		return this.hibernateTemplate.get(Employee.class, emp_id);
+	}
+
+	//新增员工
+	@Override
+	public void save(Employee employee) {
+		// TODO Auto-generated method stub
+		Department department = this.hibernateTemplate.get(Department.class, Integer.parseInt(employee.getDep_id()));
+		Set emp_set = department.getEmployee();
+		emp_set.add(employee);
+		
+		department.setEmployee(emp_set);    //将新的set赋值回去
+		this.hibernateTemplate.save(employee);		//保存员工
+		this.hibernateTemplate.update(department);    //更新部门表
+	}
+
+	//查询所有部门和角色表
+	@Override
+	public Map selUser_Dep() {
+		// TODO Auto-generated method stub
+		List<User> u_list = this.hibernateTemplate.find("from User");
+		List<Department> d_list = this.hibernateTemplate.find("from Department");
+		
+		Map<String,List>  udMap = new HashMap<String,List>();
+		udMap.put("d_list", d_list);
+		udMap.put("u_list", u_list);
+		
+		return udMap;
+	}
+
+	@Override
+	public void reset_Pwd(String emp_id) {
+		// TODO Auto-generated method stub
+		Employee emp = this.hibernateTemplate.get(Employee.class, Integer.parseInt(emp_id));
+		System.out.println("重置密码前的密码："+emp.getEmp_pwd());
+		emp.setEmp_pwd("123456");
+		this.hibernateTemplate.update(emp);
+	}
+	
+	@Override
+	public int select_Pwd(String empl_name, String emp_pwd) {
+		// TODO Auto-generated method stub
+		List list =hibernateTemplate.find("from Employee");
+		boolean bln1=false,bln2=false;
+		Employee empp;
+		for(int i=0;i<list.size();i++){
+			Employee em=(Employee)list.get(i);
+			if(em.getEmp_name().equals(empl_name)){
+				bln1 = true;
+				if(em.getEmp_pwd().equals(emp_pwd)){
+					bln2 = true;
+					empp = em;
+					break;
+			}
+		}
+			
+			}
+		
+		if(bln1){   //有
+			if(bln1&& bln2){
+				
+				return 1; //成功
+			}
+			return 2;  //有账户密码错误
+			}
+			
+		System.out.println("bln1="+bln1+"--------"+" bln2="+ bln2);
+		return 0;  //没有账户
+	}
+
+	@Override
+	public int select_Id(String empl_name, String emp_pwd) {
+		// TODO Auto-generated method stub
+		List list =hibernateTemplate.find("from Employee");
+		int Emp_id=0;
+		for(int i=0;i<list.size();i++){
+			Employee em=(Employee)list.get(i);
+			if(em.getEmp_name().equals(empl_name)&&em.getEmp_pwd().equals(emp_pwd)){
+				
+				Emp_id=em.getEmp_id();
+		}
+			
+			}
+		return Emp_id;
+	}
+
+	@Override
+	public List lists() {
+		// TODO Auto-generated method stub
+	
+		return hibernateTemplate.find("from Employee");
+	}
+}

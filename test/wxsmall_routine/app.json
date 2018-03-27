@@ -1,0 +1,42 @@
+{
+  "pages":[
+    "pages/index/index",
+    "pages/user/user",
+    "pages/cart/cart",
+    "pages/logs/logs"
+  ],
+  "window":{
+     "backgroundTextStyle":"white",
+    "navigationBarTextStyle": "white",
+    "navigationBarTitleText": "轩悟逸浩",
+    "navigationBarBackgroundColor": "#35B6DD",
+    "backgroundColor": "#35B6DD",
+    "enablePullDownRefresh": false
+  },
+  "tabBar": {
+    "color": "#b1b1b1",
+    "selectedColor": "#35B6DD",
+    "borderStyle": "#ffffff",
+    "backgroundColor": "#ffffff",
+    "list": [
+      {
+       "pagePath": "pages/index/index",
+      "iconPath": "image/footer-icon-01.png",
+      "selectedIconPath": "image/footer-icon-01-active.png",
+      "text": "首页"
+      },
+      {
+        "iconPath": "image/car1.png",
+        "selectedIconPath": "image/car.png",
+        "pagePath": "pages/cart/cart",
+        "text": "购物车"
+      },
+      {
+        "pagePath": "pages/user/user",
+        "iconPath": "image/footer-icon-04.png",
+        "selectedIconPath": "image/footer-icon-04-active.png",
+        "text": "我的"
+      }
+    ]
+  }
+}

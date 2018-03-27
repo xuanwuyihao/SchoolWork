@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.p2p.mapper.UserMoneyMapper" >
+  <resultMap id="BaseResultMap" type="com.p2p.pojo.UserMoney" >
+
+
+    <id column="id" property="id"/>
+    <result column="userName" property="username"/>
+    <result column="allMoney" property="allmoney"/>
+    <result column="needMoney" property="needmoney"/>
+    <result column="gainMoney" property="gainmoney"/>
+    <result column="stillMoney" property="stillmoney"/>
+    <result column="gatherMoney" property="gathermoney"/>
+    <result column="investMoney" property="investmoney"/>
+    <result column="lendMoney" property="lendmoney"/>
+    <result column="awordMoney" property="awordmoney"/>
+    <result column="frozenMoney" property="frozenmoney"/>
+    <result column="oyh1" property="oyh1"/>
+    <result column="oyh2" property="oyh2"/>
+
+  </resultMap>
+  <select id="getByName" resultMap="BaseResultMap">
+
+  	select * from user_money where userName=#{username}
+  </select>
+  <insert id="save" parameterType="com.p2p.pojo.UserMoney">
+		insert into
+		user_money(userName,allMoney,needMoney,gainMoney,stillMoney,gatherMoney,investMoney,lendMoney,awordMoney,frozenMoney,oyh1,oyh2)
+		values(#{username},#{allmoney},#{needmoney},#{gainmoney},#{stillmoney},#{gathermoney},#{investmoney},#{lendmoney},#{awordmoney},#{frozenmoney},#{oyh1},#{oyh2})
+  </insert>
+  
+  <update id="updateMoney">
+		update user_money set allMoney=allMoney+#{arg1},needMoney=needMoney+#{arg1} where userName=#{arg0}
+		user_money(userName,allMoney,needMoney,gainMoney,stillMoney,gatherMoney,investMoney,lendMoney,awordMoney,oyh1,oyh2)
+		values(#{username},#{allmoney},#{needmoney},#{gainmoney},#{stillmoney},#{gathermoney},#{investmoney},#{lendmoney},#{awordmoney},#{oyh1},#{oyh2})
+
+		user_money(userName,allMoney,needMoney,gainMoney,stillMoney,gatherMoney,investMoney,lendMoney,awordMoney,frozenMoney,oyh1,oyh2)
+		values(#{username},#{allmoney},#{needmoney},#{gainmoney},#{stillmoney},#{gathermoney},#{investmoney},#{lendmoney},#{awordmoney},#{frozenmoney},#{oyh1},#{oyh2})
+
+  </update>
+  <update id="update">
+		update user_money set allMoney=#{allmoney},needMoney=#{needmoney},gainMoney=#{gainmoney},gatherMoney=#{gathermoney},stillMoney=#{stillmoney},investMoney=#{investmoney},lendMoney=#{lendmoney},awordMoney=#{awordmoney}  where userName=#{username}
+  </update>
+  
+  <update id="updateMoneyByPay" parameterType="com.p2p.pojo.UserMoney">
+        update user_money set needMoney = #{needmoney}, frozenMoney = #{frozenmoney}
+        where userName = #{username}
+  </update>
+
+	<select id="list" resultMap="BaseResultMap">
+ 	 	select * from user_money limit 0,7;
+  	</select>
+ 	<select id="count" resultType="int">
+        select count(*) from user_money;
+	</select>
+
+	 <select id="selectpeople"  parameterType="com.p2p.pojo.Page" resultMap="BaseResultMap">  
+		select * from (select * from user_money  where userName like "%"#{title}"%") n  limit #{fist},#{tow}; 
+	</select>
+	
+	<select id="selectlike"  parameterType="com.p2p.pojo.Page" resultMap="BaseResultMap">  
+	  	select * from user_money  where userName like "%"#{title}"%";  
+	</select>
+	
+	<select id="selectpaging" parameterType="com.p2p.pojo.Page"  resultMap="BaseResultMap">
+		select * from user_money  limit #{fist},#{tow}; 
+	</select>
+	
+	<select id="selectSum" resultMap="BaseResultMap">
+	<!-- select sum(needMoney),sum(stillMoney),sum(gatherMoney),sum(frozenMoney) from user_money; -->
+		select sum(needMoney) needMoney,sum(stillMoney) stillMoney,sum(gatherMoney) gatherMoney,sum(frozenMoney) frozenMoney from user_money;
+	</select>
+	
+	<select id="selectSumMH" parameterType="com.p2p.pojo.Page"  resultMap="BaseResultMap">
+		select sum(needMoney) needMoney,sum(stillMoney) stillMoney,sum(gatherMoney) gatherMoney,sum(frozenMoney) frozenMoney from user_money where userName like "%"#{title}"%";
+	</select>
+
+	<update id="updateNeedMoney" parameterType="UserMoney">
+		update user_money set allMoney=#{allmoney}+allMoney, needMoney=#{needmoney}+needMoney where userName=#{username};
+	</update>
+	
+	<update id="updateMoneyByM" parameterType="com.p2p.pojo.UserMoney">
+		update user_money set allMoney=#{allmoney},needMoney = #{needmoney},gainMoney=#{gainmoney},
+		stillMoney=#{stillmoney},gatherMoney=#{gathermoney},investMoney=#{investmoney},
+		lendMoney=#{lendmoney},awordMoney=#{awordmoney},frozenMoney=#{frozenmoney}
+		where userName = #{username}
+	</update>
+	<select id="getById" resultMap="BaseResultMap">
+		select * from user_money where id=#{id}
+	</select>
+	
+	<select id="selTouzi" resultMap="BaseResultMap">
+		select * from user_money where investMoney>0 order by investMoney desc,id asc limit 10;
+	</select>
+</mapper>

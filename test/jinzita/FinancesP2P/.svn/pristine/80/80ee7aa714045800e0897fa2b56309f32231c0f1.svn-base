@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.p2p.mapper.LogLiftMapper">
+	<resultMap id="BaseResultMap" type="com.p2p.pojo.LogLift">
+		<id column="id" property="id" jdbcType="INTEGER" />
+		<result column="userName" property="username" jdbcType="VARCHAR" />
+		<result column="bankType" property="banktype" jdbcType="VARCHAR" />
+		<result column="bankCord" property="bankcord" jdbcType="VARCHAR" />
+		<result column="liftMoney" property="liftmoney" jdbcType="DECIMAL" />
+		<result column="liftFee" property="liftfee" jdbcType="DECIMAL" />
+		<result column="lastMoney" property="lastmoney" jdbcType="DECIMAL" />
+		<result column="leftTime" property="lefttime" jdbcType="TIMESTAMP" />
+		<result column="oyh1" property="oyh1" jdbcType="VARCHAR" />
+		<result column="oyh2" property="oyh2" jdbcType="VARCHAR" />
+	</resultMap>
+	<select id="list" resultMap="BaseResultMap">
+		select * from log_lift limit 0,7;
+	</select>
+	<select id="count" resultType="int">
+		select count(*) from log_lift;
+	</select>
+
+	<select id="selectpeople" parameterType="com.p2p.pojo.Page"
+		resultMap="BaseResultMap">
+		select * from (select * from log_lift where userName like "%"#{title}"%" and
+		leftTime like "%"#{people}"%") n limit #{fist},#{tow};
+	</select>
+
+	<select id="selectlike" parameterType="com.p2p.pojo.Page"
+		resultMap="BaseResultMap">
+		select * from log_lift where userName like "%"#{title}"%" and leftTime like
+		"%"#{people}"%";
+	</select>
+
+	<select id="selectpaging" parameterType="com.p2p.pojo.Page"
+		resultMap="BaseResultMap">
+
+		select * from log_lift limit #{fist},#{tow};
+
+	</select>
+
+	<insert id="save" parameterType="com.p2p.pojo.LogLift">
+		insert into
+		log_lift(userName,bankType,bankCord,liftMoney,liftFee,lastMoney,leftTime,oyh1,oyh2)
+		values(#{username},#{banktype},#{bankcord},#{liftmoney},#{liftfee},#{lastmoney},#{lefttime},#{oyh1},#{oyh2})
+	</insert>
+	<select id="selPhone" resultMap="BaseResultMap">
+		select * from log_lift where userName=#{phone} 
+			<if test="time1 !=null and time1!=''">
+				and <![CDATA[unix_timestamp(leftTime) > unix_timestamp(#{time1}) ]]>
+			</if>
+			<if test="time2 !=null and time2!=''">
+				and<![CDATA[ unix_timestamp(leftTime) < unix_timestamp(#{time2}) ]]>
+			</if>
+		 limit #{number},#{line}
+	</select>
+	<select id="rechargeCount" resultType="java.lang.Integer">
+		select count(*) from
+		log_lift where userName=#{username}
+	</select>
+
+</mapper>

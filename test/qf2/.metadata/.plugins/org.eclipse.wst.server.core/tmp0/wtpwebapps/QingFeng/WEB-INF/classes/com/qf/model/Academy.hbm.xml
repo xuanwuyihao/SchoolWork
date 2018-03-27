@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+
+<class name="com.qf.model.Academy" table="academy">
+<id name="a_id">
+<generator class="native"></generator>
+</id>
+<property name="a_school"></property>
+<property name="a_flag"></property>
+
+<set name="major" table="aca_post" cascade="save-update,delete" lazy="false">
+<key column="aca_id"></key>
+<!-- column是第三个中间表dep_table连接另外一个表的外键 -->
+<many-to-many class="com.qf.model.Major" column="mar_id"></many-to-many>
+</set>
+</class>
+</hibernate-mapping>

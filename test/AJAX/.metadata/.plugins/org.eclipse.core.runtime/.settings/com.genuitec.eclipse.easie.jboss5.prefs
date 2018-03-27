@@ -1,0 +1,5 @@
+#Thu Jul 06 14:24:24 CST 2017
+eclipse.preferences.version=1
+JDK_INSTALLATION_NAME=MyEclipse 6.5
+JBOSS_HOME=C\:\\Program Files (x86)\\Java\\jdk1.6.0_10
+SERVER_STARTUP_ARG=-c default

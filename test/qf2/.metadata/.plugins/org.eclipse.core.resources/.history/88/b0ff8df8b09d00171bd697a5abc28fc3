@@ -1,0 +1,119 @@
+package com.qf.action;
+
+import java.io.IOException;
+import java.io.PrintWriter;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+import org.apache.log4j.Logger;
+import org.apache.struts2.ServletActionContext;
+
+import com.alibaba.fastjson.JSON;
+import com.opensymphony.xwork2.ActionSupport;
+import com.qf.model.Logf;
+
+import com.qf.service.Logf_Service;
+
+public class Logf_Action extends ActionSupport{
+	private JSON jsonlist;
+	private int page;
+	private int rows;
+	
+	private static final Logger logger=Logger.getLogger(Logf_Action.class);
+	
+	public JSON getJsonlist() {
+		return jsonlist;
+	}
+	public void setJsonlist(JSON jsonlist) {
+		this.jsonlist = jsonlist;
+	}
+	public int getPage() {
+		return page;
+	}
+	public void setPage(int page) {
+		this.page = page;
+	}
+	public int getRows() {
+		return rows;
+	}
+	public void setRows(int rows) {
+		this.rows = rows;
+	}
+	private int[] lid;
+	private Logf_Service logfService;
+	private Logf logf = new Logf();
+	
+	public int[] getLid() {
+		return lid;
+	}
+	public void setLid(int[] lid) {
+		this.lid = lid;
+	}
+	public Logf_Service getLogfService() {
+		return logfService;
+	}
+	public void setLogfService(Logf_Service logfService) {
+		this.logfService = logfService;
+	}
+	public Logf getAnchor() {
+		return logf;
+	}
+	public void setAnchor(Logf logf) {
+		this.logf = logf;
+	}
+	public Logf_Action(int[] lid, Logf_Service logfService, Logf logf) {
+		super();
+		this.lid = lid;
+		this.logfService = logfService;
+		this.logf = logf;
+	}
+	public Logf_Action() {
+		super();
+	}
+	//删除
+	public String remove() {
+		System.out.println("进了删除");
+		for (int j = 0; j < lid.length; j++) {
+			System.out.println(lid[j]);
+		}
+		if (lid != null) {
+			logfService.remove(lid);
+		}
+		return SUCCESS;
+	}
+//删除所有
+	public String removeall() {
+		logfService.removeall();
+		
+		return SUCCESS;
+	}
+//查询
+	public String selects() throws IOException {
+	
+		HttpServletRequest request = ServletActionContext.getRequest();		 
+		logger.info("启动中");
+		System.out.println("list方法");	
+		System.out.println("page="+page+"rows="+rows);
+			
+			List<Logf> list = logfService.list(page,rows,logf);
+			Map<String, Object> m = new HashMap<String, Object>(); 
+			
+			System.out.println("total="+logfService.getTotal(page, rows, logf));
+			System.out.println("list="+list);
+			
+			m.put("total", logfService.getTotal(page, rows, logf)); 
+	        m.put("rows", list);
+	        
+			HttpServletResponse response = ServletActionContext.getResponse();
+			response.setContentType("text/html;charset=UTF-8");
+			String mapJson = JSON.toJSONString(m);
+			PrintWriter pw = response.getWriter();
+			pw.print(mapJson);
+			pw.close();		
+		return SUCCESS;
+	}
+}

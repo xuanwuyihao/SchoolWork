@@ -1,0 +1,76 @@
+package com.qf.dao.impl;
+
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
+import org.springframework.orm.hibernate3.HibernateTemplate;
+
+import com.qf.dao.Work_assistant_Dao;
+import com.qf.model.Employee;
+import com.qf.model.Work_assistant;
+
+
+public class Work_assistant_DaoImpl implements Work_assistant_Dao {
+	
+	private HibernateTemplate hibernateTemplate;
+
+	public HibernateTemplate getHibernateTemplate() {
+		return hibernateTemplate;
+	}
+
+	public void setHibernateTemplate(HibernateTemplate hibernateTemplate) {
+		this.hibernateTemplate = hibernateTemplate;
+	}
+
+	@Override
+	public void save(Work_assistant work_assistant) {
+		// TODO Auto-generated method stub
+		this.hibernateTemplate.save(work_assistant);
+	}
+
+	@Override
+	public void update(Work_assistant work_assistant) {
+		// TODO Auto-generated method stub
+		this.hibernateTemplate.update(work_assistant);
+	}
+
+	@Override
+	public void delete(int a_id) {
+		// TODO Auto-generated method stub
+		this.hibernateTemplate.delete(this.hibernateTemplate.get(Work_assistant.class, a_id));
+	}
+
+	@Override
+	public Work_assistant getAcademy(int a_id) {
+		// TODO Auto-generated method stub
+		return this.hibernateTemplate.get(Work_assistant.class, a_id);
+	}
+
+	@Override
+	public void remove(Integer[] a_ids) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public Map<String, Object> list() {
+		// TODO Auto-generated method stub
+		List<Work_assistant> list = this.hibernateTemplate.find("from Work_assistant");
+		Map jsonMap = new HashMap();
+		jsonMap.put("rows", list);  //rows  total  分页
+		jsonMap.put("total", 20);
+		return jsonMap;
+	}
+
+  //查询职员工作
+	@Override
+	public List<Work_assistant> work_list(Employee emp) {
+		// TODO Auto-generated method stub
+		System.out.println("查询职员未完成工作");
+		List<Work_assistant> list = this.hibernateTemplate.find("from Work_assistant where emp_name = ? and work_state = ?",emp.getEmp_name(),"未完成");
+		System.out.println("list大小"+list.size());
+		return  list;
+	}
+
+}

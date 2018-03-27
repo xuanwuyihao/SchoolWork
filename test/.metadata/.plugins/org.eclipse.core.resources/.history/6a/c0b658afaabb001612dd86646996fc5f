@@ -1,0 +1,30 @@
+package t1;
+
+public class xx {
+	public static void main(String[] args){
+	
+		
+	System.out.print("请输入一个数:");
+		
+		//得到键盘输入的对象
+		Scanner scan = new Scanner(System.in);
+		
+		int a = scan.nextInt(); // 输入一个整形
+		
+		System.out.print("请再输入一个数:");
+		
+		int b = scan.nextInt();
+		
+		System.out.print("结果是 "+(a+b));
+		
+		
+		
+System.out.println("请输入一个数：");
+Scanner scan = new Scanner(System.in);
+System.out.println("请再输入一个数：");
+int b = scan.nextlnt();
+System.out.println("结果是"+(a+b));
+
+
+	}
+}

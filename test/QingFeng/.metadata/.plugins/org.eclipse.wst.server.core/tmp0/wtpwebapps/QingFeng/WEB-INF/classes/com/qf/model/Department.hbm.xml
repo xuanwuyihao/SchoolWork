@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+
+<class name="com.qf.model.Department" table="department">
+<id name="dep_id">
+<generator class="native"></generator>
+</id>
+<property name="dep_name"></property>
+<property name="dep_seq"></property>
+<property name="dep_icon"></property>
+<property name="dep_time"></property>
+<property name="dep_address"></property>
+
+<!-- set的值为bean里面定义     key里面的column里面是外键值    cascade表示级联-->
+<set name="employee" cascade="all">
+<key column="dep_id"></key>   <!-- dep_id是employee表里的一个字段，并不是department表的主键 -->
+<one-to-many class="com.qf.model.Employee"/>
+</set>
+
+</class>
+</hibernate-mapping>

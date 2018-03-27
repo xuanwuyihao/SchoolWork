@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:aop="http://www.springframework.org/schema/aop"
+	xmlns:tx="http://www.springframework.org/schema/tx"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans 
+	http://www.springframework.org/schema/beans/spring-beans.xsd
+	http://www.springframework.org/schema/context
+	http://www.springframework.org/schema/context/spring-context.xsd
+	http://www.springframework.org/schema/aop
+	http://www.springframework.org/schema/aop/spring-aop.xsd
+	http://www.springframework.org/schema/tx
+	http://www.springframework.org/schema/tx/spring-tx.xsd">
+	
+	<context:property-placeholder location="classpath:jdbc.properties"/>
+	
+	<bean id="sessionFactory" class="com.mchange.v2.c3p0.DriverManagerDataSource">
+	<property name="driverClassName" value="${jdbc.driver}"></property>
+	<property name="url" value="${jdbc.username}"></property>
+	<property name="username" value="${jdbc.username}"></property>
+	<property name="password" value="${jdbc.password}"></property>
+	</bean>
+	
+	<bean id="sessionFactory" class="org.springframework.orm.hibernate3.LocalSessionFactoryBean">
+	<property name="dataSource" ref="dataSource"></property>
+	<property name="hibernateProperties">
+	<!-- 配置hibernate格式 -->
+	<props>
+	<prop key="hibernate.dialect">org.hibernate.dialect.MySQLDialect</prop>
+	<prop key="hibernate.hbm2ddl.auto">update</prop>
+	<prop key="hibernate.show_sql">true</prop>
+	<prop key="hibernate.fromat_sql">true</prop>
+	</props>
+	</property>
+	<property name="mappingResources">
+	<list>
+	<value>com/model/User.hbm.xml</value>
+	</list>
+	</property>
+	
+	
+	</bean>
+	
+	<!-- 配置事物管理器 -->
+	<bean id="transactionManger" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+	<property name="dataSource" ref="dataSource"></property>
+	</bean>
+	
+	<!-- 开启事物注解 -->
+	<tx:annotation-driven transaction-manager="transactionManager"/>
+	
+	<!-- 配置hibernateTemplate -->
+	<bean id="hibernateTemplate" class="org.springframework.orm.hibernate3.HibernateTemplate">
+	<property name="sessionFactory"></property>
+	</bean>
+	<!-- 加载其他配置（dao.action,service） -->
+	<import resource="applicationContext-action.xml"/>
+	<import resource="applicationContext-dao.xml"/>
+	<import resource="applicationContext-service.xml"/>
+	</beans>

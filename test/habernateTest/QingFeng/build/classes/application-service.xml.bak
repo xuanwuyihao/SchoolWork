@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:aop="http://www.springframework.org/schema/aop"
+	xmlns:tx="http://www.springframework.org/schema/tx"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans 
+	http://www.springframework.org/schema/beans/spring-beans.xsd
+	http://www.springframework.org/schema/context
+	http://www.springframework.org/schema/context/spring-context.xsd
+	http://www.springframework.org/schema/aop
+	http://www.springframework.org/schema/aop/spring-aop.xsd
+	http://www.springframework.org/schema/tx
+	http://www.springframework.org/schema/tx/spring-tx.xsd">
+	
+	<bean id="student_Service" class="com.qf.service.impl.Istudent_ServiceImpl">
+		<property name="student_Dao" ref="student_Dao"></property>
+	</bean>
+	
+	<bean id="academy_Service" class="com.qf.service.impl.Iacademy_ServiceImpl">
+		<property name="academy_Dao" ref="academy_Dao"></property>
+	</bean>
+	
+	<bean id="apply_type_Service" class="com.qf.service.impl.Apply_type_ServiceImpl">
+		<property name="apply_type_Dao" ref="apply_type_Dao"></property>
+	</bean>
+	
+	<bean id="finance_Service" class="com.qf.service.impl.Finance_ServiceImpl">
+		<property name="finance_Dao" ref="finance_Dao"></property>
+	</bean>
+	
+	<bean id="home_content_Service" class="com.qf.service.impl.Home_content_ServiceImpl">
+		<property name="home_content_Dao" ref="home_content_Dao"></property>
+	</bean>
+	
+	<bean id="hot_major_Service" class="com.qf.service.impl.Hot_major_ServiceImpl">
+		<property name="hot_major_Dao" ref="hot_major_Dao"></property>
+	</bean>
+	
+	<bean id="notice_Service" class="com.qf.service.impl.Notice_ServiceImpl">
+		<property name="notice_Dao" ref="notice_Dao"></property>
+	</bean>
+	
+	<bean id="relation_Service" class="com.qf.service.impl.Relation_ServiceImpl">
+		<property name="relation_Dao" ref="relation_Dao"></property>
+	</bean>
+	
+	<bean id="schedule_Service" class="com.qf.service.impl.Schedule_ServiceImpl">
+		<property name="schedule_Dao" ref="schedule_Dao"></property>
+	</bean>
+	
+	<bean id="stu_file_Service" class="com.qf.service.impl.Stu_file_ServiceImpl">
+		<property name="stu_file_Dao" ref="stu_file_Dao"></property>
+	</bean>
+	
+	
+	
+	
+</beans>

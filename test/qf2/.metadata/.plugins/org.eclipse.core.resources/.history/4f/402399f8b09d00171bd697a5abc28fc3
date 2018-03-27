@@ -1,0 +1,577 @@
+package com.qf.action;
+
+import java.io.IOException;
+import java.io.PrintWriter;
+import java.net.InetAddress;
+import java.net.UnknownHostException;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Date;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
+import javax.servlet.ServletContext;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+
+import org.apache.struts2.ServletActionContext;
+
+import com.google.gson.Gson;
+import org.apache.catalina.tribes.util.StringManager;
+import com.sun.javafx.binding.StringFormatter;
+
+import net.sf.json.JSONArray;
+import net.sf.json.JSONObject;
+
+import com.alibaba.fastjson.JSON;
+import com.opensymphony.xwork2.ActionSupport;
+import com.qf.model.Department;
+import com.qf.model.Department2;
+import com.qf.model.Employee;
+import com.qf.model.Employee2;
+import com.qf.model.Log;
+import com.qf.model.User;
+import com.qf.model.User2;
+import com.qf.service.Employee_Service;
+
+
+
+public class Employee_Action  extends ActionSupport{
+	private Employee_Service employee_Service;
+	
+	
+	private Employee2 employee;
+	private Integer emp_id;
+	private String jsonResult;
+	private String dep_id;
+	private String user_id;
+	private Employee employees;
+	
+	private List<User> u_list;
+	private List<Department> d_list;
+	private Collection<User> books;
+	
+	private List<Employee> list;
+	
+
+	public Employee getEmployees() {
+		return employees;
+	}
+	public void setEmployees(Employee employees) {
+		this.employees = employees;
+	}
+	public List<Employee> getList() {
+		return list;
+	}
+	public void setList(List<Employee> list) {
+		this.list = list;
+	}
+	public Collection<User> getBooks() {
+		return books;
+	}
+	public void setBooks(Collection<User> books) {
+		this.books = books;
+	}
+	public List<User> getU_list() {
+		return u_list;
+	}
+	public void setU_list(List<User> u_list) {
+		this.u_list = u_list;
+	}
+	public List<Department> getD_list() {
+		return d_list;
+	}
+	public void setD_list(List<Department> d_list) {
+		this.d_list = d_list;
+	}
+	public String getDep_id() {
+		return dep_id;
+	}
+	public void setDep_id(String dep_id) {
+		this.dep_id = dep_id;
+	}
+	public String getUser_id() {
+		return user_id;
+	}
+	public void setUser_id(String user_id) {
+		this.user_id = user_id;
+	}
+	public String getJsonResult() {
+		return jsonResult;
+	}
+	public void setJsonResult(String jsonResult) {
+		this.jsonResult = jsonResult;
+	}
+	public Integer getEmp_id() {
+		return emp_id;
+	}
+	public void setEmp_id(Integer emp_id) {
+		this.emp_id = emp_id;
+	}
+	public Employee_Service getEmployee_Service() {
+		return employee_Service;
+	}
+	public void setEmployee_Service(Employee_Service employee_Service) {
+		this.employee_Service = employee_Service;
+	}
+	
+	public Employee2 getEmployee() {
+		return employee;
+	}
+	public void setEmployee(Employee2 employee) {
+		this.employee = employee;
+	}
+	
+	
+	//ï¿½ï¿½ï¿½ï¿½
+		public String save()throws Exception{
+			HttpServletResponse resp = ServletActionContext.getResponse();
+			HttpServletRequest req = ServletActionContext.getRequest();
+			resp.setContentType("text/html; charset=utf-8");  //htmlï¿½ï¿½ï¿½ï¿½
+			req.setCharacterEncoding("UTF-8");
+<<<<<<< .mine
+			System.out.println("ï¿½ï¿½ï¿½ï¿½ï¿½Ë±ï¿½ï¿½ï¿½");
+||||||| .r120
+			System.out.println("À´µ½ÁË±£´æ");
+=======
+			//System.out.println("ï¿½ï¿½ï¿½ï¿½ï¿½Ë±ï¿½ï¿½ï¿½");
+>>>>>>> .r179
+			Employee e2 = new Employee();
+			
+			e2.setEmp_id(employee.getEmp_id());
+			e2.setAge(employee.getAge());
+			e2.setEmp_Account(employee.getEmp_Account());
+			e2.setEmp_name(employee.getEmp_name());
+			e2.setSex(employee.getSex());
+			e2.setEmp_phone(employee.getEmp_phone());
+			e2.setEmp_state(employee.getEmp_state());
+			e2.setEmp_time(new Date().toLocaleString());
+			e2.setDep_id(dep_id);
+			e2.setUser_id(user_id);
+			e2.setEmp_pwd("123456");
+			
+			
+			employee_Service.save(e2);
+			
+			return SUCCESS;
+		}
+		
+	//É¾ï¿½ï¿½
+		public String delete() throws IOException{
+			HttpServletResponse resp = ServletActionContext.getResponse();
+			HttpServletRequest req = ServletActionContext.getRequest();
+<<<<<<< .mine
+			resp.setContentType("text/html; charset=utf-8");  //htmlï¿½ï¿½ï¿½ï¿½
+			System.out.println("ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½É¾ï¿½ï¿½");
+||||||| .r120
+			resp.setContentType("text/html; charset=utf-8");  //htmlÊý¾Ý
+			System.out.println("À´µ½ÁËÉ¾³ý");
+=======
+			resp.setContentType("text/html; charset=utf-8");  //htmlï¿½ï¿½ï¿½ï¿½
+			//System.out.println("ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½É¾ï¿½ï¿½");
+>>>>>>> .r179
+			String id = req.getParameter("emp_id");
+<<<<<<< .mine
+			System.out.println("É¾ï¿½ï¿½ï¿½ï¿½id:"+id);
+||||||| .r120
+			System.out.println("É¾³ýµÄid:"+id);
+=======
+			System.out.println(id);
+>>>>>>> .r179
+			this.employee_Service.delete(Integer.parseInt(id));;
+<<<<<<< .mine
+			String cg = "ï¿½É¹ï¿½É¾ï¿½ï¿½ï¿½ï¿½";
+||||||| .r120
+			String cg = "³É¹¦É¾³ý£¡";
+=======
+			String cg = "FFF";
+>>>>>>> .r179
+			PrintWriter pw = resp.getWriter();
+			pw.println(cg);  //ï¿½ï¿½jsonï¿½Ä¸ï¿½Ê½ï¿½ï¿½ï¿½Øµï¿½Ò³ï¿½ï¿½ï¿½ï¿½
+			pw.flush();
+			return null;
+		}
+			
+	//ï¿½Þ¸ï¿½
+		public String update(){
+			Employee e2 = new Employee();
+			
+			e2.setEmp_id(employee.getEmp_id());
+			e2.setAge(employee.getAge());
+			e2.setEmp_Account(employee.getEmp_Account());
+			e2.setEmp_name(employee.getEmp_name());
+			e2.setSex(employee.getSex());
+			e2.setEmp_phone(employee.getEmp_phone());
+			e2.setEmp_state(employee.getEmp_state());
+			e2.setEmp_time(employee.getEmp_time());
+			e2.setDep_id(dep_id);
+			e2.setUser_id(user_id);
+			e2.setEmp_time(employee.getEmp_time());
+			e2.setEmp_pwd(employee.getEmp_pwd());
+			
+			employee_Service.update(e2);
+			
+			return SUCCESS;
+		}
+			
+	//ï¿½ï¿½Ñ¯È«ï¿½ï¿½
+		public String list() throws Exception{
+			HttpServletResponse resp = ServletActionContext.getResponse();
+			HttpServletRequest req = ServletActionContext.getRequest();
+			resp.setContentType("text/html; charset=utf-8");  //htmlï¿½ï¿½ï¿½ï¿½
+
+			
+<<<<<<< .mine
+			System.out.println("ï¿½ï¿½ï¿½ï¿½ListAction");
+||||||| .r120
+			System.out.println("À´µ½ListAction");
+=======
+			//System.out.println("ï¿½ï¿½ï¿½ï¿½ListAction");
+>>>>>>> .r179
+			Map<String,Object>	jsonMap = new HashMap<>();
+			jsonMap = employee_Service.list();
+<<<<<<< .mine
+			System.out.println("ï¿½Øµï¿½ï¿½ï¿½Action");
+||||||| .r120
+			System.out.println("»Øµ½ÁËAction");
+=======
+			//System.out.println("ï¿½Øµï¿½ï¿½ï¿½Action");
+>>>>>>> .r179
+			
+			String aa = JSON.toJSONString(jsonMap);
+			System.out.println("aa:"+aa);
+			jsonResult = JSON.toJSONString(jsonMap);
+<<<<<<< .mine
+			System.out.println("mapï¿½Ðµï¿½jsonï¿½ï¿½Ê½ï¿½ï¿½"+jsonResult);
+||||||| .r120
+			System.out.println("mapÖÐµÄjson¸ñÊ½£º"+jsonResult);
+=======
+			System.out.println(jsonResult);
+>>>>>>> .r179
+			
+			PrintWriter pw = resp.getWriter();
+			pw.println(jsonResult);  //ï¿½ï¿½jsonï¿½Ä¸ï¿½Ê½ï¿½ï¿½ï¿½Øµï¿½Ò³ï¿½ï¿½ï¿½ï¿½
+	
+			return null;
+		}
+		
+	//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+		public String reset_Pwd() throws IOException{
+			HttpServletResponse resp = ServletActionContext.getResponse();
+			HttpServletRequest req = ServletActionContext.getRequest();
+<<<<<<< .mine
+			resp.setContentType("text/html; charset=utf-8");  //htmlï¿½ï¿½ï¿½ï¿½
+			System.out.println("ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½");
+||||||| .r120
+			resp.setContentType("text/html; charset=utf-8");  //htmlÊý¾Ý
+			System.out.println("À´µ½ÁËÖØÖÃÃÜÂë");
+=======
+			resp.setContentType("text/html; charset=utf-8");  //htmlï¿½ï¿½ï¿½ï¿½
+			//System.out.println("ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½");
+>>>>>>> .r179
+			String id = req.getParameter("emp_id");
+<<<<<<< .mine
+			System.out.println("Òªï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½id:"+id);
+||||||| .r120
+			System.out.println("ÒªÖØÖÃÃÜÂëµÄid:"+id);
+=======
+			System.out.println(id);
+>>>>>>> .r179
+			this.employee_Service.reset_Pwd(id);
+<<<<<<< .mine
+			String cg = "ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½É¹ï¿½ï¿½ï¿½";
+||||||| .r120
+			String cg = "ÖØÖÃÃÜÂë³É¹¦£¡";
+=======
+			String cg = "ttt";
+>>>>>>> .r179
+			PrintWriter pw = resp.getWriter();
+			pw.println(cg);  //ï¿½ï¿½jsonï¿½Ä¸ï¿½Ê½ï¿½ï¿½ï¿½Øµï¿½Ò³ï¿½ï¿½ï¿½ï¿½
+			pw.flush();
+			return null;
+		}
+		
+	//ajaxï¿½ï¿½Ñ¯ï¿½ï¿½ï¿½ÅºÍ½ï¿½É«
+		public String selectUD() throws IOException{  
+			HttpServletResponse resp = ServletActionContext.getResponse();
+			HttpServletRequest req = ServletActionContext.getRequest();
+<<<<<<< .mine
+			resp.setContentType("text/html; charset=utf-8");  //htmlï¿½ï¿½ï¿½ï¿½
+			System.out.println("ï¿½ï¿½ï¿½ï¿½ï¿½Ë²ï¿½Ñ¯ï¿½ï¿½ï¿½Å½ï¿½É«action");
+||||||| .r120
+			resp.setContentType("text/html; charset=utf-8");  //htmlÊý¾Ý
+			System.out.println("À´µ½ÁË²éÑ¯²¿ÃÅ½ÇÉ«action");
+=======
+			resp.setContentType("text/html; charset=utf-8");  //htmlï¿½ï¿½ï¿½ï¿½
+			//System.out.println("ï¿½ï¿½ï¿½ï¿½ï¿½Ë²ï¿½Ñ¯ï¿½ï¿½ï¿½Å½ï¿½É«action");
+>>>>>>> .r179
+			
+			String method = req.getParameter("method");
+<<<<<<< .mine
+			System.out.println("ï¿½ï¿½È¡ï¿½Ä¶ï¿½ï¿½ï¿½"+method);
+||||||| .r120
+			System.out.println("»ñÈ¡µÄ¶ÔÏó£º"+method);
+=======
+			System.out.println(method);
+>>>>>>> .r179
+			
+			List d2list = new ArrayList<Department2>();
+			List u2list = new ArrayList<User2>();
+			Map m = employee_Service.selUser_Dep();
+			u_list = (List<User>) m.get("u_list");
+			d_list = (List<Department>) m.get("d_list");
+			for(int i=0;i<d_list.size();i++){
+				Department dd = d_list.get(i);
+				Department2 d2 = new Department2();
+			
+				d2.setDep_id(dd.getDep_id());
+				d2.setDep_name(dd.getDep_name());
+			
+				d2list.add(d2);
+				
+			}
+			
+			for(int i=0;i<u_list.size();i++){
+				User u = u_list.get(i);
+				User2 u2 = new User2();
+				u2.setU_id(u.getU_id());
+				u2.setU_name(u.getU_name());
+			
+				u2list.add(u2);
+			}
+			
+			JSONArray jsonArray = JSONArray.fromObject(u2list);
+			String str_user = jsonArray.toString();
+			
+			JSONArray jsonArray2 = JSONArray.fromObject(d2list);
+			String str_dep = jsonArray2.toString();
+			System.out.println("listï¿½ï¿½Str:"+str_user);
+			
+			//ï¿½ï¿½ï¿½ï¿½responseï¿½Ä±ï¿½Òªï¿½ï¿½ï¿½ï¿½
+			resp.setCharacterEncoding("utf-8");
+			resp.setContentType("application/json;charset=utf-8");
+
+			PrintWriter pWriter = resp.getWriter();
+			if(method.equals("dep")){   //ï¿½ï¿½ï¿½ï¿½Ç²ï¿½Ñ¯ï¿½ï¿½ï¿½ï¿½ï¿½Ð±ï¿½
+				pWriter.println(str_dep);
+				pWriter.flush();
+			}else if(method.equals("user")){   //ï¿½ï¿½ï¿½ï¿½Ç²ï¿½Ñ¯ï¿½ï¿½É«ï¿½Ð±ï¿½
+				pWriter.println(str_user);
+				pWriter.flush();
+			}
+			return null;
+		}
+
+		public String getEmp(){
+			System.out.println("ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ó²ï¿½ï¿½ï¿½");
+			this.employee_Service.getEmployee(3);
+			
+			return null;
+		}
+		
+		//Æ¤Æ¤Î°
+		
+		public String select_Pwd() throws IOException{
+			System.out.println("ooooooooooooï¿½ï¿½ï¿½ï¿½ï¿½Ë£ï¿½");
+			HttpServletResponse resp = ServletActionContext.getResponse();
+			HttpServletRequest req = ServletActionContext.getRequest();
+		    String empl_name=req.getParameter("empl_name");
+		    String emp_pwd=req.getParameter("emp_pwd");
+			resp.setContentType("text/html; charset=utf-8");  //htmlï¿½ï¿½ï¿½ï¿½
+			int in=this.employee_Service.select_Pwd(empl_name, emp_pwd);
+			
+			System.out.println("in="+in);
+			
+			System.out.println("IMN:"+in);
+			String cg = null;
+			Employee2 ee =new Employee2();
+			
+			if(in==0){
+				ee.setAge("00");
+			}else if(in==1){
+				ee.setAge("11");
+			}else if(in==2){
+				ee.setAge("22");
+			}
+			
+			Gson gson=new Gson();
+			String str=gson.toJson(ee);
+			
+			PrintWriter pw = resp.getWriter();
+			pw.println(str);  //ï¿½ï¿½jsonï¿½Ä¸ï¿½Ê½ï¿½ï¿½ï¿½Øµï¿½Ò³ï¿½ï¿½ï¿½ï¿½
+			pw.flush();
+			return null;
+		}
+		
+		public String select_Id() throws UnknownHostException{
+			HttpServletResponse resp = ServletActionContext.getResponse();
+			HttpServletRequest req = ServletActionContext.getRequest();
+			
+		    String empl_name=req.getParameter("empl_name");
+		    String emp_pwd=req.getParameter("emp_pwd");
+			resp.setContentType("text/html; charset=utf-8");  //htmlï¿½ï¿½ï¿½ï¿½
+			int in=this.employee_Service.select_Id(empl_name, emp_pwd);
+<<<<<<< .mine
+			System.out.println("ï¿½ï¿½Ç°ï¿½ï¿½Â¼id:in:"+in);
+||||||| .r120
+			System.out.println("µ±Ç°µÇÂ¼id:in:"+in);
+=======
+			System.out.println(in);
+>>>>>>> .r179
+			HttpSession session = req.getSession();
+			Employee emp = this.employee_Service.getEmployee(in);
+<<<<<<< .mine
+			session.setAttribute("employee", emp);    //ï¿½ï¿½employeeï¿½ï¿½ï¿½æµ½session
+			
+			
+			
+||||||| .r120
+			session.setAttribute("employee", emp);    //½«employee±£´æµ½session
+=======
+			session.setAttribute("employee", emp);    //ï¿½ï¿½employeeï¿½ï¿½ï¿½æµ½session
+>>>>>>> .r179
+			Employee eee =(Employee) session.getAttribute("employee");
+<<<<<<< .mine
+			System.out.println("sessionï¿½Ðµï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½"+eee.getEmp_name());
+			InetAddress localhost = InetAddress.getLocalHost(); 
+			SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");//è®¾ç½®æ—¥æœŸæ ¼å¼
+			System.out.println("å½“å‰æ—¶é—´ä¸ºï¼š"+df.format(new Date()));// new Date()ä¸ºèŽ·å–å½“å‰ç³»ç»Ÿæ—¶é—´
+			Log logs=new Log();
+			
+			logs.setEmp_name(eee.getEmp_name());
+			logs.setEmp_Account(eee.getEmp_Account());
+			logs.setIp_address(localhost.getHostAddress());
+			logs.setLog_data(df.format(new Date()));
+			System.out.println("---"+logs.getEmp_name());
+			
+			employee_Service.save(logs);
+			
+			
+			
+			
+			
+			
+			
+||||||| .r120
+			System.out.println("sessionÖÐµÄÐÕÃû£»£º£º£º"+eee.getEmp_name());
+=======
+			System.out.println(eee.getEmp_name());
+>>>>>>> .r179
+			Gson gson=new Gson();
+			String str=gson.toJson(in);
+			
+			PrintWriter pw;
+			try {
+				
+				pw = resp.getWriter();
+				pw.println(str);  //ï¿½ï¿½jsonï¿½Ä¸ï¿½Ê½ï¿½ï¿½ï¿½Øµï¿½Ò³ï¿½ï¿½ï¿½ï¿½
+				pw.flush();
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}	
+			return null;
+		}
+		
+		public String select_DL(){
+			//ï¿½ï¿½ï¿½ï¿½ï¿½Â¼ï¿½Ã»ï¿½
+			System.out.println("wwwwwwwwwwwwwwwwwwww");
+			HttpServletResponse resp = ServletActionContext.getResponse();
+			HttpServletRequest req = ServletActionContext.getRequest();
+			HttpSession session=req.getSession();
+			
+		   String emp_id=req.getParameter("emp_id");
+		  
+			resp.setContentType("text/html; charset=utf-8");  //htmlï¿½ï¿½ï¿½ï¿½
+			resp.setContentType("utf-8");
+			int ss=Integer.parseInt(emp_id);
+			
+			
+			employees=employee_Service.getEmployee(ss);
+			user_id="123";
+			System.out.println("employees="+employees.getEmp_name());
+			
+			session.setAttribute("employee", employees);
+			
+			Gson gson=new Gson();
+			String str=gson.toJson(employees);
+			
+			PrintWriter pw;
+			try {
+				pw = resp.getWriter();
+				pw.println(str);  
+				pw.flush();
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+
+			return null;
+		}
+	
+		
+		public String select_Sess(){    //ï¿½Ë³ï¿½ï¿½ï¿½Â¼
+			System.out.println("kkkkkkkkk");
+			HttpServletResponse resp = ServletActionContext.getResponse();
+			HttpServletRequest req = ServletActionContext.getRequest();
+			resp.setContentType("text/html; charset=utf-8");  //htmlï¿½ï¿½ï¿½ï¿½
+			HttpSession session=req.getSession();
+			Employee em =(Employee) session.getAttribute("employee");
+<<<<<<< .mine
+			System.out.println("ï¿½ï¿½ï¿½Æ£ï¿½"+em.getEmp_name());
+			session.removeAttribute("employee");   //ï¿½Æ³ï¿½session
+||||||| .r120
+			System.out.println("Ãû³Æ£º"+em.getEmp_name());
+			session.removeAttribute("employee");   //ÒÆ³ýsession
+=======
+			System.out.println(em.getEmp_name());
+			session.removeAttribute("employee");   //ï¿½Æ³ï¿½session
+>>>>>>> .r179
+		
+			return SUCCESS;
+		}
+		
+		public String select_List(){
+			
+			System.out.println("lkjjjkkkkjkjj");
+			HttpServletResponse response = ServletActionContext.getResponse();
+			HttpServletRequest request = ServletActionContext.getRequest();
+			Gson gson=new Gson();
+			list=employee_Service.lists();
+			System.out.println("list="+list.size());
+			List ll=new ArrayList();
+			for(Employee li:list){
+				Employee employee =new Employee();
+				employee.setEmp_name(li.getEmp_name());
+				employee.setEmp_id(li.getEmp_id());
+				ll.add(employee);
+			}
+			
+			String str=gson.toJson(ll);
+			//JSONArray str=JSONArray.fromObject(strr);
+			System.out.println("11111111");
+			
+			System.out.println("mmp:"+str);
+			response.setContentType("utf-8");
+			response.setContentType("application/json;charset=utf-8");
+			try {
+				PrintWriter pwit=response.getWriter();
+				System.out.println("11111111");
+				pwit.print(str);
+				System.out.println("22222222");
+				pwit.flush();
+				
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			
+			return null;
+			
+			
+		}
+	
+}

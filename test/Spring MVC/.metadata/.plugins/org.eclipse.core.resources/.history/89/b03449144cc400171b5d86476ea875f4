@@ -1,0 +1,86 @@
+package com.ht.test;
+
+
+import java.util.List;
+
+
+import org.activiti.engine.ProcessEngine;
+import org.activiti.engine.ProcessEngines;
+import org.activiti.engine.repository.Deployment;
+import org.activiti.engine.repository.DeploymentBuilder;
+import org.activiti.engine.repository.ProcessDefinition;
+import org.activiti.engine.repository.ProcessDefinitionQuery;
+import org.activiti.engine.runtime.ProcessInstance;
+import org.activiti.engine.task.Task;
+import org.activiti.engine.task.TaskQuery;
+import org.junit.Test;
+
+import groovy.time.BaseDuration.From;
+import groovyjarjarantlr.collections.impl.LList;
+
+
+
+public class TestDemo {
+	private ProcessEngine processEngine = ProcessEngines.getDefaultProcessEngine();
+	public static void main(String[] args) {
+		ProcessEngine processEngine = ProcessEngines.getDefaultProcessEngine();
+	}
+	
+	//审批流程审批
+	@Test
+	public void test(){
+		//取出生产者
+		DeploymentBuilder deploymentBuilder = processEngine.getRepositoryService().createDeployment();
+		deploymentBuilder.addClasspathResource("com/ht/flow/test.bpmn");
+		deploymentBuilder.addClasspathResource("com/ht/flow/test.png");
+		
+		Deployment deployment=deploymentBuilder.deploy();
+		System.out.println(deployment.getId());
+		System.out.println(deployment.getName());
+	}
+	
+	//查询审批流程
+	@Test
+	public void test1(){
+		ProcessDefinitionQuery query=processEngine.getRepositoryService().createProcessDefinitionQuery();
+		//添加查询对象
+		query.processDefinitionKey("qingjia");
+		//升序查询
+		query.orderByDeploymentId().asc();
+		
+		//分页查询
+		query.listPage(0, 5);
+		List<ProcessDefinition> list=query.list();
+		for(ProcessDefinition lists:list){
+			System.out.println(lists.getId());
+			System.out.println(lists.getName());
+		}
+		
+	}
+	
+	//执行审批————>开始审批
+	@Test
+	public void test2(){
+		ProcessInstance processInstance=processEngine.getRuntimeService().startProcessInstanceById("qingjia:1:4");
+		System.out.println(processInstance.getId());
+		System.out.println(processInstance.getName());
+	}
+	
+	//查询执行审批
+	@Test
+	public void test3(){
+		TaskQuery taskQuery=processEngine.getTaskService().createTaskQuery();
+		taskQuery.taskAssignee("王五");
+		List<Task> tasks=taskQuery.list();
+		for(Task task:tasks){
+			System.out.println("审查ID是"+task.getId());
+			System.out.println("审查姓名是"+task.getName());
+		}
+	}
+	//执行完成审批
+	@Test
+	public void test4(){
+		processEngine.getTaskService().complete("7501");
+	}
+
+}

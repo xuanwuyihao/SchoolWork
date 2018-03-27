@@ -1,0 +1,24 @@
+package com.qf.dao;
+
+import java.util.List;
+import java.util.Map;
+
+import com.qf.model.Employee;
+
+public interface Employee_Dao {
+		
+	
+	public abstract void save(Employee employee);    //ä¿å­˜
+	public abstract void update(Employee employee);   //ä¿®æ”¹
+	public abstract void delete(int emp_id);      //åˆ é™¤
+	public abstract Employee getEmployee(int emp_id);	//æŸ¥è¯¢å•ä¸ª
+	public abstract void remove(Integer[] emp_ids);  //æ‰¹é‡ç§»é™¤
+	public abstract Map<String, Object> list();    //jsonï¿½ï¿½Ê½ï¿½ï¿½Ñ¯ï¿½ï¿½ï¿½ï¿½
+	
+	public abstract Map selUser_Dep();  //²éÑ¯²¿ÃÅºÍ ½ÇÉ«±í
+	public abstract void reset_Pwd(String emp_id);     //ÖØÖÃÃÜÂë
+	
+	public abstract int select_Pwd(String empl_name , String emp_pwd);//ÑéÖ¤µÇÂ¼
+	public abstract int select_Id(String empl_name , String emp_pwd);//ÑéÖ¤µÇÂ¼
+	public abstract List lists();
+}

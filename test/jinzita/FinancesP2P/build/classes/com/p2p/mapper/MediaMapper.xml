@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.p2p.mapper.MediaMapper" >
+  <resultMap id="BaseResultMap" type="com.p2p.pojo.Media" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="title" property="title" jdbcType="VARCHAR" />
+    <result column="content" property="content" jdbcType="VARCHAR" />
+    <result column="photo" property="photo" jdbcType="VARCHAR" />
+    <result column="time" property="time" jdbcType="TIMESTAMP" />
+    <result column="address" property="address" jdbcType="VARCHAR" />
+    <result column="oyh1" property="oyh1" jdbcType="VARCHAR" />
+    <result column="oyh2" property="oyh2" jdbcType="VARCHAR" />
+  </resultMap>
+  
+  <select id="list" resultMap="BaseResultMap" >
+  select * from media
+  </select>
+  
+  <select id="meiti" resultMap="BaseResultMap">
+  select * from media order by id desc limit 5
+  </select>
+  
+  <insert id="save" parameterType="com.p2p.mapper.MediaMapper">
+  insert into media(title,content,photo,time,address) values(#{title},#{content},#{photo},#{time},#{address})
+  </insert>
+  
+  <delete id="remove"  parameterType="java.lang.Integer">
+  delete from media where id=#{id}
+  </delete>
+  		
+  	<update id="update" parameterType="com.p2p.pojo.Media">
+  	update media set title=#{title},content=#{content},photo=#{photo},time=#{time},address=#{address} where id=#{id}
+  	</update>
+  	
+  	 <select id="getById" resultMap="BaseResultMap" parameterType="java.lang.Integer">
+  select * from media where id=#{id}
+  </select>
+
+  
+  <!-- 模糊查询 -->
+  <select id="fuzzy" resultMap="BaseResultMap">
+  select * from media where title like concat(concat('%',#{title}),'%')
+  </select>
+  
+  <!-- 分页 -->
+  <select id="selpaging"  parameterType="com.p2p.pojo.Paging"  resultMap="BaseResultMap">
+   select * from media limit #{dq},#{mygs}
+  </select>
+  <select id="fuzzypaging"  parameterType="com.p2p.pojo.Fuzzypaging"  resultMap="BaseResultMap">
+   select * from media where title like "%"#{title}"%" limit #{dq1},#{mygs1}
+  </select>
+  
+</mapper>
+	
+	

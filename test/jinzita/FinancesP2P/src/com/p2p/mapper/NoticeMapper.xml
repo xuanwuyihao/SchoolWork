@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.p2p.mapper.NoticeMapper" >
+  <resultMap id="BaseResultMap" type="com.p2p.pojo.Notice" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="title" property="title" jdbcType="VARCHAR" />
+    <result column="content" property="content" jdbcType="VARCHAR" />
+    <result column="time" property="time" jdbcType="TIMESTAMP" />
+    <result column="people" property="people" jdbcType="VARCHAR" />
+    <result column="oyh1" property="oyh1" jdbcType="VARCHAR" />
+    <result column="oyh2" property="oyh2" jdbcType="VARCHAR" />
+  </resultMap>
+  
+  <!-- 前台信息披露中的公告显示 -->
+  <select id="list0" resultMap="BaseResultMap">
+  select * from notice order by id desc limit 10
+  </select>
+  
+  <!-- 首页公告显示 -->
+  <select id="list1" resultMap="BaseResultMap">
+  select * from notice order by id desc limit 5
+  </select>
+  
+  <!-- 后台公告管理的公告显示 -->
+  <select id="list" resultMap="BaseResultMap">
+  select * from notice  limit 0,3;
+  </select>
+
+  
+  <select id="getById" resultMap="BaseResultMap" parameterType="java.lang.Integer">
+  
+  select * from notice where id=#{id}
+  
+  </select>
+  
+  <insert id="save" parameterType="com.p2p.pojo.Notice" useGeneratedKeys="true">
+  insert into notice(title,content,time,people,oyh1,oyh2) 
+  values(#{title},#{content},#{time},#{people},#{oyh1},#{oyh2})
+  </insert>
+  
+  <update id="update" parameterType="com.p2p.pojo.Notice">
+  update  notice set title=#{title},content=#{content},
+  people=#{people},oyh1=#{oyh1},oyh2=#{oyh2} where id=#{id}
+  </update>
+  
+  <delete id="remove" parameterType="java.lang.Integer">
+  delete from notice where id=#{id}
+  </delete>
+  
+
+<select id="count" resultType="int">
+        select count(*) from notice;
+</select>
+
+  
+<select id="selectpeople"  parameterType="com.p2p.pojo.Page" resultMap="BaseResultMap">  
+select * from (select * from notice  where title like "%"#{title}"%" and people like "%"#{people}"%") n  limit #{fist},#{tow}; 
+</select>
+
+<select id="selectlike"  parameterType="com.p2p.pojo.Notice" resultMap="BaseResultMap">  
+  select * from notice  where title like "%"#{title}"%" and people like "%"#{people}"%";  
+</select>
+
+<select id="selectpaging" parameterType="com.p2p.pojo.Page"  resultMap="BaseResultMap">
+select * from notice  limit #{fist},#{tow}; 
+</select>
+
+</mapper>

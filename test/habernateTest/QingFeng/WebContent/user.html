@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+
+<title>用户登录</title>
+<%@ taglib prefix="s" uri="/struts-tags" %>
+	<style>
+body{
+	align:center;
+	width:500px;
+	height:100%;
+}
+.di{
+	width:500px;
+	height:100%;
+	align:center;
+	background:rgba(255,255,255,0.5);
+}
+.bs{
+	text-align: center;
+	border: 1px solid #0492d6;
+	background:rgba(255,255,255,0.3);
+	color:red;
+	width:55px;
+	height:35px;
+	font-size:15px;
+	border-radius: 5px;
+}
+.p{
+	align:center;
+	width:500px;
+	height:50px;
+	background:rgba(233,233,233,0.2);
+	padding-top:18px;
+	padding-left:35px;
+	border-radius: 5px;
+}
+.bs{
+	font-size:15px;
+	width:60px;
+	height:35px;
+}
+
+.ff{
+	font-size:25px;
+	width:300px;
+	height:35px;
+	color:red;
+	padding-bottom:35px;
+}
+
+.te{
+	width:200px;
+	height:35px;
+	border-radius:5px;
+	border: 0.5px solid #0492d6;
+	padding-left:5px;
+	font-size:25px;
+}
+
+</style>
+
+<script language="javascript" src="script/jquery-1.5.2.js"></script>
+<script type="text/javascript">
+	$(document).ready(function(){
+		$("#but").click(function(){
+			var kid = $("#uid").serialize();
+			
+			var kna = $("#uname").serialize();
+			
+			var kpw = $("#pwd").serialize();
+			
+			alert(kid+"----"+kna+"------"+kpw);
+			//var kid = $("input").serialize();
+			//alert("SDDHSHSDH");
+			$.ajax({
+				url:"jsonAction",
+				type:"post",
+				dataType:"json",
+				data:(kid,kna,kpw),
+				success:show
+				
+			});
+			
+		});
+	});
+	
+	function show(ft){
+		alert("输出");
+		var json = eval("("+ft+")");
+		var jsid = json.id;
+		var obje = "UserID:"+jsid+"UserName:"+json.uname+"UserPassWord:"+json.pwd;
+		$("#ft").html(obje);
+		alert(obje);
+	}
+	
+</script>
+</head>
+<body>
+	<s:form action="" method="post">
+		<div id="div" class="di" >
+			<p class="p">
+				<b>User&nbsp;ID</b>:
+				<span style="display:inline-block; width:95px;"></span>
+				<input type="text" id="uid" name="ub.uid" class="te" />
+			</p>
+			<p class="p">
+				<b>User&nbsp;Name</b>:
+				<span style="display:inline-block; width:65px;"></span>
+				<input type="text" id="uname" name="ub.uname" class="te" />
+			</p>
+			<p class="p">
+				<b>User&nbsp;PassWord</b>:
+				<span style="display:inline-block; width:35px;"></span>
+				<input type="password" id="pwd" name="ub.pwd" class="te" />
+			</p>
+			<p class="p">
+				<span style="display:inline-block; width:115px;"></span>
+				<font id="ft" class="ff">The&nbsp;&nbsp;test&nbsp;&nbsp;page</font>
+			</p>
+			<p class="p">
+				<span style="display:inline-block; width:305px;"></span>
+				<button id="but" class="bs">登入</button>
+			</p>
+		</div>
+	</s:form>
+</body>
+</html>

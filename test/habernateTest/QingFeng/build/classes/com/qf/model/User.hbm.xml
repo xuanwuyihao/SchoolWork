@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+<class name="com.qf.model.User" table="User">
+<id name="u_id">
+<generator class="native"></generator>
+</id>
+<property name="u_name"></property>
+<property name="u_seq"></property>
+<property name="u_description"></property>
+<property name="u_state"></property>
+
+</class>
+
+</hibernate-mapping>

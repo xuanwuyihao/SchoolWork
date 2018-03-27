@@ -1,0 +1,82 @@
+package com.qf.model;
+
+import java.io.Serializable;
+
+public class Logf implements Serializable{
+	private Integer lid;
+	private String userid;
+	private String username;
+	private String isclass;
+	private String ip;
+	private String logtime;
+	private String logLevel;
+	private String msg;
+	private String menthod;
+	public Logf() {}
+	public Logf(Integer lid, String userid, String username, String isclass, String ip, String logtime, String logLevel,
+			String msg, String menthod) {
+		this.lid = lid;
+		this.userid = userid;
+		this.username = username;
+		this.isclass = isclass;
+		this.ip = ip;
+		this.logtime = logtime;
+		this.logLevel = logLevel;
+		this.msg = msg;
+		this.menthod = menthod;
+	}
+	public Integer getLid() {
+		return lid;
+	}
+	public void setLid(Integer lid) {
+		this.lid = lid;
+	}
+	public String getUserid() {
+		return userid;
+	}
+	public void setUserid(String userid) {
+		this.userid = userid;
+	}
+	public String getUsername() {
+		return username;
+	}
+	public void setUsername(String username) {
+		this.username = username;
+	}
+	public String getIsclass() {
+		return isclass;
+	}
+	public void setIsclass(String isclass) {
+		this.isclass = isclass;
+	}
+	public String getIp() {
+		return ip;
+	}
+	public void setIp(String ip) {
+		this.ip = ip;
+	}
+	public String getLogtime() {
+		return logtime;
+	}
+	public void setLogtime(String logtime) {
+		this.logtime = logtime;
+	}
+	public String getLogLevel() {
+		return logLevel;
+	}
+	public void setLogLevel(String logLevel) {
+		this.logLevel = logLevel;
+	}
+	public String getMsg() {
+		return msg;
+	}
+	public void setMsg(String msg) {
+		this.msg = msg;
+	}
+	public String getMenthod() {
+		return menthod;
+	}
+	public void setMenthod(String menthod) {
+		this.menthod = menthod;
+	}
+}

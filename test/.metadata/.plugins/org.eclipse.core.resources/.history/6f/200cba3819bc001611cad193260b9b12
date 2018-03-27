@@ -1,0 +1,63 @@
+package t1;
+
+import java.util.Scanner;
+
+public class xx {
+	public static void main(String[] args){		
+/*		//计算两个数之和
+System.out.println("请输入一个数：");
+Scanner scan = new Scanner(System.in);
+int a = scan.nextInt();
+System.out.println("请再输入一个数：");
+int b = scan.nextInt();
+System.out.print("结果是 "+(a+b));
+*/
+//计算1~100奇数和
+/*		int y=0;
+for(int x=1;x<100;x=x+2){
+	//int y=0;
+	y=y+x;
+}
+System.out.println(y);
+*/
+
+/*
+//整数运算      求两个数的加减乘除
+System.out.println("请输入两个整数：");
+Scanner scan=new Scanner(System.in);
+int a = scan.nextInt();
+System.out.println("请输入第二个整数：");
+int b = scan.nextInt();
+System.out.println("加的结果为："+(a+b));
+System.out.println("减的结果为："+(a-b));
+System.out.println("乘的结果为："+(a*b));
+System.out.println("除的结果为："+(a/b));
+*/
+		
+		
+	//	判断一年内最高收入与最低收入
+	/*	int x=0,y=12,min=100000000,max=0;
+		for(int j=0;j<y;j+1){
+		System.out.println("请输入第"+j+"月的工资为：");
+		Scanner scan=new Scanner (System.in);
+		x
+		if()
+*/
+		
+		
+		boolean bln;
+		int a=6,b=9;
+		bln=b>a;
+		if(bln){
+		System.out.print("b>a");
+		
+		}else{
+		System.out.print("b<a");	
+		}
+		}
+
+	}
+
+
+
+

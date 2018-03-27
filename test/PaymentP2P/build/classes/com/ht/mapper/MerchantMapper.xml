@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ht.mapper.MerchantMapper" >
+  <resultMap id="BaseResultMap" type="com.ht.model.Merchant" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="merid" property="merid" jdbcType="VARCHAR" />
+    <result column="custid" property="custid" jdbcType="VARCHAR" />
+    <result column="pwd" property="pwd" jdbcType="VARCHAR" />
+    <result column="mername" property="mername" jdbcType="VARCHAR" />
+    <result column="idno" property="idno" jdbcType="VARCHAR" />
+    <result column="merphone" property="merphone" jdbcType="VARCHAR" />
+    <result column="mermail" property="mermail" jdbcType="VARCHAR" />
+    <result column="datetime" property="datetime" jdbcType="TIMESTAMP" />
+    <result column="stay1" property="stay1" jdbcType="VARCHAR" />
+    <result column="stay2" property="stay2" jdbcType="VARCHAR" />
+    <result column="stay3" property="stay3" jdbcType="VARCHAR" />
+  </resultMap>
+
+<select id="list" resultMap="BaseResultMap">
+select * from merchant
+</select> 
+
+<insert id="insert" parameterType="com.ht.model.Merchant">
+insert into merchant (id, merid, custid, 
+      pwd, mername, idno, 
+      merphone, mermail, datetime, 
+      stay1, stay2, stay3
+      )
+    values (#{id,jdbcType=INTEGER}, #{merid,jdbcType=VARCHAR}, #{custid,jdbcType=VARCHAR}, 
+      #{pwd,jdbcType=VARCHAR}, #{mername,jdbcType=VARCHAR}, #{idno,jdbcType=VARCHAR}, 
+      #{merphone,jdbcType=VARCHAR}, #{mermail,jdbcType=VARCHAR}, #{datetime,jdbcType=TIMESTAMP}, 
+      #{stay1,jdbcType=VARCHAR}, #{stay2,jdbcType=VARCHAR}, #{stay3,jdbcType=VARCHAR}
+      )
+</insert>
+
+<delete id="delete" parameterType="java.lang.Integer">
+delete from merchant where id=#{id}
+</delete>
+
+<select id="getById" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+select * from merchant where id=#{id}
+</select>
+
+<update id="update" parameterType="com.ht.model.Merchant">
+update merchant
+    set merid = #{merid,jdbcType=VARCHAR},
+      custid = #{custid,jdbcType=VARCHAR},
+      pwd = #{pwd,jdbcType=VARCHAR},
+      mername = #{mername,jdbcType=VARCHAR},
+      idno = #{idno,jdbcType=VARCHAR},
+      merphone = #{merphone,jdbcType=VARCHAR},
+      mermail = #{mermail,jdbcType=VARCHAR},
+      datetime = #{datetime,jdbcType=TIMESTAMP},
+      stay1 = #{stay1,jdbcType=VARCHAR},
+      stay2 = #{stay2,jdbcType=VARCHAR},
+      stay3 = #{stay3,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+</update>
+
+
+
+</mapper>

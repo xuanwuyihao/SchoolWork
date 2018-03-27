@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.p2p.mapper.PlatformMoneyMapper" >
+  <resultMap id="BaseResultMap" type="com.p2p.pojo.PlatformMoney" >
+    <id column="deal" property="deal" jdbcType="INTEGER" />
+    <result column="hasGold" property="hasgold" jdbcType="DECIMAL" />
+    <result column="stayGold" property="staygold" jdbcType="DECIMAL" />
+    <result column="stayGount" property="staygount" jdbcType="INTEGER" />
+    <result column="userInterest" property="userinterest" jdbcType="DECIMAL" />
+    <result column="firmInterest" property="firminterest" jdbcType="DECIMAL" />
+    <result column="allInterest" property="allinterest" jdbcType="DECIMAL" />
+    <result column="actingMoney" property="actingmoney" jdbcType="DECIMAL" />
+    <result column="actingCount" property="actingcount" jdbcType="INTEGER" />
+    <result column="stayMoney" property="staymoney" jdbcType="DECIMAL" />
+    <result column="stayCount" property="staycount" jdbcType="INTEGER" />
+    <result column="oyh1" property="oyh1" jdbcType="VARCHAR" />
+    <result column="oyh2" property="oyh2" jdbcType="VARCHAR" />
+  </resultMap>
+  
+</mapper>

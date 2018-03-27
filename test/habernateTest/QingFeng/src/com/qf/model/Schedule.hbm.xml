@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+<class name="com.qf.model.Schedule" table="schedule">
+<id name="s_id">
+<generator class="native"></generator>
+</id>
+<property name="user_id"></property>
+<property name="s_content"></property>
+<property name="s_date"></property>
+<property name="s_flag"></property>
+</class>
+</hibernate-mapping>

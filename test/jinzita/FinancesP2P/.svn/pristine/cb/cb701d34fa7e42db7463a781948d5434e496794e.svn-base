@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.p2p.mapper.UserMapper">
+	<resultMap id="BaseResultMap" type="com.p2p.pojo.User">
+		<id column="id" property="id" jdbcType="INTEGER" />
+		<result column="realName" property="realname" jdbcType="VARCHAR" />
+		<result column="sex" property="sex" jdbcType="VARCHAR" />
+		<result column="face" property="face" jdbcType="VARCHAR" />
+		<result column="phone" property="phone" jdbcType="VARCHAR" />
+		<result column="email" property="email" jdbcType="VARCHAR" />
+		<result column="password" property="password" jdbcType="VARCHAR" />
+		<result column="registerTime" property="registertime" jdbcType="TIMESTAMP" />
+		<result column="referrerNo" property="referrerno" jdbcType="VARCHAR" />
+		<result column="lastIp" property="lastip" jdbcType="VARCHAR" />
+		<result column="lastLoginTime" property="lastlogintime"
+			jdbcType="TIMESTAMP" />
+		<result column="status" property="status" jdbcType="VARCHAR" />
+		<result column="oyh1" property="oyh1" jdbcType="VARCHAR" />
+		<result column="oyh2" property="oyh2" jdbcType="VARCHAR" />
+	</resultMap>
+	<update id="update" parameterType="com.p2p.pojo.User">
+		update user set
+		face=#{face},sex=#{sex},password=#{password},email=#{email},registerTime=#{registertime},referrerNo=#{referrerno},status=#{status},realName=#{realname},lastIp=#{lastip},lastLoginTime=#{lastlogintime},oyh1=#{oyh1},oyh2=#{oyh2}
+		where phone=#{phone}
+	</update>
+	<select id="list" resultMap="BaseResultMap">
+		select * from user
+	</select>
+	<insert id="save" parameterType="com.p2p.pojo.User">
+		insert into
+		user(face,phone,password,registerTime,referrerNo)
+		values(#{face},#{phone},#{password},#{registertime},#{referrerno})
+	</insert>
+	<select id="selPhone" resultMap="BaseResultMap">
+		select * from
+		user where phone
+		=#{phone}
+	</select>
+
+	<select id="list2" resultMap="BaseResultMap">
+		select * from user limit 0,7;
+	</select>
+
+	<select id="count" resultType="int">
+		select count(*) from user;
+	</select>
+	
+	<select id="pcount" resultType="int">
+		select count(distinct(phone)) from user;
+	</select>
+
+	<select id="selectpeople" parameterType="com.p2p.pojo.Page"
+		resultMap="BaseResultMap">
+		select * from (select * from user where realName like
+		"%"#{title}"%" and
+		phone like "%"#{people}"%") n limit #{fist},#{tow};
+	</select>
+
+	<select id="selectlike" parameterType="com.p2p.pojo.Page"
+		resultMap="BaseResultMap">
+		select * from user where realName like "%"#{title}"%" and
+		phone like
+		"%"#{people}"%";
+	</select>
+
+	<select id="selectpaging" parameterType="com.p2p.pojo.Page"
+		resultMap="BaseResultMap">
+
+		select * from user limit #{fist},#{tow};
+
+	</select>
+
+
+	
+	
+	<select id="getByPhoneName" parameterType="com.p2p.pojo.User"
+		resultMap="BaseResultMap">
+
+		select * from user 
+		<where>
+			<if test="phone!=null and phone!=''">
+				phone=#{phone}
+			</if>
+			<if test="realname!=null and realname!=''">
+				and realName=#{realname}
+			</if>
+		</where>
+
+	</select>
+	<select id="getById" resultMap="BaseResultMap">
+		select * from user where id = #{id}
+	</select>
+
+	
+	<select id="getid" resultMap="BaseResultMap" >
+		select id from user where phone = #{phone}
+	</select>
+
+	
+	<select id="getPhoneById" parameterType="java.lang.Integer">
+		select phone from user where id=#{id};
+	</select>
+	
+
+</mapper>

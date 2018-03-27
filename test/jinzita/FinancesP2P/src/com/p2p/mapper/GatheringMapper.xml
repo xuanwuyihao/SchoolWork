@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.p2p.mapper.GatheringMapper" >
+  <resultMap id="BaseResultMap" type="com.p2p.pojo.Gathering" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="userId" property="userid" jdbcType="INTEGER" />
+    <result column="lendId" property="lendid" jdbcType="INTEGER" />
+    <result column="username" property="username" jdbcType="VARCHAR" />
+    <result column="realname" property="realname" jdbcType="VARCHAR" />
+    <result column="hasMoney" property="hasmoney" jdbcType="DECIMAL" />
+    <result column="stage" property="stage" jdbcType="INTEGER" />
+    <result column="hasStage" property="hasstage" jdbcType="INTEGER" />
+    <result column="answerGold" property="answergold" jdbcType="DECIMAL" />
+    <result column="hasallmoney" property="hasallmoney" jdbcType="DECIMAL" />
+    <result column="answerFine" property="answerfine" jdbcType="DECIMAL" />
+    <result column="hasGold" property="hasgold" jdbcType="DECIMAL" />
+    <result column="hasTime" property="hastime" jdbcType="DECIMAL" />
+    <result column="stillDtate" property="stilldtate" jdbcType="TIMESTAMP" />
+    <result column="lendtime" property="lendtime" jdbcType="INTEGER" />
+    <result column="billcode" property="billcode" jdbcType="VARCHAR" />
+    <result column="monthRate" property="monthrate" jdbcType="DECIMAL" />
+    <result column="awordTime" property="awordtime" jdbcType="TIMESTAMP" />
+    <result column="awordStatus" property="awordstatus" jdbcType="VARCHAR" />
+    <result column="recommendMoney" property="recommendmoney" jdbcType="DECIMAL" />
+    <result column="oyh1" property="oyh1" jdbcType="VARCHAR" />
+    <result column="oyh2" property="oyh2" jdbcType="VARCHAR" />
+  </resultMap>
+
+
+<select id="getGatherListByLidAndTitle" parameterType="com.p2p.pojo.Gathering" resultMap="BaseResultMap">
+ select * from gathering where billcode=#{billcode}
+</select>
+
+   <update id="updateGatheringByM" parameterType="com.p2p.pojo.Gathering">
+        update Gathering set hasStage=#{hasstage},hasMoney = #{hasmoney}     
+        where id = #{id}
+   </update>
+
+	<select id="list" resultMap="BaseResultMap" >
+ 	select * from gathering limit 0,7;
+ 	</select>
+ 	
+ 	<select id="list2" resultMap="BaseResultMap" >
+ 	select * from gathering;
+ 	</select>
+ 	
+ 	<select id="count" resultType="int" > 
+ 	select count(*) from gathering
+ 	</select>
+ 	
+ 	<select id="selectpeople"  parameterType="com.p2p.pojo.Page" resultMap="BaseResultMap">  
+	select * from (select * from gathering where realname like "%"#{people}"%") n  limit #{fist},#{tow}; 
+	</select>
+
+
+
+<insert id="save" parameterType="com.p2p.pojo.Gathering">
+		insert into
+		gathering(userId,lendId,hasMoney,stage,hasStage,answerGold,answerFine,hasGold,hasTime,
+		stillDtate,billcode,monthRate,awordTime,awordStatus,recommendMoney,oyh1,oyh2)
+		values(#{userid},#{lendid},#{hasmoney},#{stage},#{hasstage},#{answergold},
+		#{answerfine},#{hasgold},#{hastime},#{stilldtate},#{billcode},#{monthrate},
+		#{awordtime},#{awordstatus},#{recommendmoney},#{oyh1},#{oyh2})
+ </insert>
+
+  
+
+	<select id="selectlike"  parameterType="com.p2p.pojo.Gathering" resultMap="BaseResultMap">  
+  	select * from gathering  where realname like "%"#{people}"%";  
+	</select>
+
+	<select id="selectpaging" parameterType="com.p2p.pojo.Page"  resultMap="BaseResultMap">
+	select * from gathering  limit #{fist},#{tow}; 
+	</select>
+	
+	<select id="selectSum" resultType="Float">
+	select sum(hasallmoney) hasallmoney from gathering;
+	</select>
+	
+	<select id="selectSumMH" parameterType="com.p2p.pojo.Page"  resultType="Float">
+	select sum(hasallmoney) hasallmoney from gathering where realname like "%"#{people}"%";
+	</select>
+	
+	<update id="loanMoney" parameterType="Gathering">
+		update gathering set hasMoney=#{hasmoney}+hasMoney, hasStage=hasStage+1, 
+		stillDate=#{stillDate} where billcode=#{billcode};
+	</update>
+	
+	
+	<!-- 前台个人中心显示个人的投资信息 -->
+ 	<select id="getUserName" resultMap="BaseResultMap">
+	    select * from gathering <where> userId=#{userid} and hasStage!=stage </where> order by id desc limit 8;
+	</select>
+	<select id="getUserId" resultMap="BaseResultMap">
+	    select * from gathering <where> userId=#{userid} and hasStage=stage </where> order by id desc limit 8;
+	</select>
+	<select id="getStage" resultMap="BaseResultMap" parameterType="java.lang.Integer">
+	    select * from gathering <where> userId=#{userid} </where> order by id desc limit 10;
+	</select>
+	<select id="getNameCount" resultType="int" parameterType="java.lang.Integer">
+        select count(*) from gathering <where> userId=#{userid} </where>;
+	</select>
+	<select id="selNameSum" resultMap="BaseResultMap"  parameterType="java.lang.Integer">
+		select sum(answerGold) answergold,<!-- 应收本金 -->
+				sum(hasallmoney) hasallmoney,<!-- 待收总额 -->
+				sum(hasGold) hasgold,<!-- 已收本金 -->
+				sum(hasMoney) hasmoney,<!-- 已收利息 -->
+				sum(answerFine) answerfine,<!-- 应收利息 -->
+				sum(recommendMoney) recommendmoney,<!-- 邀请好友投资奖励 -->
+				sum(stage) stage,<!-- 期数 -->
+				sum(hasStage) hasstage,<!-- 已还款期数 -->
+				max(stillDtate) stilldtate<!-- 查询最近回款日期 -->
+				from gathering where userId=#{userid};
+	</select>
+
+</mapper>

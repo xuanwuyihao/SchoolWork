@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+ <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+ 
+ <mapper namespace="ht.mapper.StudentMapper">
+ <resultMap type="bean.Student" id="BaseResultMap">
+ <id column="s_id" property="sId" />
+ 	<result column="s_name" property="sName" />
+		<result column="s_studentno" property="studentNo"/>
+		<result column="user_id" property="userId" />
+		<result column="id_number" property="idNumber" />
+		<result column="s_phone" property="sPhone" />
+		<result column="s_content" property="sContent" />
+		<result column="academy_id" property="academyId" />
+		<result column="s_gradations" property="sGradations" />
+		<result column="s_systme" property="sSystme" />
+		<result column="s_date" property="sDate" />
+		<result column="s_type" property="stype"/>
+		<collection property="listAcademy" ofType="bean.Academy">
+		<id column="a_id" property="aId"/>
+		<result column="a_school" property="aSchool" />
+		<result column="a_major" property="aMajor" />
+		<result column="a_flag" property="aFlag" />	
+		</collection>
+ </resultMap>
+ 		<sql id="BaseSql">s_id,
+	    	s_studentno,
+	    	s_name,
+	    	user_id,
+	    	id_number,
+	    	s_phone,
+	    	academy_id,
+	    	s_gradations,
+	    	s_systme,
+	    	s_date,
+	    	s_content,
+	    	s_type,
+	    	a.a_id,
+	    	a.a_school
+ 		
+ 		</sql>
+ 		<select id="selectById" resultMap="BaseResultMap">
+ 		select <include refid="Basesql" /> from student s left join academy a on s.s_id=a.a_id where s_id=#{id}
+ 		</select>
+ 
+ </mapper>

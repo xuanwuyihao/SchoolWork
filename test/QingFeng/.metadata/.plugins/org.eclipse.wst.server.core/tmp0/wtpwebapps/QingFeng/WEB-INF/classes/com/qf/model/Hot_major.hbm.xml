@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+<class name="com.qf.model.Hot_major" table="hot_major">
+<id name="hm_id">
+<generator class="native"></generator>
+</id>
+<property name="hm_title"></property>
+<property name="hm_picture"></property>
+<property name="hm_content"></property>
+
+</class>
+</hibernate-mapping>

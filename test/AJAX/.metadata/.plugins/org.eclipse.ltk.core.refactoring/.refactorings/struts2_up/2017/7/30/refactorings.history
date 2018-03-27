@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Rename resource &apos;/struts2_up/WebRoot/struts2up.jsp&apos; to &apos;fileup.jsp&apos;&#x0D;&#x0A;- Original project: &apos;struts2_up&apos;&#x0D;&#x0A;- Original element: &apos;struts2up.jsp&apos;" description="Rename resource &apos;struts2up.jsp&apos;" flags="7" id="org.eclipse.jdt.ui.rename.resource" input="WebRoot/struts2up.jsp" name="fileup.jsp" stamp="1500864681228" version="1.0"/>
+</session>

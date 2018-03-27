@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ht.mapper.NetsaveMapper" >
+  <resultMap id="BaseResultMap" type="com.ht.model.Netsave" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="ordid" property="ordid" jdbcType="VARCHAR" />
+    <result column="custis" property="custis" jdbcType="VARCHAR" />
+    <result column="openaccid" property="openaccid" jdbcType="VARCHAR" />
+    <result column="transamt" property="transamt" jdbcType="DECIMAL" />
+    <result column="realamt" property="realamt" jdbcType="DECIMAL" />
+    <result column="orddate" property="orddate" jdbcType="TIMESTAMP" />
+    <result column="ordstatus" property="ordstatus" jdbcType="VARCHAR" />
+    <result column="stay1" property="stay1" jdbcType="VARCHAR" />
+    <result column="stay2" property="stay2" jdbcType="VARCHAR" />
+    <result column="stay3" property="stay3" jdbcType="VARCHAR" />
+  </resultMap>
+ 
+<select id="list" resultMap="BaseResultMap">
+select * from netsave
+</select>
+
+<insert id="insert" parameterType="com.ht.model.Netsave">
+ insert into netsave (id, ordid, custis, 
+      openaccid, transamt, realamt, 
+      orddate, ordstatus, stay1, 
+      stay2, stay3)
+    values (#{id,jdbcType=INTEGER}, #{ordid,jdbcType=VARCHAR}, #{custis,jdbcType=VARCHAR}, 
+      #{openaccid,jdbcType=VARCHAR}, #{transamt,jdbcType=DECIMAL}, #{realamt,jdbcType=DECIMAL}, 
+      #{orddate,jdbcType=TIMESTAMP}, #{ordstatus,jdbcType=VARCHAR}, #{stay1,jdbcType=VARCHAR}, 
+      #{stay2,jdbcType=VARCHAR}, #{stay3,jdbcType=VARCHAR})
+</insert>
+
+<delete id="delete" parameterType="java.lang.Integer">
+delete from netsave where id=#{id}
+</delete>
+
+<select id="getById" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+select * from netsave where id=#{id}
+</select>
+
+<update id="update" parameterType="com.ht.model.Netsave">
+ update netsave
+    set ordid = #{ordid,jdbcType=VARCHAR},
+      custis = #{custis,jdbcType=VARCHAR},
+      openaccid = #{openaccid,jdbcType=VARCHAR},
+      transamt = #{transamt,jdbcType=DECIMAL},
+      realamt = #{realamt,jdbcType=DECIMAL},
+      orddate = #{orddate,jdbcType=TIMESTAMP},
+      ordstatus = #{ordstatus,jdbcType=VARCHAR},
+      stay1 = #{stay1,jdbcType=VARCHAR},
+      stay2 = #{stay2,jdbcType=VARCHAR},
+      stay3 = #{stay3,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+</update> 
+ 
+ 
+ <select id="getNetsaveMaxId" resultType="java.lang.Integer">
+ select max(id) from netsave
+ </select>
+ 
+ 
+</mapper>

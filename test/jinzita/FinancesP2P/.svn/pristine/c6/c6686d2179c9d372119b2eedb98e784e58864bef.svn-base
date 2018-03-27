@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.p2p.mapper.StayStillMapper">
+<resultMap type="com.p2p.pojo.StayStill" id="BaseResultMap">
+<id column="id" property="id"/>
+<result column="lendId" property="lendId"/>
+<result column="userName" property="userName"/>
+<result column="realName" property="realName"/>
+<result column="lendTime" property="lendTime"/>
+<result column="type" property="type"/>
+<result column="title" property="title"/>
+<result column="stage" property="stage"/>
+<result column="stages" property="stages"/>
+<result column="stillTime" property="stillTime"/>
+<result column="realstillTime" property="realstillTime"/>
+<result column="stayGold" property="stayGold"/>
+<result column="hasFine" property="hasFine"/>
+<result column="stayFine" property="stayFine"/>
+<result column="stayDaly" property="stayDaly"/>
+<result column="staystatus" property="staystatus"/>
+<result column="description" property="description"/>
+<result column="oyh1" property="oyh1"/>
+<result column="oyh2" property="oyh2"/>
+</resultMap>
+	<select id="list" resultMap="BaseResultMap">
+		select * from stay_still limit 0,7;
+	</select>
+	<select id="count" resultType="int">
+		select count(*) from stay_still;
+	</select>
+
+	<select id="selectpeople" parameterType="com.p2p.pojo.Page"
+		resultMap="BaseResultMap">
+		select * from (select * from stay_still where userName like "%"#{title}"%"
+		and title like "%"#{people}"%") n limit #{fist},#{tow};
+	</select>
+
+	<select id="selectlike" parameterType="com.p2p.pojo.Page"
+		resultMap="BaseResultMap">
+		select * from stay_still where userName like "%"#{title}"%" and title like
+		"%"#{people}"%";
+	</select>
+
+	<select id="selectpaging" parameterType="com.p2p.pojo.Page"
+		resultMap="BaseResultMap">
+
+		select * from stay_still limit #{fist},#{tow};
+
+	</select>
+
+	<update id="updateDescription" parameterType="com.p2p.pojo.StayStill">
+		update stay_still set description='网站已代还' where lendId=#{lendId};
+	</update>
+	
+	<update id="update" parameterType="com.p2p.pojo.StayStill">
+		update stay_still set staystatus=#{staystatus} where id=#{id};
+	</update>
+
+</mapper>

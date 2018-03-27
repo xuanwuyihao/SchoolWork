@@ -1,0 +1,50 @@
+a {
+		    text-decoration: none;
+		    cursor: pointer;
+		    color: #333;
+		}
+		
+		a:hover {
+		    text-decoration: none;
+		    outline: none
+		}
+		
+		a.ie6:hover {
+		text-decoration: none;
+		    zoom: 1
+		}
+		
+		a:focus {
+		text-decoration: none;
+		    outline: none
+		}
+		
+		a:hover,
+		a:active {
+		text-decoration: none;
+		    outline: none
+		}
+		ul li{
+		display: inline;
+		}
+		.panel-heading:hover {
+		background-color: #c3c3c3;
+		}
+		.panel-group{
+		 width:80%;
+		background-color: white;
+		}
+		 .container{
+		/* font-family:楷体; */
+		background-color: white;
+		}
+		.container i{
+		padding: 0 10px;
+		}
+		.l{
+		width: 160px;
+		height: 20px;
+		outline: none;
+		border: none;
+		background-color: rgba(0,0,0,0);
+		}

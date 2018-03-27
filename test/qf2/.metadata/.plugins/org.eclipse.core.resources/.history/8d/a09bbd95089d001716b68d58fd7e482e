@@ -1,0 +1,473 @@
+package com.qf.action;
+
+import java.io.IOException;
+import java.io.PrintWriter;
+import java.net.InetAddress;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Date;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
+import javax.servlet.ServletContext;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+
+import org.apache.struts2.ServletActionContext;
+
+import com.google.gson.Gson;
+import org.apache.catalina.tribes.util.StringManager;
+import com.sun.javafx.binding.StringFormatter;
+
+import net.sf.json.JSONArray;
+import net.sf.json.JSONObject;
+
+import com.alibaba.fastjson.JSON;
+import com.opensymphony.xwork2.ActionSupport;
+import com.qf.model.Department;
+import com.qf.model.Department2;
+import com.qf.model.Employee;
+import com.qf.model.Employee2;
+import com.qf.model.Log;
+import com.qf.model.User;
+import com.qf.model.User2;
+import com.qf.service.Employee_Service;
+
+
+
+public class Employee_Action  extends ActionSupport{
+	private Employee_Service employee_Service;
+	
+	
+	private Employee2 employee;
+	private Integer emp_id;
+	private String jsonResult;
+	private String dep_id;
+	private String user_id;
+	private Employee employees;
+	
+	private List<User> u_list;
+	private List<Department> d_list;
+	private Collection<User> books;
+	
+	private List<Employee> list;
+	
+
+	public Employee getEmployees() {
+		return employees;
+	}
+	public void setEmployees(Employee employees) {
+		this.employees = employees;
+	}
+	public List<Employee> getList() {
+		return list;
+	}
+	public void setList(List<Employee> list) {
+		this.list = list;
+	}
+	public Collection<User> getBooks() {
+		return books;
+	}
+	public void setBooks(Collection<User> books) {
+		this.books = books;
+	}
+	public List<User> getU_list() {
+		return u_list;
+	}
+	public void setU_list(List<User> u_list) {
+		this.u_list = u_list;
+	}
+	public List<Department> getD_list() {
+		return d_list;
+	}
+	public void setD_list(List<Department> d_list) {
+		this.d_list = d_list;
+	}
+	public String getDep_id() {
+		return dep_id;
+	}
+	public void setDep_id(String dep_id) {
+		this.dep_id = dep_id;
+	}
+	public String getUser_id() {
+		return user_id;
+	}
+	public void setUser_id(String user_id) {
+		this.user_id = user_id;
+	}
+	public String getJsonResult() {
+		return jsonResult;
+	}
+	public void setJsonResult(String jsonResult) {
+		this.jsonResult = jsonResult;
+	}
+	public Integer getEmp_id() {
+		return emp_id;
+	}
+	public void setEmp_id(Integer emp_id) {
+		this.emp_id = emp_id;
+	}
+	public Employee_Service getEmployee_Service() {
+		return employee_Service;
+	}
+	public void setEmployee_Service(Employee_Service employee_Service) {
+		this.employee_Service = employee_Service;
+	}
+	
+	public Employee2 getEmployee() {
+		return employee;
+	}
+	public void setEmployee(Employee2 employee) {
+		this.employee = employee;
+	}
+	
+	
+	//����
+		public String save()throws Exception{
+			HttpServletResponse resp = ServletActionContext.getResponse();
+			HttpServletRequest req = ServletActionContext.getRequest();
+			resp.setContentType("text/html; charset=utf-8");  //html����
+			req.setCharacterEncoding("UTF-8");
+			System.out.println("�����˱���");
+			Employee e2 = new Employee();
+			
+			e2.setEmp_id(employee.getEmp_id());
+			e2.setAge(employee.getAge());
+			e2.setEmp_Account(employee.getEmp_Account());
+			e2.setEmp_name(employee.getEmp_name());
+			e2.setSex(employee.getSex());
+			e2.setEmp_phone(employee.getEmp_phone());
+			e2.setEmp_state(employee.getEmp_state());
+			e2.setEmp_time(new Date().toLocaleString());
+			e2.setDep_id(dep_id);
+			e2.setUser_id(user_id);
+			e2.setEmp_pwd("123456");
+			
+			
+			employee_Service.save(e2);
+			
+			return SUCCESS;
+		}
+		
+	//ɾ��
+		public String delete() throws IOException{
+			HttpServletResponse resp = ServletActionContext.getResponse();
+			HttpServletRequest req = ServletActionContext.getRequest();
+			resp.setContentType("text/html; charset=utf-8");  //html����
+			System.out.println("������ɾ��");
+			String id = req.getParameter("emp_id");
+			System.out.println("ɾ����id:"+id);
+			this.employee_Service.delete(Integer.parseInt(id));;
+			String cg = "�ɹ�ɾ����";
+			PrintWriter pw = resp.getWriter();
+			pw.println(cg);  //��json�ĸ�ʽ���ص�ҳ����
+			pw.flush();
+			return null;
+		}
+			
+	//�޸�
+		public String update(){
+			Employee e2 = new Employee();
+			
+			e2.setEmp_id(employee.getEmp_id());
+			e2.setAge(employee.getAge());
+			e2.setEmp_Account(employee.getEmp_Account());
+			e2.setEmp_name(employee.getEmp_name());
+			e2.setSex(employee.getSex());
+			e2.setEmp_phone(employee.getEmp_phone());
+			e2.setEmp_state(employee.getEmp_state());
+			e2.setEmp_time(employee.getEmp_time());
+			e2.setDep_id(dep_id);
+			e2.setUser_id(user_id);
+			e2.setEmp_time(employee.getEmp_time());
+			e2.setEmp_pwd(employee.getEmp_pwd());
+			
+			employee_Service.update(e2);
+			
+			return SUCCESS;
+		}
+			
+	//��ѯȫ��
+		public String list() throws Exception{
+			HttpServletResponse resp = ServletActionContext.getResponse();
+			HttpServletRequest req = ServletActionContext.getRequest();
+			resp.setContentType("text/html; charset=utf-8");  //html����
+
+			
+			System.out.println("����ListAction");
+			Map<String,Object>	jsonMap = new HashMap<>();
+			jsonMap = employee_Service.list();
+			System.out.println("�ص���Action");
+			
+			String aa = JSON.toJSONString(jsonMap);
+			System.out.println("aa:"+aa);
+			jsonResult = JSON.toJSONString(jsonMap);
+			System.out.println("map�е�json��ʽ��"+jsonResult);
+			
+			PrintWriter pw = resp.getWriter();
+			pw.println(jsonResult);  //��json�ĸ�ʽ���ص�ҳ����
+	
+			return null;
+		}
+		
+	//��������
+		public String reset_Pwd() throws IOException{
+			HttpServletResponse resp = ServletActionContext.getResponse();
+			HttpServletRequest req = ServletActionContext.getRequest();
+			resp.setContentType("text/html; charset=utf-8");  //html����
+			System.out.println("��������������");
+			String id = req.getParameter("emp_id");
+			System.out.println("Ҫ���������id:"+id);
+			this.employee_Service.reset_Pwd(id);
+			String cg = "��������ɹ���";
+			PrintWriter pw = resp.getWriter();
+			pw.println(cg);  //��json�ĸ�ʽ���ص�ҳ����
+			pw.flush();
+			return null;
+		}
+		
+	//ajax��ѯ���źͽ�ɫ
+		public String selectUD() throws IOException{  
+			HttpServletResponse resp = ServletActionContext.getResponse();
+			HttpServletRequest req = ServletActionContext.getRequest();
+			resp.setContentType("text/html; charset=utf-8");  //html����
+			System.out.println("�����˲�ѯ���Ž�ɫaction");
+			
+			String method = req.getParameter("method");
+			System.out.println("��ȡ�Ķ���"+method);
+			
+			List d2list = new ArrayList<Department2>();
+			List u2list = new ArrayList<User2>();
+			Map m = employee_Service.selUser_Dep();
+			u_list = (List<User>) m.get("u_list");
+			d_list = (List<Department>) m.get("d_list");
+			for(int i=0;i<d_list.size();i++){
+				Department dd = d_list.get(i);
+				Department2 d2 = new Department2();
+			
+				d2.setDep_id(dd.getDep_id());
+				d2.setDep_name(dd.getDep_name());
+			
+				d2list.add(d2);
+				
+			}
+			
+			for(int i=0;i<u_list.size();i++){
+				User u = u_list.get(i);
+				User2 u2 = new User2();
+				u2.setU_id(u.getU_id());
+				u2.setU_name(u.getU_name());
+			
+				u2list.add(u2);
+			}
+			
+			JSONArray jsonArray = JSONArray.fromObject(u2list);
+			String str_user = jsonArray.toString();
+			
+			JSONArray jsonArray2 = JSONArray.fromObject(d2list);
+			String str_dep = jsonArray2.toString();
+			System.out.println("list��Str:"+str_user);
+			
+			//����response�ı�Ҫ����
+			resp.setCharacterEncoding("utf-8");
+			resp.setContentType("application/json;charset=utf-8");
+
+			PrintWriter pWriter = resp.getWriter();
+			if(method.equals("dep")){   //����ǲ�ѯ�����б�
+				pWriter.println(str_dep);
+				pWriter.flush();
+			}else if(method.equals("user")){   //����ǲ�ѯ��ɫ�б�
+				pWriter.println(str_user);
+				pWriter.flush();
+			}
+			return null;
+		}
+
+		public String getEmp(){
+			System.out.println("�������Ӳ���");
+			this.employee_Service.getEmployee(3);
+			
+			return null;
+		}
+		
+		//ƤƤΰ
+		
+		public String select_Pwd() throws IOException{
+			System.out.println("oooooooooooo�����ˣ�");
+			HttpServletResponse resp = ServletActionContext.getResponse();
+			HttpServletRequest req = ServletActionContext.getRequest();
+		    String empl_name=req.getParameter("empl_name");
+		    String emp_pwd=req.getParameter("emp_pwd");
+			resp.setContentType("text/html; charset=utf-8");  //html����
+			int in=this.employee_Service.select_Pwd(empl_name, emp_pwd);
+			
+			System.out.println("in="+in);
+			
+			System.out.println("IMN:"+in);
+			String cg = null;
+			Employee2 ee =new Employee2();
+			
+			if(in==0){
+				ee.setAge("00");
+			}else if(in==1){
+				ee.setAge("11");
+			}else if(in==2){
+				ee.setAge("22");
+			}
+			
+			Gson gson=new Gson();
+			String str=gson.toJson(ee);
+			
+			PrintWriter pw = resp.getWriter();
+			pw.println(str);  //��json�ĸ�ʽ���ص�ҳ����
+			pw.flush();
+			return null;
+		}
+		
+		public String select_Id(){
+			HttpServletResponse resp = ServletActionContext.getResponse();
+			HttpServletRequest req = ServletActionContext.getRequest();
+			
+		    String empl_name=req.getParameter("empl_name");
+		    String emp_pwd=req.getParameter("emp_pwd");
+			resp.setContentType("text/html; charset=utf-8");  //html����
+			int in=this.employee_Service.select_Id(empl_name, emp_pwd);
+			System.out.println("��ǰ��¼id:in:"+in);
+			HttpSession session = req.getSession();
+			Employee emp = this.employee_Service.getEmployee(in);
+			session.setAttribute("employee", emp);    //��employee���浽session
+			
+			
+			
+			Employee eee =(Employee) session.getAttribute("employee");
+			System.out.println("session�е�������������"+eee.getEmp_name());
+			InetAddress localhost = InetAddress.getLocalHost(); 
+			SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");//设置日期格式
+			System.out.println("当前时间为："+df.format(new Date()));// new Date()为获取当前系统时间
+			Log logs=new Log();
+			
+			logs.setEmp_name(eee.getEmp_name());
+			logs.setEmp_Account(eee.getEmp_Account());
+			logs.setIp_address(localhost.getHostAddress());
+			logs.setLog_data(df.format(new Date()));
+			System.out.println("---"+logs.getEmp_name());
+			
+			employee_Service.save(logs);
+			
+			
+			
+			
+			
+			
+			Employee eee =(Employee) session.getAttribute("employee");
+			System.out.println("session�е�������������"+eee.getEmp_name());
+			Gson gson=new Gson();
+			String str=gson.toJson(in);
+			
+			PrintWriter pw;
+			try {
+				
+				pw = resp.getWriter();
+				pw.println(str);  //��json�ĸ�ʽ���ص�ҳ����
+				pw.flush();
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}	
+			return null;
+		}
+		
+		public String select_DL(){
+			//�����¼�û�
+			System.out.println("wwwwwwwwwwwwwwwwwwww");
+			HttpServletResponse resp = ServletActionContext.getResponse();
+			HttpServletRequest req = ServletActionContext.getRequest();
+			HttpSession session=req.getSession();
+			
+		   String emp_id=req.getParameter("emp_id");
+		  
+			resp.setContentType("text/html; charset=utf-8");  //html����
+			resp.setContentType("utf-8");
+			int ss=Integer.parseInt(emp_id);
+			
+			
+			employees=employee_Service.getEmployee(ss);
+			user_id="123";
+			System.out.println("employees="+employees.getEmp_name());
+			
+			session.setAttribute("employee", employees);
+			
+			Gson gson=new Gson();
+			String str=gson.toJson(employees);
+			
+			PrintWriter pw;
+			try {
+				pw = resp.getWriter();
+				pw.println(str);  
+				pw.flush();
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+
+			return null;
+		}
+	
+		
+		public String select_Sess(){    //�˳���¼
+			System.out.println("kkkkkkkkk");
+			HttpServletResponse resp = ServletActionContext.getResponse();
+			HttpServletRequest req = ServletActionContext.getRequest();
+			resp.setContentType("text/html; charset=utf-8");  //html����
+			HttpSession session=req.getSession();
+			Employee em =(Employee) session.getAttribute("employee");
+			System.out.println("���ƣ�"+em.getEmp_name());
+			session.removeAttribute("employee");   //�Ƴ�session
+		
+			return SUCCESS;
+		}
+		
+		public String select_List(){
+			
+			System.out.println("lkjjjkkkkjkjj");
+			HttpServletResponse response = ServletActionContext.getResponse();
+			HttpServletRequest request = ServletActionContext.getRequest();
+			Gson gson=new Gson();
+			list=employee_Service.lists();
+			System.out.println("list="+list.size());
+			List ll=new ArrayList();
+			for(Employee li:list){
+				Employee employee =new Employee();
+				employee.setEmp_name(li.getEmp_name());
+				employee.setEmp_id(li.getEmp_id());
+				ll.add(employee);
+			}
+			
+			String str=gson.toJson(ll);
+			//JSONArray str=JSONArray.fromObject(strr);
+			System.out.println("11111111");
+			
+			System.out.println("mmp:"+str);
+			response.setContentType("utf-8");
+			response.setContentType("application/json;charset=utf-8");
+			try {
+				PrintWriter pwit=response.getWriter();
+				System.out.println("11111111");
+				pwit.print(str);
+				System.out.println("22222222");
+				pwit.flush();
+				
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			
+			return null;
+			
+			
+		}
+	
+}

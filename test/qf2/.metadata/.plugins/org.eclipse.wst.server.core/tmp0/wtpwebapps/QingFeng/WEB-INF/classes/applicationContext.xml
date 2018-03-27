@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:aop="http://www.springframework.org/schema/aop"
+	xmlns:tx="http://www.springframework.org/schema/tx"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans 
+	http://www.springframework.org/schema/beans/spring-beans.xsd
+	http://www.springframework.org/schema/context
+	http://www.springframework.org/schema/context/spring-context.xsd
+	http://www.springframework.org/schema/aop
+	http://www.springframework.org/schema/aop/spring-aop.xsd
+	http://www.springframework.org/schema/tx
+	http://www.springframework.org/schema/tx/spring-tx.xsd">
+	
+	<!-- 扫描配置文件 -->
+	<context:property-placeholder location="classpath:jdbc.properties"/>
+	<!-- 配置数据源 -->
+	<bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+	<property name="driverClassName" value="${jdbc.driver}"></property>
+	<property name="url" value="${jdbc.url}"></property>
+	<property name="username" value="${jdbc.username}"></property>
+	<property name="password" value="${jdbc.password}"></property>
+	</bean>
+	
+	<!-- 配置sessionFactory 将hibernate整合进Spring-->
+	<bean id="sessionFactory" class="org.springframework.orm.hibernate3.LocalSessionFactoryBean">
+	<property name="dataSource" ref="dataSource"></property>
+	<property name="hibernateProperties">
+	<props>
+	<prop key="hibernate.dialect">org.hibernate.dialect.MySQLDialect</prop>
+	<prop key="hibernate.hbm2ddl.auto">update</prop>
+	<prop key="hibernate.show_sql">true</prop>
+	<prop key="hibernate.format_sql">true</prop>
+	</props>
+	</property>
+	<property name="mappingResources">  <!-- Hibernate的mapping映射 -->
+	<list>
+	<value>com/qf/model/Student.hbm.xml</value>
+	<value>com/qf/model/Academy.hbm.xml</value>
+	<value>com/qf/model/Apply_type.hbm.xml</value>
+	<value>com/qf/model/Finance.hbm.xml</value>
+	<value>com/qf/model/Home_content.hbm.xml</value>
+	<value>com/qf/model/Hot_major.hbm.xml</value>
+	<value>com/qf/model/Notice.hbm.xml</value>
+	<value>com/qf/model/Relation.hbm.xml</value>
+	<value>com/qf/model/Schedule.hbm.xml</value>
+	<value>com/qf/model/Stu_file.hbm.xml</value>
+	<value>com/qf/model/User.hbm.xml</value>
+	<value>com/qf/model/Employee.hbm.xml</value>
+	<value>com/qf/model/Department.hbm.xml</value>
+	<value>com/qf/model/Major.hbm.xml</value>
+	<value>com/qf/model/Payment.hbm.xml</value>
+	<value>com/qf/model/Carousel_figure.hbm.xml</value>
+	<value>com/qf/model/Log.hbm.xml</value>
+	<value>com/qf/model/Logf.hbm.xml</value>
+	<value>com/qf/model/Work_assistant.hbm.xml</value>
+	<value>com/qf/model/Translate.hbm.xml</value>
+	<value>com/qf/model/Rolesqx.hbm.xml</value>
+	<value>com/qf/model/QuanXian.hbm.xml</value>
+	</list>
+	</property>
+	</bean>
+	
+	<!-- 配置hibernateTemplate    hibernateTemplate可以从class里面直接get set就可以拿到-->
+	<bean id="hibernateTemplate" class="org.springframework.orm.hibernate3.HibernateTemplate">
+	<property name="sessionFactory" ref="sessionFactory"></property> <!-- name:上面配置的sessionFactory 的id -->
+	</bean>
+	
+	<!--  整合事务 -->
+	<bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+		<property name="dataSource" ref="dataSource"></property>
+	</bean>
+	
+	<!-- 开启事务注解 -->
+	<!-- <tx:annotation-driven transaction-manager="transactionManager"/> -->
+	
+	<!-- 引入子application配置文件 -->
+	<import resource="application-action.xml"/>
+	<import resource="application-service.xml"/>
+	<import resource="application-dao.xml"/>
+	
+	</beans>

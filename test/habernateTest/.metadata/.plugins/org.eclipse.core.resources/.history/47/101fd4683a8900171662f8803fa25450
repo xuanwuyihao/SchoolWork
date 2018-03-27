@@ -1,0 +1,17 @@
+package com.qf.action;
+
+import com.qf.service.Hot_major_Service;
+
+public class Hot_major_Action {
+
+	private Hot_major_Service hot_major_Service;
+
+	public Hot_major_Service getHot_major_Service() {
+		return hot_major_Service;
+	}
+
+	public void setHot_major_Service(Hot_major_Service hot_major_Service) {
+		this.hot_major_Service = hot_major_Service;
+	}
+	
+}

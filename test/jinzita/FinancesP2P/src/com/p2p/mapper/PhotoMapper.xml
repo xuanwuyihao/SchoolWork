@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.p2p.mapper.PhotoMapper" >
+  <resultMap id="BaseResultMap" type="com.p2p.pojo.Photo" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="photo" property="photo" jdbcType="VARCHAR" />
+    <result column="link" property="link" jdbcType="VARCHAR" />
+    <result column="description" property="description" jdbcType="VARCHAR" />
+    <result column="status" property="status" jdbcType="VARCHAR" />
+    <result column="oyh1" property="oyh1" jdbcType="VARCHAR" />
+    <result column="oyh2" property="oyh2" jdbcType="VARCHAR" />
+  </resultMap>
+ 
+	 <select id="list" resultMap="BaseResultMap">
+	 select * from photo
+	 </select>
+	 
+	 <insert id="save" parameterType="com.p2p.pojo.Photo">
+	 insert into photo(photo,link,description,status) values(#{photo},#{link},#{description},'已显示') 
+	 </insert>
+	 
+	 <select id="lookPhoto" resultMap="BaseResultMap">
+	 select * from photo where status='已显示' limit 0,5;
+	 </select>
+	 
+	 <delete id="remove" parameterType="java.lang.Integer">
+	 delete from photo where id=#{id}
+	 </delete>
+	 
+	 <select id="getById" parameterType="java.lang.Integer" resultType="com.p2p.pojo.Photo">
+	 select * from photo where id=#{id}
+	 </select>
+	 
+	 <update id="update" parameterType="com.p2p.pojo.Photo">
+	 update photo set photo=#{photo},link=#{link},description=#{description} where id=#{id}
+	 </update>
+	 
+	 <update id="update1" parameterType="com.p2p.pojo.Photo">
+	 update photo set link=#{link},description=#{description} where id=#{id}
+	 </update>
+	 
+	 <update id="update2" parameterType="com.p2p.pojo.Photo">
+	 update photo set status=#{status} where id=#{id}
+	 </update>
+ 
+ 	<select id="pagingSelect"  resultMap="BaseResultMap">
+		select * from photo   limit #{fist},#{tow}; 
+	</select>
+ 
+</mapper>

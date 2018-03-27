@@ -1,0 +1,20 @@
+INDEX VERSION 1.4+E:\test\jinzita\.metadata\.plugins\org.eclipse.wst.jsdt.core\indexes
+112353862.index
+3601976637.index
+428456919.index
+1703668548.index
+4113769580.index
+4129253077.index
+3225095321.index
+2442689485.index
+1364437901.index
+3839110188.index
+1314734545.index
+3686069823.index
+1161280441.index
+2346432914.index
+4222700829.index
+2493189623.index
+1874103003.index
+3726587061.index
+3074662950.index

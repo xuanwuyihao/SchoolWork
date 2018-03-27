@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ht.mapper.ThawMapper" >
+  <resultMap id="BaseResultMap" type="com.ht.model.Thaw" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="ordid" property="ordid" jdbcType="VARCHAR" />
+    <result column="custid" property="custid" jdbcType="VARCHAR" />
+    <result column="thawamt" property="thawamt" jdbcType="DECIMAL" />
+    <result column="orddate" property="orddate" jdbcType="TIMESTAMP" />
+    <result column="stay1" property="stay1" jdbcType="VARCHAR" />
+    <result column="stay2" property="stay2" jdbcType="VARCHAR" />
+    <result column="stay3" property="stay3" jdbcType="VARCHAR" />
+  </resultMap>
+
+<select id="list" resultMap="BaseResultMap">
+select * from thaw
+</select> 
+
+<insert id="insert" parameterType="com.ht.model.Thaw">
+ insert into thaw (id, ordid, custid, 
+      thawamt, orddate, stay1, 
+      stay2, stay3)
+    values (#{id,jdbcType=INTEGER}, #{ordid,jdbcType=VARCHAR}, #{custid,jdbcType=VARCHAR}, 
+      #{thawamt,jdbcType=DECIMAL}, #{orddate,jdbcType=TIMESTAMP}, #{stay1,jdbcType=VARCHAR}, 
+      #{stay2,jdbcType=VARCHAR}, #{stay3,jdbcType=VARCHAR})
+</insert>
+
+<delete id="delete" parameterType="java.lang.Integer">
+delete from thaw where id=#{id}
+</delete>
+
+<select id="getById" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+select * from thaw where id=#{id}
+</select>
+
+<update id="update" parameterType="com.ht.model.Thaw">
+ update thaw
+    set ordid = #{ordid,jdbcType=VARCHAR},
+      custid = #{custid,jdbcType=VARCHAR},
+      thawamt = #{thawamt,jdbcType=DECIMAL},
+      orddate = #{orddate,jdbcType=TIMESTAMP},
+      stay1 = #{stay1,jdbcType=VARCHAR},
+      stay2 = #{stay2,jdbcType=VARCHAR},
+      stay3 = #{stay3,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+</update> 
+
+<select id="getThawMaxId" resultType="java.lang.Integer">
+ select max(id) from thaw
+</select> 
+
+</mapper>

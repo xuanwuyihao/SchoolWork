@@ -1,0 +1,5 @@
+package com.ht.base;
+
+public interface IBaseDao {
+
+}

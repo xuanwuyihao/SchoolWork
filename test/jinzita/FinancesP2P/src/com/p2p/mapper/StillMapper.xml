@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.p2p.mapper.StillMapper" >
+  <resultMap id="BaseResultMap" type="com.p2p.pojo.Still" >
+    
+  </resultMap>
+  
+		<select id="list" resultMap="BaseResultMap">
+		select * from still;
+		</select>
+		
+		<select id="selStillListByStatus" parameterType="com.p2p.pojo.Still" resultMap="BaseResultMap">
+		select * from still where stayStatus=#{staystatus};
+		</select>
+		 
+		<select id="pageList" parameterType="com.p2p.pojo.Fy" resultMap="BaseResultMap">
+		select * from still limit #{dq},#{mygs}
+		</select>
+		 
+		<select id="mhStillCount" parameterType="com.p2p.pojo.Fy" resultType="java.lang.Integer">
+		select count(*) from still where 
+		 userName like "%"#{username}"%" 
+		 and 
+		 realName like "%"#{realname}"%"
+		 and 
+		 title like "%"#{title}"%"
+		 and 
+		 type like "%"#{type}"%"
+		 and 
+		 stayStatus like "%"#{staystatus}"%";  
+		</select>
+		 
+		<select id="mhStillList" parameterType="com.p2p.pojo.Fy" resultMap="BaseResultMap">
+		select * from still where 
+		 userName like "%"#{username}"%" 
+		 and 
+		 realName like "%"#{realname}"%"
+		 and 
+		 title like "%"#{title}"%"
+		 and 
+		 type like "%"#{type}"%"
+		 and 
+		 stayStatus like "%"#{staystatus}"%" limit #{dq},#{mygs};  
+		</select>
+		 
+		<select id="list2" resultMap="BaseResultMap">
+		select * from still limit 0,7;
+		</select>
+		 
+		<select id="count" resultType="int">
+		select count(*) from still ;
+		</select>
+		 
+		<select id="selectpeople"  parameterType="com.p2p.pojo.Page" resultMap="BaseResultMap">  
+		select * from (select * from still  where userName like "%"#{title}"%") n  limit #{fist},#{tow}; 
+		</select>
+		
+		<select id="selectlike"  parameterType="com.p2p.pojo.Page" resultMap="BaseResultMap">  
+		select * from still  where userName like "%"#{title}"%";  
+		</select>
+		
+		<select id="selectpaging" parameterType="com.p2p.pojo.Page"  resultMap="BaseResultMap">
+		
+		select * from still  limit #{fist},#{tow}; 
+		
+		</select>
+ 		
+		<select id="dischargeMoney" parameterType="java.lang.Integer" resultType="Still">
+			select * from still where lendId=#{id};
+		</select>
+
+		<insert id="save" parameterType="com.p2p.pojo.Still">
+			insert into
+			still(userName,realName,peoper,lendTime,type,title,stage,stages,stillTime,
+			stillMoney,realstillTime,hasMoney,stayGold,stayInterest,hasFine,stayFine,
+			stayDay,stayStatus,lendId,isStill,isWebStill,identity)
+			values(#{username},#{realname},#{peoper},#{lendtime},#{type},#{title},
+			#{stage},#{stages},#{stilltime},#{stillmoney},#{realstilltime},#{hasmoney},
+			#{staygold},#{stayinterest},#{hasfine},#{stayfine},#{stayday},#{staystatus},#{lendid},
+			#{isstill},#{iswebstill},#{identity})
+		</insert>
+		
+		<update id="updateStillByM" parameterType="com.p2p.pojo.Still">
+        update still set stage=#{stage},hasMoney = #{hasmoney},stayGold=#{staygold},
+        stayStatus=#{staystatus}
+        where id = #{id}
+        </update>
+	 
+		<update id="updateIsWebStill" parameterType="java.lang.Integer">
+		update still set isWebStill="网站已代还" where lendId=#{id};
+		</update> 
+
+		<select id="selSumMoney" resultMap="BaseResultMap" parameterType="java.lang.String">
+		select sum(stillMoney) stillmoney, 
+				sum(stayGold) staygold, 
+				sum(stayInterest) stayinterest,
+				max(realstillTime) realstilltime 
+				from still <where> userName=#{username} </where>; 
+		</select>
+
+		<select id="getStill" resultMap="BaseResultMap" parameterType="java.lang.String">
+		select * from still <where> userName=#{username} </where> order by id desc limit 10;
+		</select>
+
+ 
+</mapper>

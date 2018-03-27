@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.p2p.mapper.InvestMapper" >
+  <resultMap id="BaseResultMap" type="com.p2p.pojo.Invest" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="userId" property="userid" jdbcType="INTEGER" />
+    <result column="lendId" property="lendid" jdbcType="INTEGER" />
+    <result column="investMoney" property="investmoney" jdbcType="DECIMAL" />
+    <result column="investTime" property="investtime" jdbcType="TIMESTAMP" />
+    <result column="monthRate" property="monthrate" jdbcType="DECIMAL" />
+    <result column="yearRate" property="yearrate" jdbcType="DECIMAL" />
+    <result column="transtype" property="transtype" jdbcType="VARCHAR" />
+    <result column="details" property="details" jdbcType="VARCHAR" />
+    <result column="ordstatus" property="ordstatus" jdbcType="VARCHAR" />
+    <result column="l_id" property="l_id" jdbcType="VARCHAR" />
+    <result column="oyh1" property="oyh1" jdbcType="VARCHAR" />
+    <result column="oyh2" property="oyh2" jdbcType="VARCHAR" />
+  </resultMap>
+  
+	 <select id="getCount" resultType="int">
+		 select count(distinct(userId)) from invest;
+	 </select>
+
+	<select id="selAllMoney" resultType="Float">
+		select sum(investMoney) investmoney from invest;
+	</select>
+ 	<select id="selectInvestByBillcode" resultMap="BaseResultMap">
+ 		select * from invest where l_id=#{id};
+ 	</select>
+ 
+ 
+ <select id="list" resultMap="BaseResultMap">
+		select * from invest
+ </select>
+ 
+ <select id="getInvestCountBybid" resultType="java.lang.Integer">
+		select count(*) from invest where l_id=#{l_id}
+ </select>
+ 
+ <insert id="save" parameterType="com.p2p.pojo.Invest">
+		insert into
+		invest(userId,lendId,investMoney,investTime,monthRate,yearRate,transtype,details,ordstatus,l_id)
+		values(#{userid},#{lendid},#{investmoney},#{investtime},#{monthrate},#{yearrate},#{transtype},#{details},#{ordstatus},#{l_id})
+ </insert>
+ 
+ <select id="getInvestBybid" resultMap="BaseResultMap">
+		select * from invest where l_id=#{l_id}
+ </select>
+
+ <select id="getFyInvestBybid" parameterType="com.p2p.pojo.Fy" resultMap="BaseResultMap">
+		select * from invest where l_id=#{title} limit #{dq},#{mygs}  
+ </select>
+ 
+ <update id="updateInvestStatus" parameterType="com.p2p.pojo.Invest">
+		update invest set  ordstatus = #{ordstatus}
+		where id = #{id}
+ </update>
+ 
+</mapper>

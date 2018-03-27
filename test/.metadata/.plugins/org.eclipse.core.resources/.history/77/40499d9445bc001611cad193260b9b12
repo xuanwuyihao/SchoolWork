@@ -1,0 +1,17 @@
+package t1;
+
+import java.util.Scanner;
+
+public class lianxi4 {
+	public static void main(String[] args){
+		//4、输入一个五位数，在这个数的每一位之间加上空格后输出
+		System.out.print("请输入一个五位数：");
+		Scanner scan = new Scanner(System.in);
+		int a = scan.nextInt();
+		System.out.print(a%10+" ");
+		System.out.print(a%10+" ");
+		System.out.print(a%10+" ");
+		System.out.print(a%10+" ");
+	}
+
+}

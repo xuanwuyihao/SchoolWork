@@ -1,0 +1,42 @@
+package Pratice1;
+
+import java.awt.Frame;
+import java.awt.Image;
+import java.awt.Toolkit;
+import java.awt.Window;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
+
+import javax.swing.ImageIcon;
+import javax.swing.JLabel;
+
+public class Notwork extends Frame {
+	public Notwork(){
+		super("实现网上共享");
+		
+		//Toolkit tk=Toolkit.getDefaultToolkit();
+		//Image img=tk.getImage("MyImage/2190.gif");
+		//setIconImage(img);
+		
+		//ImageIcon image=new ImageIcon("MyImage/north.gif");
+		//JLabel jl=new JLabel(image);
+		//add(jl);
+		
+		
+		addWindowListener(new ClossWindow());
+		setSize(400,300);
+		setLocationRelativeTo(null);
+		setVisible(true);
+	}
+	
+	public static void main(String[] args) {
+		new Notwork();
+	}
+	class ClossWindow extends WindowAdapter{
+		@Override
+		public void windowClosing(WindowEvent e) {
+			// TODO Auto-generated method stub
+			System.exit(0);
+		}
+	}
+}

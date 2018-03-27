@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+ <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+ <mapper namespace="com.ht.mapper.FinanceMapper">
+ <resultMap type="com.bean.Finance" id="BaseResultMap">
+ <id column="f_id" property="fId" />
+ <result column="stu_no" property="stuNo"/>
+ <result column="tea_class" property="teaClass" />
+<result column="need_money" property="needMoney" />
+<result column="practical_money" property="practicalMoney" />
+<result column="f_date" property="fDate" jdbcType="TIMESTAMP" />
+<result column="f_way" property="fWay" />
+<result column="f_accumulative" property="fAccumulative" />
+<result column="f_state" property="fState" />
+<result column="f_obligate" property="fObligate" />
+ <association property="student" javaType="com.bean.Student">
+ <id property="sId" column="s_id" />
+<result property="sName" column="s_name" />
+<result property="sGradations" column="s_gradations" />
+<result property="sContent" column="s_content" />
+<result property="stype" column="s_type" />
+ </association>
+ </resultMap>
+ <select id="financepage" resultMap="BaseResultMap"> 
+ select * from finance f left join student s on f.stu_no=s.s_studentno where f.stu_no=#{arg0} limit #{arg1},#{arg2}
+ </select>
+ </mapper>

@@ -1,0 +1,10 @@
+eclipse.preferences.version=1
+encoding//src/com/qf/action/Student_Action.java=UTF-8
+encoding//src/com/qf/dao/impl/Istudent_DaoImpl.java=UTF-8
+encoding//src/com/qf/model/Academy.java=UTF-8
+encoding//src/com/qf/model/Department.java=UTF-8
+encoding//src/com/qf/model/Employee.java=UTF-8
+encoding//src/com/qf/model/Finance.java=UTF-8
+encoding//src/com/qf/model/User.java=UTF-8
+encoding//src/com/qf/model/User2.java=UTF-8
+encoding//src/com/qf/service/impl/Istudent_ServiceImpl.java=UTF-8

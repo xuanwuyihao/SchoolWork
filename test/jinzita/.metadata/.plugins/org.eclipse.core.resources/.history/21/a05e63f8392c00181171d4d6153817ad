@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:mvc="http://www.springframework.org/schema/mvc"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:aop="http://www.springframework.org/schema/aop"
+	xmlns:tx="http://www.springframework.org/schema/tx"
+	xmlns:dubbo="http://code.alibabatech.com/schema/dubbo"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+		http://www.springframework.org/schema/beans/spring-beans-4.3.xsd
+		http://www.springframework.org/schema/mvc
+		http://www.springframework.org/schema/mvc/spring-mvc-4.3.xsd
+		http://www.springframework.org/schema/context
+		http://www.springframework.org/schema/context/spring-context-4.3.xsd
+		http://www.springframework.org/schema/aop
+		http://www.springframework.org/schema/aop/spring-aop-4.3.xsd
+		http://www.springframework.org/schema/tx
+		http://www.springframework.org/schema/tx/spring-tx-4.3.xsd
+		http://code.alibabatech.com/schema/dubbo
+		http://code.alibabatech.com/schema/dubbo/dubbo.sxd">
+		
+		
+		
+		<!-- 扫描spring的注解，创建service对象 -->
+		<context:component-scan base-package="com.yh.service"></context:component-scan>
+		
+		<!-- dubbo配置，Dubbo的配置文件信息，必须导入新的namespace，namespace可以通过dubbo的jar查询。 -->
+		
+		<!-- 1.配置dubbo的应用名称，是为一个dubbo的Provider或Consumer在注册中心定义的唯一命名
+		且在monitor监控中心可以根据应用名称查看应用统计信息
+		 -->
+		 <dubbo:appliaction name="test-provider-001"/>
+		 
+		 <!-- 2.配置注册中心，是定义注册中心zookeeper所在的位置和使用的协议
+		 协议名是zookeeper，地址是ip：port
+		  -->
+		  <dubbo:registry address="192.168.192.130:2181" protocol="zookeeper"/>
+		  
+		  <!-- 3.配置协议信息。是配置在发布服务中，绑定的协议是什么，也就是consumer使用什么协议访问Provider -->
+		  <dubbo:protocol name="dubbo" port="20880"/>
+		  
+		  <!-- 4. 配置具体的要发布的服务信息.
+		发布的服务是协议内容. 就是 - 协议://ip:port/接口名称?方法&参数&其他配置等
+		发布的服务, 在订阅后,必须配合具体的服务的接口,才能使用. 不需要实现类.
+		发布的服务虽然是协议内容, 但是必须由具体的要发布的服务接口的实现类提供服务的实现. 
+		所以需要引用一个有效的service对象.
+		ref - 具体的提供服务的实现类对象. 是spring容器管理的对象.
+			使用bean对象命名查询的.
+		interface - 接口. 代表发布的服务绑定的接口类型是什么.
+	 -->
+	 <dubbo:service ref="userServiceImpl"  interface="com.yh.service.UserService"/>
+		 
+		
+		</beans>

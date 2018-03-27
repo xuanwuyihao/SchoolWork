@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.p2p.mapper.UserInfoMapper">
+	<resultMap id="BaseResultMap" type="com.p2p.pojo.UserInfo">
+		<id column="id" property="id" jdbcType="INTEGER" />
+		<result column="user_id" property="userId" jdbcType="INTEGER" />
+		<result column="realName" property="realname" jdbcType="VARCHAR" />
+		<result column="idCard" property="idcard" jdbcType="VARCHAR" />
+		<result column="sex" property="sex" jdbcType="VARCHAR" />
+		<result column="birthdate" property="birthdate" jdbcType="TIMESTAMP" />
+		<result column="education" property="education" jdbcType="VARCHAR" />
+		<result column="school" property="school" jdbcType="VARCHAR" />
+		<result column="marriage" property="marriage" jdbcType="VARCHAR" />
+		<result column="children" property="children" jdbcType="VARCHAR" />
+		<result column="whetherHouse" property="whetherhouse" jdbcType="VARCHAR" />
+		<result column="whetherCar" property="whethercar" jdbcType="VARCHAR" />
+		<result column="nativePlace" property="nativeplace" jdbcType="VARCHAR" />
+		<result column="hukAddress" property="hukaddress" jdbcType="VARCHAR" />
+		<result column="oyh1" property="oyh1" jdbcType="VARCHAR" />
+		<result column="oyh2" property="oyh2" jdbcType="VARCHAR" />
+		
+	
+	</resultMap>
+	<select id="getByUserId" resultMap="BaseResultMap">
+		select * from user_info where
+		User_id=#{userId}
+	</select>
+	<select id="getById" resultMap="BaseResultMap">
+		select * from user_info where id=#{id}	
+	</select>  
+	<insert id="save" parameterType="com.p2p.pojo.UserInfo">
+		insert into
+		user_info(User_id,realName,idCard,sex,birthdate,education,school,marriage,children,whetherHouse,whetherCar,nativePlace,hukAddress,oyh1,oyh2)
+		values(#{userId},#{realname},#{idcard},#{sex},#{birthdate},#{education},#{school},#{marriage},#{children},#{whetherhouse},#{whethercar},#{nativeplace},#{hukaddress},#{oyh1},#{oyh2})
+	</insert>
+	<update id="update" parameterType="com.p2p.pojo.UserInfo">
+		update user_info set
+		realName=#{realname},
+		idCard=#{idcard},
+		sex=#{sex},
+		birthdate=#{birthdate},
+		education=#{education},
+		school=#{school},
+		marriage=#{marriage},
+		children=#{children},
+		whetherHouse=#{whetherhouse},
+		whetherCar=#{whethercar},
+		nativePlace=#{nativeplace},
+		hukAddress=#{hukaddress},
+		oyh1=#{oyh1},
+		oyh2=#{oyh2} 
+		where user_id=#{userId}
+	</update>
+
+
+	<select id="list" resultMap="BaseResultMap">
+	select * from user_info
+	</select>
+	
+	<select id="getCount" resultType="int" parameterType="com.p2p.pojo.UserInfo">
+	select count(*)  from user_info where nativePlace like "%"#{nativeplace}"%";
+	</select>
+	
+
+	
+	<select id="getUserInfo" resultMap="BaseResultMap">
+		select * from user_info where user_id=#{userId}
+	</select>
+	
+	
+</mapper>

@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.p2p.mapper.LetterMapper" >
+  <resultMap id="BaseResultMap" type="com.p2p.pojo.Letter" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="title" property="title" jdbcType="VARCHAR" />
+    <result column="sendPeople" property="sendpeople" jdbcType="VARCHAR" />
+    <result column="receivePeople" property="receivepeople" jdbcType="VARCHAR" />
+    <result column="content" property="content" jdbcType="VARCHAR" />
+    <result column="time" property="time" jdbcType="TIMESTAMP" />
+    <result column="oyh1" property="oyh1" jdbcType="VARCHAR" />
+    <result column="oyh2" property="oyh2" jdbcType="VARCHAR" />
+  </resultMap>
+ <select id="letter_List" resultMap="BaseResultMap" >
+ 	select * from letter
+ 	<where>
+ 		<if test="sender!=null and sender!=''">
+ 			receivePeople=#{sender}
+ 		</if>
+ 		<if test="time1!=null and time1!=''">
+ 			 time>=#{time1}
+ 		</if>
+ 		<if test="time2!=null and time2!=''">
+ 			 and time  &lt;= #{time2}
+ 		</if>
+ 		<if test="status!=null and status!=''">
+ 			and oyh1 = #{status}
+ 		</if>
+ 	</where>
+ 	limit #{number},#{line}
+ </select>
+ 
+ <select id="maxCount" resultType="java.lang.Integer" >
+ 	select count(*) from letter 
+ 	<where>
+ 		<if test="arg0!=null and arg0!=''">
+ 			receivePeople = #{arg0}
+ 		</if>
+ 		<if test="arg1!=null and arg1!=''">
+ 			and oyh1 = '${arg1}'
+ 		</if>
+ 	</where>
+ </select>
+ 
+ <insert id="save">
+ 	insert into letter(title,sendPeople,receivePeople,content,time,oyh1,oyh2) values(#{title},#{sendpeople},#{receivepeople},#{content},#{time},#{oyh1},#{oyh2})
+ </insert>
+ <delete id="remove">
+ 	delete from letter where id=#{id}
+ </delete>
+ <select id="getById" resultType="com.p2p.pojo.Letter">
+ 	select * from letter where id=#{id}
+ </select>
+ <update id="update">
+ 	update letter set title=#{title},sendPeople=#{sendpeople},receivePeople=#{receivepeople},content=#{content},time=#{time},oyh1=#{oyh1},oyh2=#{oyh2} where id=#{id}
+ </update>
+</mapper>

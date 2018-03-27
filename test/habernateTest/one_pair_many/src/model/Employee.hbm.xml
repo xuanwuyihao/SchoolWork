@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+    
+    <hibernate-mapping>
+    <class name="model.Employee" table="employeess">
+    <id name="id">
+    <generator class="native"></generator>
+    </id>
+    <property name="name"></property>
+    <property name="age"></property>
+    <property name="depId"></property>
+    <many-to-one name="department" class="model.Department" column="depId" insert="false" update="false"></many-to-one>
+    </class>
+    </hibernate-mapping>

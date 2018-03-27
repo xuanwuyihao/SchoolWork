@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+<class name="com.qf.model.Student" table="Student">
+<id name="s_id">
+<generator class="native"></generator>
+</id>
+<property name="s_studentno"></property>
+<property name="s_name"></property>
+<property name="emp_id"></property>
+<property name="id_number"></property>
+<property name="s_phone"></property>
+<property name="s_content"></property>
+<property name="academy_id"></property>
+<property name="s_gradations"></property>
+<property name="s_systme"></property>
+<property name="s_date"></property>
+<property name="s_type"></property>
+<property name="maj_id"></property>
+
+
+<many-to-one name="employee" class="com.qf.model.Employee" column="emp_id" insert="false" update="false"></many-to-one>
+
+</class>
+
+</hibernate-mapping>

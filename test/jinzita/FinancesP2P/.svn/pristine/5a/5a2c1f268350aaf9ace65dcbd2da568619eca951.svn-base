@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.p2p.mapper.ManagerMapper" >
+  <resultMap id="BaseResultMap" type="com.p2p.pojo.Manager" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="username" property="username" jdbcType="VARCHAR" />
+    <result column="password" property="password" jdbcType="VARCHAR" />
+    <result column="realName" property="realname" jdbcType="VARCHAR" />
+    <result column="phone" property="phone" jdbcType="VARCHAR" />
+    <result column="email" property="email" jdbcType="VARCHAR" />
+    <result column="lastTime" property="lasttime" jdbcType="TIMESTAMP" />
+    <result column="lastIp" property="lastip" jdbcType="VARCHAR" />
+    <result column="role" property="role" jdbcType="VARCHAR" />
+    <result column="oyh1" property="oyh1" jdbcType="VARCHAR" />
+    <result column="oyh2" property="oyh2" jdbcType="VARCHAR" />
+  </resultMap>
+  
+	<select id="getByName" resultMap="BaseResultMap">
+	select * from manager where username=#{username}
+	</select> 
+	
+	<update id="insertLog" parameterType="com.p2p.pojo.Manager">
+		update  manager set lastTime=#{lasttime},lastIp=#{lastip} where username=#{username}
+	</update>
+	
+	<insert id="save" parameterType="com.p2p.pojo.Manager">
+		insert into  manager(username,password,realName,phone,email,role) values(#{username},#{password},#{realname},#{phone},#{email},#{role});
+	</insert>
+  
+  	<update id="update" parameterType="com.p2p.pojo.Manager">
+		update  manager set username=#{username},realName=#{realname},phone=#{phone},email=#{email},role=#{role}  where id=#{id};
+	</update>
+  
+  	<delete id="remove" parameterType="java.lang.Integer" >
+  		delete from manager where id=#{id};
+  	</delete> 
+  	
+  	<select id="list" resultMap="BaseResultMap">
+		select * from manager
+	</select> 
+	
+	
+	<select id="getById" parameterType="java.lang.Integer" resultType="Manager">
+		select * from manager where id=#{id}
+	</select> 
+	
+	<select id="vagueSelect" parameterType="Page" resultMap="BaseResultMap">
+		select * from manager   where 1=1  
+	        <if test="title != '' and title != null">  
+	            and username like '${title}%'
+	        </if>  
+	        <if test="people != '' and people != null">  
+	            and role like  '%${people}%'
+	        </if>  
+	</select>
+	
+	<select id="vagueSelectLimit" parameterType="Page" resultMap="BaseResultMap">
+		select * from (select * from manager   where 1=1  
+	        <if test="title != '' and title != null">  
+	            and username like '%${title}%'
+	        </if>  
+	        <if test="people != '' and people != null">  
+	            and role like  '%${people}%'
+	        </if>  )n limit ${fist},${tow}
+	</select>
+	
+	
+	<select id="pagingSelect"  resultMap="BaseResultMap">
+		select * from manager   limit #{fist},#{tow}; 
+	</select>
+</mapper>
