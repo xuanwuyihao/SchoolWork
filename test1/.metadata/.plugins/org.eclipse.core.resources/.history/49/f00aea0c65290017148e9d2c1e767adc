@@ -1,0 +1,11 @@
+body{
+	padding-top:50px;
+}
+
+.icon_top{
+	top:0px;
+}
+
+.sex_range{
+	align:center;
+}

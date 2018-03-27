@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Move 1 elements(s) to &apos;JSP_T2/src/servlet&apos;&#x0D;&#x0A;- Original project: &apos;JSP_T2&apos;&#x0D;&#x0A;- Destination element: &apos;JSP_T2/src/servlet&apos;&#x0D;&#x0A;- Original element: &apos;UserServlet.java&apos;&#x0D;&#x0A;- Update references to refactored element" description="Move compilation unit" destination="/src&lt;servlet" element1="/src&lt;{UserServlet.java" files="0" flags="589830" folders="0" id="org.eclipse.jdt.ui.move" policy="org.eclipse.jdt.ui.moveResources" qualified="false" references="true" stamp="1490084911563" units="1" version="1.0"/>
+</session>

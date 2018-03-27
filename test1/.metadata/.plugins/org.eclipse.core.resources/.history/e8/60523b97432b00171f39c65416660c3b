@@ -1,0 +1,111 @@
+package servlet;
+
+import java.io.IOException;
+
+import javax.servlet.ServletException;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+
+import bean.Businessbean;
+
+import service.Businessservice;
+import serviceImpl.BusinessImpl;
+
+public class Businessservlet extends HttpServlet {
+	
+	Businessservice bus=new BusinessImpl();
+	
+	public void doGet(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+		doPost(request, response);
+	}
+
+	public void doPost(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+		//设置请求类型
+		String method=request.getParameter("method");
+		
+		if("blogin".equals(method)){
+			String bacc=request.getParameter("bacc");
+			String bpwd=request.getParameter("bpwd");
+			Businessbean bsin=new Businessbean();
+			bsin.setBacc(bacc);
+			bsin.setBpwd(bpwd);
+			Businessbean b=bus.businesslogin(bsin);			
+			if(b!=null){
+				//将用户对象保存到session
+				HttpSession session=request.getSession();
+				session.setAttribute("bsin", b);
+				//获取用户账号
+				
+				
+				response.sendRedirect("bcenter.jsp");
+			}else{//登录失败
+				request.setAttribute("msg","账号或密码有误！" );
+				request.getRequestDispatcher("business/blogin.jsp").forward(request, response);
+			}
+		}else if("bzhuce".equals(method)){
+			//获取页面参数
+			Businessbean business=new Businessbean();
+			business.setBacc(request.getParameter("bacc"));
+			business.setBpwd(request.getParameter("bpwd"));
+			business.setBtel(request.getParameter("btel"));
+			
+			boolean b=bus.bzhce(business);
+			if(b){
+				response.sendRedirect("homepage.jsp");
+			}else {
+				request.setAttribute("msg", "注册失败！");
+				request.getRequestDispatcher("bzhuce.jsp").forward(request, response);
+			}
+			
+			
+		}else if("updbusiness".equals(method)){//修改1
+			
+			Businessbean b=new Businessbean();
+			b.setBid(Integer.parseInt(request.getParameter("bid")));
+			b.setBacc(request.getParameter("bacc"));
+			b.setBtel(request.getParameter("btel"));
+			b.setBname(request.getParameter("bname"));
+			b.setBwifi(Integer.parseInt(request.getParameter("bwifi")));
+			b.setBpark(Integer.parseInt(request.getParameter("bpark")));
+			
+			bus.updbusiness(b);
+			
+				response.sendRedirect("business/bbasic.jsp");			
+			
+		}else if("updpwd".equals(method)){
+			Businessbean b=new Businessbean();
+			b.setBid(Integer.parseInt(request.getParameter("bid")));
+			b.setBpwd(request.getParameter("bpwd"));
+			int x=Integer.parseInt(request.getParameter("bpwd1"));
+			int y=Integer.parseInt(request.getParameter("bpwd"));
+			
+			if(x!=y){
+				request.setAttribute("msg", "原密码有误！");
+				request.getRequestDispatcher("business/changepwd.jsp").forward(request, response);
+			}else{
+				
+				bus.updpwd(b);
+			
+			}
+			request.getRequestDispatcher("business/changepwd.jsp").forward(request, response);
+			
+			
+		}
+	}
+
+}
+
+
+
+
+
+
+
+
+
+
+

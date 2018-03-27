@@ -1,0 +1,39 @@
+package service;
+
+import java.util.List;
+
+import bean.Businessbean;
+import bean.prod;
+
+public interface Businessservice {
+	
+	//商家登录
+	public Businessbean businesslogin(Businessbean business);
+	
+	//商家注册
+	public boolean bzhce(Businessbean b);
+	
+	//个人中心
+	public Businessbean bcenter(String bacc);
+	
+	//修改商家资料
+	public boolean updbusiness(Businessbean bacc);
+	
+	//修改商家资料-密码
+	public boolean updpwd(Businessbean bpwd);
+	
+	//修改商家资料-上传营业执照等
+	public boolean upyyzz(Businessbean b);
+	
+	//团购信息
+	public prod selcommodity(int pid);
+	
+	//查询商品图库信息
+	public List selimgs(int pid);
+	
+	//查看店铺信息
+	public Businessbean selbusiness(int bid);
+	
+	//查询商品信息
+	public List selprodlist(int bid);
+}

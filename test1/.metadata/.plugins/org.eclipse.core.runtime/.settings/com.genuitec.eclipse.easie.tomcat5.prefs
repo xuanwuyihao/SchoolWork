@@ -1,0 +1,10 @@
+#Sat May 06 16:14:07 CST 2017
+TOMCAT_HOME=C\:\\Program Files (x86)\\Apache Software Foundation\\Tomcat 5.5
+TOMCAT_TEMP=C\:\\Program Files (x86)\\Apache Software Foundation\\Tomcat 5.5\\temp
+LIBRARY_PATH="C\:\\Program Files (x86)\\Java\\jdk1.6.0_10\\bin;C\:\\Program Files (x86)\\Apache Software Foundation\\Tomcat 5.5\\bin"
+TOMCAT_BASE=C\:\\Program Files (x86)\\Apache Software Foundation\\Tomcat 5.5
+ENDORSED_DIRS="C\:\\Program Files (x86)\\Apache Software Foundation\\Tomcat 5.5/common/endorsed"
+eclipse.preferences.version=1
+JDK_INSTALLATION_NAME=jdk1.6.0_10
+JDK_HOME=C\:\\Program Files (x86)\\Java\\jdk1.6.0_10
+SERVER_ENABLEMENT=true

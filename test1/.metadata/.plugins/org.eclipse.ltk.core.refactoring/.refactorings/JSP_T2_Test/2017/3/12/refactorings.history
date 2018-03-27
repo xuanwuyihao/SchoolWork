@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Rename resource &apos;/JSP_T2_Test/WebRoot/Dome1_zuce.jsp&apos; to &apos;Dome1_zhuce.jsp&apos;&#x0D;&#x0A;- Original project: &apos;JSP_T2_Test&apos;&#x0D;&#x0A;- Original element: &apos;Dome1_zuce.jsp&apos;" description="Rename resource &apos;Dome1_zuce.jsp&apos;" flags="7" id="org.eclipse.jdt.ui.rename.resource" input="WebRoot/Dome1_zuce.jsp" name="Dome1_zhuce.jsp" stamp="1490149307307" version="1.0"/>
+</session>
